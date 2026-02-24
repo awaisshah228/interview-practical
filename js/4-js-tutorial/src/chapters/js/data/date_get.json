@@ -1,0 +1,105 @@
+{
+  "id": "date_get",
+  "title": "JS Date Get Methods",
+  "group": "JS Dates",
+  "content": [
+    { "type": "h1", "text": "JavaScript Date Get Methods" },
+    { "type": "p", "text": "Date get methods are used to retrieve parts of a date object. They allow you to extract the year, month, day, hours, minutes, seconds, milliseconds, and the timestamp from any Date object." },
+
+    { "type": "h2", "text": "getFullYear()" },
+    { "type": "p", "text": "The getFullYear() method returns the four-digit year of a date. Always use getFullYear() instead of the deprecated getYear() method." },
+    { "type": "example", "title": "getFullYear()", "code": [
+      "const d = new Date(\"2024-06-15T10:30:00\");",
+      "console.log(\"Full Year:\", d.getFullYear());",
+      "",
+      "const now = new Date();",
+      "console.log(\"Current Year:\", now.getFullYear());"
+    ] },
+
+    { "type": "h2", "text": "getMonth() and getDate()" },
+    { "type": "p", "text": "getMonth() returns the month as a number from 0 to 11 (0 = January, 11 = December). getDate() returns the day of the month from 1 to 31." },
+    { "type": "example", "title": "getMonth() and getDate()", "code": [
+      "const d = new Date(\"2024-06-15\");",
+      "",
+      "// Month is 0-indexed!",
+      "console.log(\"Month (0-11):\", d.getMonth());",
+      "",
+      "// Get month name",
+      "const months = [\"January\", \"February\", \"March\", \"April\",",
+      "  \"May\", \"June\", \"July\", \"August\",",
+      "  \"September\", \"October\", \"November\", \"December\"];",
+      "console.log(\"Month name:\", months[d.getMonth()]);",
+      "",
+      "// Day of the month (1-31)",
+      "console.log(\"Date:\", d.getDate());"
+    ] },
+    { "type": "note", "text": "getDate() returns the day of the month (1-31), while getDay() returns the day of the week (0-6). Don't confuse them!" },
+
+    { "type": "h2", "text": "getDay()" },
+    { "type": "p", "text": "getDay() returns the day of the week as a number from 0 (Sunday) to 6 (Saturday)." },
+    { "type": "example", "title": "getDay()", "code": [
+      "const d = new Date(\"2024-06-15\");",
+      "",
+      "console.log(\"Day number (0-6):\", d.getDay());",
+      "",
+      "// Get day name",
+      "const days = [\"Sunday\", \"Monday\", \"Tuesday\",",
+      "  \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];",
+      "console.log(\"Day name:\", days[d.getDay()]);"
+    ] },
+
+    { "type": "h2", "text": "getHours(), getMinutes(), getSeconds()" },
+    { "type": "p", "text": "These methods return the time components of a date. getHours() returns 0-23, getMinutes() returns 0-59, and getSeconds() returns 0-59." },
+    { "type": "example", "title": "Time Get Methods", "code": [
+      "const d = new Date(\"2024-06-15T14:30:45\");",
+      "",
+      "console.log(\"Hours (0-23):\", d.getHours());",
+      "console.log(\"Minutes (0-59):\", d.getMinutes());",
+      "console.log(\"Seconds (0-59):\", d.getSeconds());",
+      "console.log(\"Milliseconds (0-999):\", d.getMilliseconds());",
+      "",
+      "// Format as HH:MM:SS",
+      "const hh = String(d.getHours()).padStart(2, '0');",
+      "const mm = String(d.getMinutes()).padStart(2, '0');",
+      "const ss = String(d.getSeconds()).padStart(2, '0');",
+      "console.log(`Time: ${hh}:${mm}:${ss}`);"
+    ] },
+
+    { "type": "h2", "text": "getTime() and getTimezoneOffset()" },
+    { "type": "p", "text": "getTime() returns the number of milliseconds since January 1, 1970 (Unix epoch). getTimezoneOffset() returns the difference in minutes between UTC and the local time zone." },
+    { "type": "example", "title": "getTime() and getTimezoneOffset()", "code": [
+      "const d = new Date(\"2024-06-15T10:30:00\");",
+      "",
+      "// Milliseconds since epoch",
+      "console.log(\"Timestamp:\", d.getTime());",
+      "",
+      "// Timezone offset in minutes",
+      "console.log(\"Timezone offset:\", d.getTimezoneOffset());",
+      "",
+      "// Compare two dates using getTime()",
+      "const d1 = new Date(\"2024-06-15\");",
+      "const d2 = new Date(\"2024-06-20\");",
+      "console.log(\"d1 < d2:\", d1.getTime() < d2.getTime());",
+      "",
+      "// Days between two dates",
+      "const diffMs = d2.getTime() - d1.getTime();",
+      "const diffDays = diffMs / (1000 * 60 * 60 * 24);",
+      "console.log(\"Days between:\", diffDays);"
+    ] },
+
+    { "type": "table", "rows": [
+      ["Method", "Returns", "Range"],
+      ["getFullYear()", "Year", "4 digits"],
+      ["getMonth()", "Month", "0-11"],
+      ["getDate()", "Day of month", "1-31"],
+      ["getDay()", "Day of week", "0-6 (Sun-Sat)"],
+      ["getHours()", "Hour", "0-23"],
+      ["getMinutes()", "Minutes", "0-59"],
+      ["getSeconds()", "Seconds", "0-59"],
+      ["getMilliseconds()", "Milliseconds", "0-999"],
+      ["getTime()", "Timestamp", "ms since epoch"]
+    ] },
+
+    { "type": "exercise", "question": "What does getMonth() return for March?", "options": ["1", "2", "3", "0"], "answer": 1 }
+  ]
+}

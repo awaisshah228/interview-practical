@@ -1,7 +1,7 @@
 {
   "id": "objects",
   "title": "JS Objects",
-  "group": "JS Objects & Arrays",
+  "group": "JS Objects",
   "content": [
     { "type": "h1", "text": "JavaScript Objects" },
     { "type": "p",  "text": "Objects are used to store keyed collections of data. An object is a collection of properties (key-value pairs), where values can be data or functions (methods)." },
@@ -85,6 +85,7 @@
       "console.log(company.address.city);",
       "console.log(company.employees[0]);"
     ]},
-    { "type": "note", "text": "Objects declared with const can still have their properties changed — const only prevents reassigning the variable itself." }
+    { "type": "note", "text": "Objects declared with const can still have their properties changed — const only prevents reassigning the variable itself." },
+    { "type": "exercise", "question": "How do you access a property called 'name' on an object called person?", "options": ["person->name", "person::name", "person.name", "person#name"], "answer": 2 }
   ]
 }

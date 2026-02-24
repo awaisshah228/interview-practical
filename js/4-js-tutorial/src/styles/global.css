@@ -192,6 +192,10 @@ header {
     overflow-y: auto;
     padding: 2rem 2.5rem 4rem;
     max-width: 860px;
+    scrollbar-width: none;           /* Firefox */
+}
+#content::-webkit-scrollbar {
+    display: none;                   /* Chrome, Safari, Edge */
 }
 
 #content h1 {
@@ -292,6 +296,9 @@ tr:nth-child(even) td { background: var(--surface); }
     transition: background 0.15s;
 }
 .try-it-btn:hover { background: var(--green-dark); }
+
+/* Hide "Try it Yourself" for non-code languages (AI courses etc.) */
+body[data-code-lang="false"] .try-it-btn { display: none; }
 
 /* ── Prev / Next chapter navigation ──────────────────────────────────────── */
 .chapter-nav {
@@ -557,6 +564,304 @@ tr:nth-child(even) td { background: var(--surface); }
 }
 .exercise-feedback.correct { color: #56d364; }
 .exercise-feedback.wrong { color: #f85149; }
+
+/* ══════════════════════════════════════════════════════════════════════════ */
+/* ROADMAP — roadmap.sh exact style (embedded in #content)                    */
+/* Colors: yellow #FFF9C4 nodes, #2b78e4 blue lines, white bg                */
+/* ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Intro section above roadmap ────────────────────────────────────────── */
+.rm-intro {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border);
+}
+.rm-intro-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0 1rem;
+}
+.rm-intro-list li {
+    padding: 0.4rem 0 0.4rem 1.5rem;
+    position: relative;
+    font-size: 0.92rem;
+    color: #444;
+}
+.rm-intro-list li::before {
+    content: "▸";
+    position: absolute;
+    left: 0.25rem;
+    color: var(--green);
+    font-weight: 700;
+}
+.rm-intro-cta {
+    margin-top: 1.5rem;
+}
+
+/* When roadmap is inside #content, allow it to use full width */
+#content:has(.rm) {
+    max-width: none;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+#content .rm {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* ── Progress bar ───────────────────────────────────────────────────────── */
+.rm-progress-bar {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+.rm-progress-label {
+    font-size: 0.8rem;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.rm-progress-pct {
+    font-weight: 700;
+    color: #04AA6D;
+    background: #e7f7f1;
+    padding: 0.15rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+}
+.rm-progress-count {
+    font-weight: 500;
+    color: #555;
+}
+
+/* ── Title ──────────────────────────────────────────────────────────────── */
+.rm-title-row {
+    text-align: center;
+    margin-bottom: 0.3rem;
+}
+.rm-title-box {
+    display: inline-block;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #232323;
+    letter-spacing: -0.01em;
+}
+.rm-subtitle {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 1.25rem;
+}
+
+/* ── Legend ──────────────────────────────────────────────────────────────── */
+.rm-legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 0.65rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+.rm-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    color: #555;
+}
+
+/* Checkmark badges — roadmap.sh style (circle with ✓ at node corner) */
+.rm-check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    line-height: 1;
+}
+.rm-check--purple { background: #874efe; }
+.rm-check--green  { background: #4f7a28; }
+.rm-check--grey   { background: #929292; }
+
+/* ── Canvas: the roadmap flow area ──────────────────────────────────────── */
+.rm-canvas {
+    position: relative;
+    padding: 0 0 1rem;
+}
+/* SVG bezier connection lines overlay */
+.rm-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: visible;
+}
+
+/* ── Row: one group ─────────────────────────────────────────────────────── */
+.rm-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    margin-bottom: 2.5rem;
+    align-items: start;
+}
+
+/* ── Center column: group box ───────────────────────────────────────────── */
+.rm-center {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    padding: 0 0.5rem;
+}
+
+.rm-group-box {
+    display: inline-block;
+    padding: 0.55rem 1.4rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 8px;
+    border: 2px solid;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
+}
+
+/* ── Branch: left or right column of nodes ──────────────────────────────── */
+.rm-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+.rm-branch--left {
+    grid-column: 1;
+    grid-row: 1;
+    align-items: flex-end;
+    padding-right: 1.5rem;
+}
+.rm-branch--right {
+    grid-column: 3;
+    grid-row: 1;
+    align-items: flex-start;
+    padding-left: 1.5rem;
+}
+
+
+/* ── Individual node box — yellow like roadmap.sh ───────────────────────── */
+.rm-node {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem;
+    background: #FFF9C4;
+    border: 2px solid #333;
+    border-radius: 8px;
+    color: #232323;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.12s, box-shadow 0.15s;
+    position: relative;
+}
+.rm-node:hover {
+    background: #FEF08A;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+/* Checkmark badge positioned at right edge of node */
+.rm-node .rm-check {
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    border: 2px solid #fff;
+}
+/* Left-branch nodes: badge on left edge */
+.rm-branch--left .rm-node .rm-check {
+    right: auto;
+    left: -10px;
+}
+
+
+/* ── "both" side: nodes on left AND right ───────────────────────────────── */
+.rm-row[data-side="both"] {
+    /* default grid handles it */
+}
+
+/* ── Bottom CTA ─────────────────────────────────────────────────────────── */
+.rm-cta {
+    text-align: center;
+    margin-top: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+.rm-cta-btn {
+    display: inline-block;
+    background: #4136d4;
+    color: #fff;
+    padding: 0.65rem 2rem;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, transform 0.12s;
+    box-shadow: 0 2px 8px rgba(65,54,212,0.3);
+}
+.rm-cta-btn:hover {
+    background: #3528b2;
+    transform: translateY(-1px);
+}
+
+/* ── Roadmap mobile ─────────────────────────────────────────────────────── */
+@media (max-width: 740px) {
+    .rm-connections { display: none; }
+
+    .rm-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding-left: 16px;
+    }
+    .rm-center { justify-content: flex-start; padding: 0; }
+
+    .rm-branch--left,
+    .rm-branch--right {
+        align-items: flex-start;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .rm-node { white-space: normal; }
+    .rm-title-box { font-size: 1.3rem; }
+    .rm-legend { gap: 0.6rem; padding: 0.5rem 0.75rem; }
+}
 
 /* ══════════════════════════════════════════════════════════════════════════ */
 /* MOBILE (≤ 768px)                                                           */

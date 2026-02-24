@@ -6,7 +6,7 @@ Built with **Astro** for instant page loads — every chapter is a static HTML p
 
 ## Features
 
-- **Multi-language** — landing page at `/` lets you pick a tutorial (JS, Python, etc.)
+- **Multi-language** — landing page at `/` lets you pick a tutorial (JS, AI Video & Automation, etc.)
 - Pre-rendered static HTML — instant first paint, no FOUC
 - **Try it Yourself** button on every example — lazy-loads Monaco editor from CDN on first click
 - **Run** button (or `Ctrl+Enter`) executes code and displays `console.log` output
@@ -55,7 +55,8 @@ That's it — Astro generates all pages at build time.
 /                  → Landing page (choose a language)
 /js/intro          → JavaScript Introduction
 /js/variables      → JavaScript Variables
-/python/intro      → Python Introduction (when added)
+/ai-video/ai_prompting       → AI Prompting
+/ai-video/ai_automation_intro → AI Automation Introduction
 ```
 
 ## Getting Started

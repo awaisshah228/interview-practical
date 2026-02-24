@@ -1,0 +1,124 @@
+{
+  "id": "string_templates",
+  "title": "JS String Templates",
+  "group": "JS Strings",
+  "content": [
+    { "type": "h1", "text": "JavaScript Template Literals" },
+    { "type": "p", "text": "Template literals (introduced in ES6) provide an easy way to create strings with embedded expressions, multi-line content, and advanced formatting using backtick (`) characters instead of quotes." },
+
+    { "type": "h2", "text": "Backtick Syntax" },
+    { "type": "p", "text": "Template literals use backticks (` `) instead of single or double quotes. They allow you to create strings that look cleaner and are easier to read." },
+    { "type": "example", "title": "Basic Template Literal", "code": [
+      "let greeting = `Hello, World!`;",
+      "console.log(greeting);",
+      "",
+      "// Quotes inside backticks need no escaping",
+      "let phrase = `He said \"Hello\" and she said 'Hi'`;",
+      "console.log(phrase);"
+    ]},
+
+    { "type": "h2", "text": "Expression Interpolation (${...})" },
+    { "type": "p", "text": "The real power of template literals is string interpolation. Use ${expression} to embed any JavaScript expression directly inside the string. The expression is evaluated and its result is converted to a string." },
+    { "type": "example", "title": "Variable Interpolation", "code": [
+      "let firstName = \"John\";",
+      "let lastName = \"Doe\";",
+      "let fullName = `My name is ${firstName} ${lastName}`;",
+      "console.log(fullName);",
+      "",
+      "let price = 19.99;",
+      "let tax = 0.08;",
+      "let total = `Total: $${(price * (1 + tax)).toFixed(2)}`;",
+      "console.log(total);"
+    ]},
+    { "type": "example", "title": "Expressions Inside ${}", "code": [
+      "let a = 10;",
+      "let b = 20;",
+      "console.log(`Sum: ${a + b}`);",
+      "console.log(`Is a bigger? ${a > b}`);",
+      "console.log(`Uppercase: ${\"hello\".toUpperCase()}`);",
+      "console.log(`Ternary: ${a > 5 ? \"big\" : \"small\"}`);"
+    ]},
+
+    { "type": "h2", "text": "Multi-Line Strings" },
+    { "type": "p", "text": "With template literals, you can create multi-line strings without using escape characters like \\n. The line breaks in your code are preserved in the output." },
+    { "type": "example", "title": "Multi-Line Template Literal", "code": [
+      "let poem = `Roses are red,",
+      "Violets are blue,",
+      "Template literals,",
+      "Are awesome too!`;",
+      "console.log(poem);",
+      "",
+      "// Compare with old approach:",
+      "let oldWay = \"Line 1\\n\" +",
+      "             \"Line 2\\n\" +",
+      "             \"Line 3\";",
+      "console.log(oldWay);"
+    ]},
+
+    { "type": "h2", "text": "Tagged Templates" },
+    { "type": "p", "text": "Tagged templates let you parse template literals with a function. The tag function receives the string parts and expression values as separate arguments, giving you full control over how the template is processed." },
+    { "type": "example", "title": "Tagged Template Function", "code": [
+      "function highlight(strings, ...values) {",
+      "  let result = \"\";",
+      "  strings.forEach((str, i) => {",
+      "    result += str;",
+      "    if (i < values.length) {",
+      "      result += `[${values[i]}]`;",
+      "    }",
+      "  });",
+      "  return result;",
+      "}",
+      "",
+      "let name = \"Alice\";",
+      "let age = 30;",
+      "let msg = highlight`Name: ${name}, Age: ${age}`;",
+      "console.log(msg);"
+    ]},
+    { "type": "example", "title": "Practical Tagged Template: HTML Escaping", "code": [
+      "function safeHTML(strings, ...values) {",
+      "  let result = \"\";",
+      "  strings.forEach((str, i) => {",
+      "    result += str;",
+      "    if (i < values.length) {",
+      "      result += String(values[i])",
+      "        .replace(/&/g, \"&amp;\")",
+      "        .replace(/</g, \"&lt;\")",
+      "        .replace(/>/g, \"&gt;\");",
+      "    }",
+      "  });",
+      "  return result;",
+      "}",
+      "",
+      "let userInput = \"<script>alert('xss')</script>\";",
+      "let html = safeHTML`<p>User said: ${userInput}</p>`;",
+      "console.log(html);"
+    ]},
+
+    { "type": "h2", "text": "Nesting Templates" },
+    { "type": "p", "text": "Template literals can be nested inside the ${} expressions of other template literals. This is useful for building complex strings conditionally." },
+    { "type": "example", "title": "Nested Template Literals", "code": [
+      "let isLoggedIn = true;",
+      "let user = \"Alice\";",
+      "",
+      "let message = `Welcome ${isLoggedIn ? `back, ${user}` : `guest`}!`;",
+      "console.log(message);",
+      "",
+      "let items = [\"apple\", \"banana\", \"cherry\"];",
+      "let list = `Items: ${items.map(item => `\"${item}\"`).join(\", \")}`;",
+      "console.log(list);"
+    ]},
+
+    { "type": "table", "rows": [
+      ["Feature", "Regular Strings", "Template Literals"],
+      ["Delimiter", "' or \"", "` (backtick)"],
+      ["Interpolation", "Not supported", "${expression}"],
+      ["Multi-line", "Requires \\n", "Natural line breaks"],
+      ["Tagged", "Not supported", "tag`string`"],
+      ["Expression embedding", "Concatenation only", "Any JS expression"]
+    ]},
+
+    { "type": "note", "text": "Template literals are not just syntactic sugar. Tagged templates enable powerful patterns like styled-components in React, GraphQL query definitions (gql`...`), and internationalization (i18n) libraries." },
+
+    { "type": "exercise", "question": "What is the correct syntax to embed a variable 'name' in a template literal?", "options": ["'Hello ' + name", "`Hello ${name}`", "`Hello {name}`", "`Hello $name`"], "answer": 1 }
+  ]
+}

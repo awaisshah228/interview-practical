@@ -29,6 +29,7 @@ const { language, chapter, index, chapters } = Astro.props;
     langName={language.name}
     monacoLang={language.monacoLang}
 >
+    <ChapterNav chapters={chapters} currentIndex={index} lang={language.id} />
     {chapter.content.map(block => (
         <ContentBlock block={block} />
     ))}

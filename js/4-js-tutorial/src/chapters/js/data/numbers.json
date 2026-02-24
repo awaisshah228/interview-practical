@@ -1,7 +1,7 @@
 {
   "id": "numbers",
   "title": "JS Numbers",
-  "group": "JS Objects & Arrays",
+  "group": "JS Numbers",
   "content": [
     { "type": "h1", "text": "JavaScript Numbers" },
     { "type": "p",  "text": "JavaScript has only one number type. Numbers are stored as 64-bit floating point values (IEEE 754). This applies to both integers and decimals." },
@@ -78,6 +78,7 @@
       "let rand = Math.floor(Math.random() * 10) + 1;",
       "console.log(\"Random 1-10:\", rand);"
     ]},
-    { "type": "note", "text": "Use Number.isNaN() rather than the global isNaN() — the global version coerces its argument first, giving unexpected results." }
+    { "type": "note", "text": "Use Number.isNaN() rather than the global isNaN() — the global version coerces its argument first, giving unexpected results." },
+    { "type": "exercise", "question": "What does parseInt(\"42px\") return?", "options": ["NaN", "\"42px\"", "42", "0"], "answer": 2 }
   ]
 }

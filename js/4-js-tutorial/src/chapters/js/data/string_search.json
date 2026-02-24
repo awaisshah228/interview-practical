@@ -1,0 +1,128 @@
+{
+  "id": "string_search",
+  "title": "JS String Search",
+  "group": "JS Strings",
+  "content": [
+    { "type": "h1", "text": "JavaScript String Search" },
+    { "type": "p", "text": "JavaScript provides several methods to search within strings. You can find positions of substrings, check for existence, and perform pattern matching with regular expressions." },
+
+    { "type": "h2", "text": "indexOf() and lastIndexOf()" },
+    { "type": "p", "text": "indexOf() returns the index of the first occurrence of a substring. lastIndexOf() returns the index of the last occurrence. Both return -1 if the substring is not found." },
+    { "type": "example", "title": "indexOf() and lastIndexOf()", "code": [
+      "let text = \"Hello World, Hello JavaScript!\";",
+      "",
+      "// First occurrence",
+      "console.log(text.indexOf(\"Hello\"));",
+      "console.log(text.indexOf(\"World\"));",
+      "",
+      "// Last occurrence",
+      "console.log(text.lastIndexOf(\"Hello\"));",
+      "",
+      "// Not found returns -1",
+      "console.log(text.indexOf(\"Python\"));",
+      "",
+      "// Start searching from position 5",
+      "console.log(text.indexOf(\"Hello\", 5));",
+      "",
+      "// lastIndexOf starts searching backward from position 20",
+      "console.log(text.lastIndexOf(\"Hello\", 20));"
+    ]},
+
+    { "type": "h2", "text": "includes(), startsWith(), endsWith()" },
+    { "type": "p", "text": "These methods return a boolean (true/false) to check if a string contains, starts with, or ends with a given substring. They are case-sensitive." },
+    { "type": "example", "title": "Boolean Search Methods", "code": [
+      "let sentence = \"JavaScript is awesome!\";",
+      "",
+      "// includes() — does the string contain this?",
+      "console.log(sentence.includes(\"awesome\"));",
+      "console.log(sentence.includes(\"python\"));",
+      "console.log(sentence.includes(\"is\", 12));",
+      "",
+      "// startsWith() — does it begin with this?",
+      "console.log(sentence.startsWith(\"JavaScript\"));",
+      "console.log(sentence.startsWith(\"java\"));",
+      "console.log(sentence.startsWith(\"is\", 11));",
+      "",
+      "// endsWith() — does it end with this?",
+      "console.log(sentence.endsWith(\"!\"));",
+      "console.log(sentence.endsWith(\"awesome!\"));",
+      "console.log(sentence.endsWith(\"is\", 13));"
+    ]},
+
+    { "type": "h2", "text": "search()" },
+    { "type": "p", "text": "The search() method searches a string for a match against a regular expression or string, and returns the index of the first match. It returns -1 if no match is found. Unlike indexOf(), search() can use regex patterns." },
+    { "type": "example", "title": "search() Method", "code": [
+      "let text = \"The rain in Spain falls mainly on the plain\";",
+      "",
+      "// Search with a string",
+      "console.log(text.search(\"Spain\"));",
+      "",
+      "// Search with a regex",
+      "console.log(text.search(/spain/i));",
+      "",
+      "// Search for a pattern (word starting with 'pl')",
+      "console.log(text.search(/pl\\w+/));",
+      "",
+      "// Not found",
+      "console.log(text.search(/xyz/));"
+    ]},
+
+    { "type": "h2", "text": "match() and matchAll()" },
+    { "type": "p", "text": "match() returns an array of matches for a regex pattern. Without the global flag (g), it returns the first match with details. With the global flag, it returns all matches. matchAll() returns an iterator of all matches with full details." },
+    { "type": "example", "title": "match() Method", "code": [
+      "let text = \"The rain in Spain falls mainly on the plain\";",
+      "",
+      "// Without global flag — first match with details",
+      "let result = text.match(/ain/);",
+      "console.log(result[0]);",
+      "console.log(result.index);",
+      "",
+      "// With global flag — all matches",
+      "let allMatches = text.match(/ain/g);",
+      "console.log(allMatches);",
+      "console.log(allMatches.length);",
+      "",
+      "// Case-insensitive global match",
+      "let text2 = \"Hello hello HELLO\";",
+      "console.log(text2.match(/hello/gi));"
+    ]},
+    { "type": "example", "title": "matchAll() Method", "code": [
+      "let text = \"cat bat hat mat\";",
+      "let regex = /[cbhm]at/g;",
+      "",
+      "// matchAll() returns an iterator with full details",
+      "let matches = text.matchAll(regex);",
+      "",
+      "for (let match of matches) {",
+      "  console.log(`Found '${match[0]}' at index ${match.index}`);",
+      "}",
+      "",
+      "// Useful with capture groups",
+      "let data = \"2024-01-15 and 2024-06-20\";",
+      "let dateRegex = /(\\d{4})-(\\d{2})-(\\d{2})/g;",
+      "",
+      "for (let m of data.matchAll(dateRegex)) {",
+      "  console.log(`Year: ${m[1]}, Month: ${m[2]}, Day: ${m[3]}`);",
+      "}"
+    ]},
+
+    { "type": "h2", "text": "Comparing Search Methods" },
+    { "type": "p", "text": "Each search method has its strengths. Use indexOf() for simple position lookups, includes() for existence checks, and match()/matchAll() for complex pattern matching." },
+
+    { "type": "table", "rows": [
+      ["Method", "Returns", "Regex Support", "Use Case"],
+      ["indexOf()", "Index or -1", "No", "Find position of substring"],
+      ["lastIndexOf()", "Last index or -1", "No", "Find last occurrence"],
+      ["includes()", "true/false", "No", "Check if substring exists"],
+      ["startsWith()", "true/false", "No", "Check string beginning"],
+      ["endsWith()", "true/false", "No", "Check string ending"],
+      ["search()", "Index or -1", "Yes", "Find position with regex"],
+      ["match()", "Array or null", "Yes", "Get matches"],
+      ["matchAll()", "Iterator", "Yes (global)", "Get all matches with details"]
+    ]},
+
+    { "type": "note", "text": "All string search methods are case-sensitive by default. For case-insensitive matching, use includes() with toLowerCase() on both strings, or use regex with the 'i' flag for methods that support it." },
+
+    { "type": "exercise", "question": "Which method returns true or false to check if a string contains a substring?", "options": ["indexOf()", "search()", "includes()", "match()"], "answer": 2 }
+  ]
+}

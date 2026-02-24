@@ -1,0 +1,129 @@
+{
+  "id": "assignment",
+  "title": "JS Assignment",
+  "group": "JS Operators",
+  "content": [
+    { "type": "h1", "text": "JavaScript Assignment Operators" },
+    { "type": "p", "text": "Assignment operators assign values to variables. The basic assignment operator is =, but JavaScript provides many shorthand operators that combine assignment with arithmetic or logical operations." },
+
+    { "type": "h2", "text": "Basic Assignment" },
+    { "type": "p", "text": "The = operator assigns the value on the right to the variable on the left. It is the most common operator in JavaScript." },
+    { "type": "example", "title": "Basic Assignment", "code": [
+      "let x = 10;",
+      "console.log(x); // 10",
+      "",
+      "let y = x;",
+      "console.log(y); // 10",
+      "",
+      "// Assignment returns a value",
+      "let a, b, c;",
+      "a = b = c = 5;",
+      "console.log(a); // 5",
+      "console.log(b); // 5",
+      "console.log(c); // 5"
+    ]},
+
+    { "type": "h2", "text": "Arithmetic Assignment Operators" },
+    { "type": "p", "text": "Arithmetic assignment operators combine an arithmetic operation with assignment. They are shorthand for performing the operation and then assigning the result." },
+    { "type": "table", "rows": [
+      ["Operator", "Example", "Equivalent To"],
+      ["+=", "x += 5", "x = x + 5"],
+      ["-=", "x -= 3", "x = x - 3"],
+      ["*=", "x *= 2", "x = x * 2"],
+      ["/=", "x /= 4", "x = x / 4"],
+      ["%=", "x %= 3", "x = x % 3"],
+      ["**=", "x **= 2", "x = x ** 2"]
+    ]},
+    { "type": "example", "title": "Arithmetic Assignment", "code": [
+      "let x = 10;",
+      "",
+      "x += 5;",
+      "console.log(x); // 15",
+      "",
+      "x -= 3;",
+      "console.log(x); // 12",
+      "",
+      "x *= 2;",
+      "console.log(x); // 24",
+      "",
+      "x /= 4;",
+      "console.log(x); // 6",
+      "",
+      "x %= 4;",
+      "console.log(x); // 2",
+      "",
+      "x **= 3;",
+      "console.log(x); // 8"
+    ]},
+
+    { "type": "h2", "text": "Logical Assignment Operators (ES2021)" },
+    { "type": "p", "text": "Logical assignment operators combine logical operations with assignment. They are useful for setting default values or conditional assignments." },
+    { "type": "example", "title": "Logical OR Assignment (||=)", "code": [
+      "// ||= assigns if the variable is falsy",
+      "let name = \"\";",
+      "name ||= \"Anonymous\";",
+      "console.log(name); // \"Anonymous\" (empty string is falsy)",
+      "",
+      "let score = 0;",
+      "score ||= 100;",
+      "console.log(score); // 100 (0 is falsy)",
+      "",
+      "let title = \"Admin\";",
+      "title ||= \"User\";",
+      "console.log(title); // \"Admin\" (truthy, not reassigned)"
+    ]},
+    { "type": "example", "title": "Logical AND Assignment (&&=)", "code": [
+      "// &&= assigns if the variable is truthy",
+      "let a = 1;",
+      "a &&= 5;",
+      "console.log(a); // 5 (1 is truthy, so assign 5)",
+      "",
+      "let b = 0;",
+      "b &&= 5;",
+      "console.log(b); // 0 (0 is falsy, not reassigned)"
+    ]},
+
+    { "type": "h2", "text": "Nullish Coalescing Assignment (??=)" },
+    { "type": "p", "text": "The ??= operator assigns only if the variable is null or undefined. Unlike ||=, it does not treat 0, empty string, or false as triggers for assignment." },
+    { "type": "example", "title": "Nullish Coalescing Assignment", "code": [
+      "let x = null;",
+      "x ??= 10;",
+      "console.log(x); // 10 (null triggers assignment)",
+      "",
+      "let y = undefined;",
+      "y ??= 20;",
+      "console.log(y); // 20 (undefined triggers assignment)",
+      "",
+      "let z = 0;",
+      "z ??= 30;",
+      "console.log(z); // 0 (0 is NOT null/undefined)",
+      "",
+      "let str = \"\";",
+      "str ??= \"default\";",
+      "console.log(str); // \"\" (empty string is NOT null/undefined)"
+    ]},
+
+    { "type": "h2", "text": "Chaining Assignments" },
+    { "type": "p", "text": "Assignments can be chained because the = operator returns the assigned value. This allows multiple variables to be assigned in one statement." },
+    { "type": "example", "title": "Chaining Assignments", "code": [
+      "let a, b, c;",
+      "",
+      "// Chain assignment (right to left)",
+      "a = b = c = 100;",
+      "console.log(a); // 100",
+      "console.log(b); // 100",
+      "console.log(c); // 100",
+      "",
+      "// Practical use: swap values",
+      "let x = 1;",
+      "let y = 2;",
+      "[x, y] = [y, x];",
+      "console.log(x); // 2",
+      "console.log(y); // 1"
+    ]},
+
+    { "type": "note", "text": "Use ??= instead of ||= when you want to preserve falsy values like 0, false, or empty string. The ||= operator will overwrite all falsy values, while ??= only targets null and undefined." },
+
+    { "type": "exercise", "question": "What is the value of x after: let x = 0; x ??= 5;", "options": ["5", "0", "null", "undefined"], "answer": 1 }
+  ]
+}

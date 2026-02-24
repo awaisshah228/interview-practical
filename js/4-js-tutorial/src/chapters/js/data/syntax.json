@@ -1,7 +1,7 @@
 {
   "id": "syntax",
   "title": "JS Syntax",
-  "group": "JS Tutorial",
+  "group": "JS Syntax",
   "content": [
     { "type": "h1", "text": "JavaScript Syntax" },
     { "type": "p",  "text": "JavaScript syntax is the set of rules that define a correctly structured JavaScript program." },
@@ -49,6 +49,7 @@
       ["UPPER_SNAKE", "MAX_SIZE",      "Constants"],
       ["underscore",  "first_name",    "Sometimes (older style)"]
     ]},
-    { "type": "note", "text": "Hyphens (like first-name) are not allowed in JavaScript identifiers — they are reserved for subtraction." }
+    { "type": "note", "text": "Hyphens (like first-name) are not allowed in JavaScript identifiers — they are reserved for subtraction." },
+    { "type": "exercise", "question": "Which naming convention is standard for JavaScript variables?", "options": ["snake_case", "camelCase", "PascalCase", "UPPER_SNAKE"], "answer": 1 }
   ]
 }

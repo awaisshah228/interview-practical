@@ -76,6 +76,7 @@
       ["Function",  "Inside a function",    "Only within that function"],
       ["Block",     "let/const in a block", "Only within that block"]
     ]},
-    { "type": "note", "text": "var does NOT respect block scope — it leaks out of if/for blocks. Always use let or const for predictable scoping." }
+    { "type": "note", "text": "var does NOT respect block scope — it leaks out of if/for blocks. Always use let or const for predictable scoping." },
+    { "type": "exercise", "question": "Variables declared outside any function or block have which scope?", "options": ["Block scope", "Function scope", "Global scope", "Local scope"], "answer": 2 }
   ]
 }

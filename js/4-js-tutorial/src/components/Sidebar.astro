@@ -25,7 +25,7 @@ for (const ch of chapters) {
 // Determine which group contains the active chapter (auto-expand it)
 const activeGroup = chapters.find(ch => ch.id === activeId)?.group || "";
 ---
-<nav id="sidebar">
+<nav id="sidebar" transition:persist>
     {groupOrder.map(groupName => {
         const items = groupMap[groupName];
         const isActiveGroup = groupName === activeGroup;
@@ -53,9 +53,27 @@ const activeGroup = chapters.find(ch => ch.id === activeId)?.group || "";
 </nav>
 
 <script>
+    // Collapse toggle — runs once since sidebar is persisted
     document.querySelectorAll("[data-collapse]").forEach(btn => {
         btn.addEventListener("click", () => {
             btn.closest(".sidebar-group")?.classList.toggle("open");
+        });
+    });
+
+    // Update active class & group expansion on navigation
+    document.addEventListener("astro:after-swap", () => {
+        const sidebar = document.getElementById("sidebar");
+        if (!sidebar) return;
+        const path = window.location.pathname.replace(/\/$/, "");
+
+        sidebar.querySelectorAll(".nav-item").forEach(a => {
+            const href = a.getAttribute("href")?.replace(/\/$/, "") || "";
+            const isActive = href === path;
+            a.classList.toggle("active", isActive);
+
+            if (isActive) {
+                a.closest(".sidebar-group")?.classList.add("open");
+            }
         });
     });
 </script>

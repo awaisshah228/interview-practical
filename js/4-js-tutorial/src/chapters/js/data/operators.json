@@ -1,7 +1,7 @@
 {
   "id": "operators",
   "title": "JS Operators",
-  "group": "JS Data Types",
+  "group": "JS Operators",
   "content": [
     { "type": "h1", "text": "JavaScript Operators" },
     { "type": "p",  "text": "Operators are used to perform operations on variables and values. JavaScript has arithmetic, assignment, comparison, and logical operators." },
@@ -86,6 +86,7 @@
       "console.log(\"5\" + 5);    // \"55\"  (not 10!)",
       "console.log(5 + 5 + \"5\"); // \"105\" (left-to-right: 10, then \"105\")"
     ]},
-    { "type": "note", "text": "Always use === (strict equality) instead of == to avoid unexpected type coercion bugs." }
+    { "type": "note", "text": "Always use === (strict equality) instead of == to avoid unexpected type coercion bugs." },
+    { "type": "exercise", "question": "What does the === operator check?", "options": ["Value only", "Type only", "Both value and type", "Neither"], "answer": 2 }
   ]
 }

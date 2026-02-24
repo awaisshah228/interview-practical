@@ -47,6 +47,7 @@
       ["Hoisted",       "Yes, but in TDZ — cannot use before declaration"],
       ["Reassign",      "Yes"]
     ]},
-    { "type": "note", "text": "Use let when you know the value will change. For values that should not change, use const." }
+    { "type": "note", "text": "Use let when you know the value will change. For values that should not change, use const." },
+    { "type": "exercise", "question": "Can let be redeclared in the same scope?", "options": ["Yes, always", "No, it throws a SyntaxError", "Only in strict mode", "Only inside functions"], "answer": 1 }
   ]
 }

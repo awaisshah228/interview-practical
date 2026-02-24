@@ -1,0 +1,53 @@
+{
+  "id": "styles",
+  "title": "Styles in AI Prompts",
+  "group": "AI Fundamentals",
+  "content": [
+    { "type": "h1", "text": "Using Styles in AI Prompts for Images and Videos" },
+    { "type": "p", "text": "Understanding and incorporating specific styles into your AI prompts is crucial for generating consistent, high-quality visuals. Whether you're creating images or videos, style direction gives the AI a clear creative framework." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Film+Styles+Montage&font=raleway", "alt": "Film styles montage", "caption": "Different visual styles dramatically change the mood and feel of AI-generated content" },
+    { "type": "h2", "text": "Film & Genre Styles" },
+    { "type": "p", "text": "<strong>Film Noir</strong> — A classic style from the 1940s and 1950s, characterized by dark, moody visuals with high contrast lighting, deep shadows, and dramatic angles." },
+    { "type": "example", "title": "Film Noir AI Prompt", "code": "A detective standing under a flickering streetlight in a rain-soaked alley,\nfilm noir style, high contrast black and white, deep shadows,\nlow-angle shot, 1940s atmosphere, venetian blind shadows on face --ar 16:9" },
+    { "type": "p", "text": "<strong>Western</strong> — Vast landscapes, dusty towns, cowboys, and golden-hour desert lighting. Evokes classic Sergio Leone and John Ford aesthetics." },
+    { "type": "example", "title": "Western AI Prompt", "code": "A lone cowboy riding through Monument Valley at sunset,\nwestern film style, golden hour, wide establishing shot,\nred dust clouds, dramatic sky, Ennio Morricone vibes --ar 21:9" },
+    { "type": "p", "text": "<strong>Science Fiction</strong> — Futuristic technology, alien worlds, space exploration. Think Blade Runner, Interstellar, or Dune." },
+    { "type": "p", "text": "<strong>Melodrama</strong> — Heightened emotions, dramatic compositions, saturated colors. Classic Douglas Sirk or modern Wong Kar-wai aesthetics." },
+    { "type": "p", "text": "<strong>1980s Aesthetic</strong> — Neon lights, synthwave colors, VHS grain, retro-futurism. Think Stranger Things or Drive." },
+    { "type": "example", "title": "1980s Aesthetic Prompt", "code": "A teenager on a BMX bike silhouetted against a neon sunset,\n1980s aesthetic, synthwave color palette, VHS grain texture,\nretro-futuristic cityscape in background, lens flare --ar 16:9" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=1980s+Synthwave+Aesthetic&font=raleway", "alt": "1980s synthwave aesthetic example", "caption": "The 1980s aesthetic combines neon colors, VHS textures, and retro-futurism" },
+    { "type": "h2", "text": "Lighting Styles" },
+    { "type": "table", "rows": [
+      ["Lighting Style", "Description", "Best For"],
+      ["Golden Hour", "Warm, soft light during sunrise/sunset", "Romantic, nostalgic scenes"],
+      ["Blue Hour", "Cool blue tones just before sunrise or after sunset", "Mysterious, melancholic mood"],
+      ["Cyberpunk", "Neon-lit, high contrast, artificial lighting", "Futuristic, urban scenes"],
+      ["Steampunk", "Warm amber, gas lamp, Victorian industrial", "Fantasy, period pieces"],
+      ["Documentary", "Natural, unfiltered, realistic lighting", "Authentic, raw content"],
+      ["Expressionist", "Distorted shadows, dramatic angles, surreal lighting", "Horror, psychological themes"]
+    ]},
+    { "type": "example", "title": "Golden Hour Prompt", "code": "A couple walking on a beach at golden hour,\nwarm amber light, long shadows, lens flare,\nsoft focus background, romantic atmosphere,\ncinematic composition --ar 2.39:1" },
+    { "type": "example", "title": "Cyberpunk Lighting Prompt", "code": "A hacker sitting in a dark room illuminated by multiple monitors,\ncyberpunk lighting, neon blue and magenta reflections on face,\nvolumetric smoke, rain visible through window, Blade Runner inspired --ar 16:9" },
+    { "type": "h2", "text": "Director-Inspired Styles" },
+    { "type": "p", "text": "Referencing specific directors in your prompts can instantly communicate a complex visual style." },
+    { "type": "table", "rows": [
+      ["Director", "Visual Style", "Key Elements"],
+      ["Tarantino", "Bold, vibrant, dialogue-heavy scenes", "Low angles, trunk shots, saturated colors"],
+      ["Wes Anderson", "Symmetrical, pastel, whimsical", "Centered framing, flat compositions, muted palettes"],
+      ["Stanley Kubrick", "Precise, geometric, unsettling", "One-point perspective, cold lighting, symmetry"]
+    ]},
+    { "type": "example", "title": "Wes Anderson Style Prompt", "code": "A symmetrically composed hotel lobby with pastel pink walls,\nWes Anderson style, centered framing, flat composition,\nvintage furniture, bellhop standing perfectly centered,\nmuted color palette, overhead shot --ar 1.85:1" },
+    { "type": "h2", "text": "Camera Techniques for Prompts" },
+    { "type": "p", "text": "Including camera technique references in your prompts gives the AI specific visual instructions." },
+    { "type": "table", "rows": [
+      ["Technique", "Description", "Prompt Keyword"],
+      ["Deep Focus", "Everything in frame is sharp from foreground to background", "deep focus, everything in focus"],
+      ["Shallow Depth of Field", "Subject sharp, background beautifully blurred", "shallow depth of field, bokeh"],
+      ["Fisheye", "Ultra-wide distorted perspective", "fisheye lens, barrel distortion"],
+      ["Tilt Shift", "Makes real scenes look like miniatures", "tilt shift, miniature effect"],
+      ["Anamorphic", "Cinematic wide format with characteristic lens flare", "anamorphic lens, oval bokeh"]
+    ]},
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Camera+Techniques&font=raleway", "alt": "Camera techniques comparison", "caption": "Different camera techniques create dramatically different visual results" },
+    { "type": "note", "text": "Combining a director's style with a lighting style and camera technique creates highly specific prompts. Example: 'Wes Anderson style, golden hour lighting, deep focus, symmetrical composition.'" }
+  ]
+}

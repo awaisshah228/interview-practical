@@ -37,6 +37,7 @@
       "x = 42;",
       "console.log(x);   // 42"
     ]},
-    { "type": "note", "text": "It is good practice to always declare variables at the top of their scope." }
+    { "type": "note", "text": "It is good practice to always declare variables at the top of their scope." },
+    { "type": "exercise", "question": "Which keyword should you use to declare a variable that will NOT change?", "options": ["var", "let", "const", "function"], "answer": 2 }
   ]
 }

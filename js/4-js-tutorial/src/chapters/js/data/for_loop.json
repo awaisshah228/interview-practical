@@ -1,7 +1,7 @@
 {
   "id": "for_loop",
   "title": "JS For Loop",
-  "group": "JS Control Flow",
+  "group": "JS Loops",
   "content": [
     { "type": "h1", "text": "JavaScript For Loop" },
     { "type": "p",  "text": "Loops execute a block of code a number of times. The for loop is used when you know in advance how many iterations you need." },
@@ -60,6 +60,7 @@
       "    console.log(row);",
       "}"
     ]},
-    { "type": "note", "text": "Use for...of (not for...in) to loop over arrays. for...in is for objects and can iterate inherited properties." }
+    { "type": "note", "text": "Use for...of (not for...in) to loop over arrays. for...in is for objects and can iterate inherited properties." },
+    { "type": "exercise", "question": "How many parts does a standard for loop statement have?", "options": ["2", "3", "4", "5"], "answer": 1 }
   ]
 }

@@ -77,6 +77,7 @@
       "value = true;",
       "console.log(typeof value);   // \"boolean\""
     ]},
-    { "type": "note", "text": "When you add a Number and a String, JavaScript treats the number as a string: 5 + \"5\" = \"55\"." }
+    { "type": "note", "text": "When you add a Number and a String, JavaScript treats the number as a string: 5 + \"5\" = \"55\"." },
+    { "type": "exercise", "question": "Which of these is NOT a JavaScript primitive data type?", "options": ["String", "Boolean", "Array", "Symbol"], "answer": 2 }
   ]
 }

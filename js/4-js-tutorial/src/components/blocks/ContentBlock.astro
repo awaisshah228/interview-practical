@@ -6,6 +6,7 @@ import NoteBlock from "./NoteBlock.astro";
 import TableBlock from "./TableBlock.astro";
 import ExampleBlock from "./ExampleBlock.astro";
 import ExerciseBlock from "./ExerciseBlock.astro";
+import ImageBlock from "./ImageBlock.astro";
 
 interface Props { block: Block; }
 const { block } = Astro.props;
@@ -17,3 +18,4 @@ const { block } = Astro.props;
 {block.type === "table" && <TableBlock rows={block.rows!} />}
 {block.type === "example" && <ExampleBlock title={block.title} code={block.code!} />}
 {block.type === "exercise" && <ExerciseBlock question={block.question!} options={block.options!} answer={block.answer!} />}
+{block.type === "image" && <ImageBlock src={block.src} alt={block.alt} caption={block.caption} />}

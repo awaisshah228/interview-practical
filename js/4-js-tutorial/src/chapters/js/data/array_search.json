@@ -1,0 +1,111 @@
+{
+  "id": "array_search",
+  "title": "JS Array Search",
+  "group": "JS Arrays",
+  "content": [
+    { "type": "h1", "text": "JavaScript Array Search" },
+    { "type": "p", "text": "JavaScript provides several methods for searching arrays. You can find elements by value, by condition, check for existence, or locate the position of elements." },
+
+    { "type": "h2", "text": "indexOf() and lastIndexOf()" },
+    { "type": "p", "text": "indexOf() returns the first index of a value, or -1 if not found. lastIndexOf() returns the last index. Both use strict equality (===) for comparison." },
+    { "type": "example", "title": "indexOf() and lastIndexOf()", "code": [
+      "const fruits = [\"Apple\", \"Banana\", \"Cherry\", \"Banana\", \"Date\"];",
+      "",
+      "// First occurrence",
+      "console.log(\"indexOf Banana:\", fruits.indexOf(\"Banana\"));",
+      "console.log(\"indexOf Mango:\", fruits.indexOf(\"Mango\"));",
+      "",
+      "// Last occurrence",
+      "console.log(\"lastIndexOf Banana:\", fruits.lastIndexOf(\"Banana\"));",
+      "",
+      "// Search from index 2",
+      "console.log(\"indexOf Banana from 2:\", fruits.indexOf(\"Banana\", 2));",
+      "",
+      "// Check if element exists",
+      "console.log(\"Has Cherry:\", fruits.indexOf(\"Cherry\") !== -1);"
+    ] },
+
+    { "type": "h2", "text": "includes()" },
+    { "type": "p", "text": "includes() returns true if an array contains a specified value, and false otherwise. It is simpler and more readable than indexOf() !== -1." },
+    { "type": "example", "title": "includes()", "code": [
+      "const numbers = [1, 2, 3, NaN, 5];",
+      "",
+      "console.log(\"includes 3:\", numbers.includes(3));",
+      "console.log(\"includes 4:\", numbers.includes(4));",
+      "",
+      "// includes works with NaN (indexOf doesn't!)",
+      "console.log(\"includes NaN:\", numbers.includes(NaN));",
+      "console.log(\"indexOf NaN:\", numbers.indexOf(NaN));",
+      "",
+      "// Search from index",
+      "console.log(\"includes 2 from index 2:\", numbers.includes(2, 2));"
+    ] },
+    { "type": "note", "text": "Unlike indexOf(), includes() can correctly find NaN in an array. Use includes() when you only need to know if an element exists, not its position." },
+
+    { "type": "h2", "text": "find() and findIndex()" },
+    { "type": "p", "text": "find() returns the first element that satisfies a testing function, or undefined if none is found. findIndex() returns the index of that element, or -1." },
+    { "type": "example", "title": "find() and findIndex()", "code": [
+      "const users = [",
+      "  { name: \"Alice\", age: 25 },",
+      "  { name: \"Bob\", age: 30 },",
+      "  { name: \"Charlie\", age: 35 },",
+      "  { name: \"Diana\", age: 28 }",
+      "];",
+      "",
+      "// Find first user over 28",
+      "const found = users.find(user => user.age > 28);",
+      "console.log(\"Found:\", found);",
+      "",
+      "// Find index",
+      "const index = users.findIndex(user => user.age > 28);",
+      "console.log(\"Index:\", index);",
+      "",
+      "// Not found",
+      "const notFound = users.find(user => user.age > 50);",
+      "console.log(\"Not found:\", notFound);"
+    ] },
+
+    { "type": "h2", "text": "findLast() and findLastIndex()" },
+    { "type": "p", "text": "findLast() returns the last element that satisfies a condition. findLastIndex() returns its index. These methods search from the end of the array (ES2023)." },
+    { "type": "example", "title": "findLast() and findLastIndex()", "code": [
+      "const numbers = [5, 12, 8, 130, 44, 3];",
+      "",
+      "// Find last number greater than 10",
+      "const last = numbers.findLast(n => n > 10);",
+      "console.log(\"findLast > 10:\", last);",
+      "",
+      "// Find last index",
+      "const lastIdx = numbers.findLastIndex(n => n > 10);",
+      "console.log(\"findLastIndex > 10:\", lastIdx);",
+      "",
+      "// Compare with find (searches from start)",
+      "const first = numbers.find(n => n > 10);",
+      "console.log(\"find > 10:\", first);",
+      "",
+      "// Useful for finding most recent match",
+      "const logs = [",
+      "  { type: \"info\", msg: \"Started\" },",
+      "  { type: \"error\", msg: \"Failed\" },",
+      "  { type: \"info\", msg: \"Retrying\" },",
+      "  { type: \"error\", msg: \"Failed again\" }",
+      "];",
+      "const lastError = logs.findLast(l => l.type === \"error\");",
+      "console.log(\"Last error:\", lastError.msg);"
+    ] },
+
+    { "type": "h2", "text": "Search Methods Comparison" },
+    { "type": "p", "text": "Choosing the right search method depends on what you need: a boolean check, the element itself, or its index." },
+    { "type": "table", "rows": [
+      ["Method", "Returns", "Search By", "Finds"],
+      ["indexOf()", "Index or -1", "Value (===)", "First match"],
+      ["lastIndexOf()", "Index or -1", "Value (===)", "Last match"],
+      ["includes()", "Boolean", "Value (SameValueZero)", "Existence"],
+      ["find()", "Element or undefined", "Callback function", "First match"],
+      ["findIndex()", "Index or -1", "Callback function", "First match"],
+      ["findLast()", "Element or undefined", "Callback function", "Last match"],
+      ["findLastIndex()", "Index or -1", "Callback function", "Last match"]
+    ] },
+
+    { "type": "exercise", "question": "Which method can correctly find NaN in an array?", "options": ["indexOf()", "lastIndexOf()", "includes()", "findIndex()"], "answer": 2 }
+  ]
+}

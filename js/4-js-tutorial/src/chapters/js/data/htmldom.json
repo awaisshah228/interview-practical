@@ -1,0 +1,89 @@
+{
+  "id": "htmldom",
+  "title": "JS HTML DOM",
+  "group": "JS HTML DOM",
+  "content": [
+    { "type": "h1", "text": "JavaScript HTML DOM" },
+    { "type": "p",  "text": "The HTML DOM (Document Object Model) is a programming interface for web pages. It represents the page as a tree of objects, allowing JavaScript to read, change, add, or delete HTML elements and attributes." },
+    { "type": "h2", "text": "What Is the DOM?" },
+    { "type": "p",  "text": "When a browser loads an HTML page, it creates a Document Object Model of the page. The DOM is an object-oriented representation of the HTML document. Every HTML tag becomes a node in the tree, and JavaScript can access and manipulate every node." },
+    { "type": "example", "title": "The document Object", "code": [
+      "// The document object is the root of the DOM tree",
+      "console.log(document.title);         // page title",
+      "console.log(document.URL);           // full URL",
+      "console.log(document.doctype);       // DOCTYPE node",
+      "console.log(document.head);          // <head> element",
+      "console.log(document.body);          // <body> element"
+    ]},
+    { "type": "h2", "text": "The DOM Tree" },
+    { "type": "p",  "text": "The DOM represents an HTML document as a tree structure. The topmost node is the document itself. Below it sits the root element (<html>), which branches into <head> and <body>. Every element, attribute, and piece of text is a node in this tree." },
+    { "type": "example", "title": "Navigating the Tree", "code": [
+      "// Access the root <html> element",
+      "console.log(document.documentElement.tagName); // HTML",
+      "",
+      "// Access child nodes of body",
+      "const body = document.body;",
+      "console.log(body.childNodes.length);  // number of child nodes",
+      "console.log(body.firstChild);         // first child node",
+      "console.log(body.lastChild);          // last child node"
+    ]},
+    { "type": "h2", "text": "Accessing Elements" },
+    { "type": "p",  "text": "JavaScript provides several methods to find and access HTML elements in the DOM. The most common approaches are by id, class name, tag name, and CSS selectors." },
+    { "type": "example", "title": "Finding Elements", "code": [
+      "// By ID (returns one element or null)",
+      "const header = document.getElementById(\"main-header\");",
+      "console.log(header);",
+      "",
+      "// By class name (returns live HTMLCollection)",
+      "const items = document.getElementsByClassName(\"item\");",
+      "console.log(items.length);",
+      "",
+      "// By tag name (returns live HTMLCollection)",
+      "const paragraphs = document.getElementsByTagName(\"p\");",
+      "console.log(paragraphs.length);",
+      "",
+      "// By CSS selector (returns first match or null)",
+      "const first = document.querySelector(\".item\");",
+      "console.log(first);",
+      "",
+      "// By CSS selector (returns static NodeList of all matches)",
+      "const all = document.querySelectorAll(\".item\");",
+      "console.log(all.length);"
+    ]},
+    { "type": "h2", "text": "DOM vs HTML" },
+    { "type": "p",  "text": "The DOM is not the same as the HTML source code. The browser may fix invalid HTML when building the DOM, scripts can modify the DOM after the page loads, and the DOM includes nodes for text and comments that are not visible as tags in the source." },
+    { "type": "example", "title": "DOM Changes Do Not Alter Source", "code": [
+      "// Change text via the DOM",
+      "const el = document.getElementById(\"demo\");",
+      "if (el) {",
+      "  el.textContent = \"Changed by JavaScript!\";",
+      "  console.log(el.textContent); // Changed by JavaScript!",
+      "}",
+      "",
+      "// The original HTML source file is not modified",
+      "// Only the in-memory DOM tree is updated"
+    ]},
+    { "type": "h2", "text": "Node Types" },
+    { "type": "p",  "text": "Every item in the DOM tree is a node. Different kinds of content produce different node types, each identified by a numeric constant." },
+    { "type": "table", "rows": [
+      ["Constant",              "Value", "Description"],
+      ["Node.ELEMENT_NODE",     "1",     "An HTML element (e.g. <p>, <div>)"],
+      ["Node.TEXT_NODE",        "3",     "Text inside an element"],
+      ["Node.COMMENT_NODE",     "8",     "An HTML comment <!-- -->"],
+      ["Node.DOCUMENT_NODE",    "9",     "The document itself"],
+      ["Node.DOCUMENT_TYPE_NODE","10",   "The DOCTYPE declaration"]
+    ]},
+    { "type": "example", "title": "Checking Node Types", "code": [
+      "const body = document.body;",
+      "console.log(body.nodeType);  // 1 (ELEMENT_NODE)",
+      "console.log(body.nodeName); // BODY",
+      "",
+      "// Iterate child nodes and log their types",
+      "for (const child of body.childNodes) {",
+      "  console.log(child.nodeType, child.nodeName);",
+      "}"
+    ]},
+    { "type": "note", "text": "The DOM is the foundation of all client-side JavaScript. Understanding the tree structure and node types is essential before learning how to create, modify, or remove elements." },
+    { "type": "exercise", "question": "What does the DOM represent?", "options": ["The CSS styles of a page", "The server-side code", "An object-oriented tree of the HTML document", "The browser's rendering engine"], "answer": 2 }
+  ]
+}

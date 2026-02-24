@@ -1,0 +1,207 @@
+---
+/**
+ * Roadmap.astro — Visual course roadmap matching roadmap.sh style.
+ * Uses SVG for connection lines and HTML for interactive nodes.
+ */
+interface RoadmapNode {
+    id: string;
+    title: string;
+    href: string;
+}
+
+interface RoadmapGroup {
+    label: string;
+    color: string;
+    badge: string;
+    side: "left" | "right" | "both";
+    nodes: RoadmapNode[];
+}
+
+interface Props {
+    title: string;
+    subtitle?: string;
+    groups: RoadmapGroup[];
+    totalChapters: number;
+}
+
+const { title, subtitle, groups, totalChapters } = Astro.props;
+---
+
+<div class="rm">
+    <!-- Progress bar -->
+    <div class="rm-progress-bar">
+        <div class="rm-progress-label">
+            <span class="rm-progress-pct">0% DONE</span>
+            <span class="rm-progress-count">0 of {totalChapters} Done</span>
+        </div>
+    </div>
+
+    <!-- Title -->
+    <div class="rm-title-row">
+        <div class="rm-title-box">{title}</div>
+    </div>
+    {subtitle && <p class="rm-subtitle">{subtitle}</p>}
+
+    <!-- Legend -->
+    <div class="rm-legend">
+        <div class="rm-legend-item">
+            <span class="rm-check rm-check--purple">&#10003;</span>
+            Personal Recommendation / Opinion
+        </div>
+        <div class="rm-legend-item">
+            <span class="rm-check rm-check--green">&#10003;</span>
+            Alternative Option / Pick this or purple
+        </div>
+        <div class="rm-legend-item">
+            <span class="rm-check rm-check--grey">&#10003;</span>
+            Order not strict / Learn anytime
+        </div>
+    </div>
+
+    <!-- Roadmap flow -->
+    <div class="rm-canvas">
+        {groups.map((group) => (
+            <div class="rm-row" data-side={group.side}>
+                <!-- Central group box -->
+                <div class="rm-center">
+                    <div class="rm-group-box" style={`background:${group.color};border-color:${group.color}`}>
+                        {group.label}
+                    </div>
+                </div>
+
+                <!-- Left nodes -->
+                {(group.side === "left" || group.side === "both") && (
+                    <div class="rm-branch rm-branch--left">
+                        {group.nodes
+                            .filter((_, i) => group.side === "both" ? i < Math.ceil(group.nodes.length / 2) : true)
+                            .map((node) => (
+                                <a href={node.href} class="rm-node">
+                                    <span class="rm-node-text">{node.title}</span>
+                                    <span class={`rm-check rm-check--${group.badge}`}>&#10003;</span>
+                                </a>
+                            ))
+                        }
+                    </div>
+                )}
+
+                <!-- Right nodes -->
+                {(group.side === "right" || group.side === "both") && (
+                    <div class="rm-branch rm-branch--right">
+                        {group.nodes
+                            .filter((_, i) => group.side === "both" ? i >= Math.ceil(group.nodes.length / 2) : true)
+                            .map((node) => (
+                                <a href={node.href} class="rm-node">
+                                    <span class="rm-node-text">{node.title}</span>
+                                    <span class={`rm-check rm-check--${group.badge}`}>&#10003;</span>
+                                </a>
+                            ))
+                        }
+                    </div>
+                )}
+            </div>
+        ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="rm-cta">
+        <a href={groups[0]?.nodes[0]?.href || "#"} class="rm-cta-btn">
+            Start Learning &rarr;
+        </a>
+    </div>
+</div>
+
+<script>
+    const NS = 'http://www.w3.org/2000/svg';
+
+    function drawConnections() {
+        const canvas = document.querySelector('.rm-canvas');
+        if (!canvas) return;
+
+        // Remove previous SVG
+        canvas.querySelector('.rm-connections')?.remove();
+
+        // Skip on mobile
+        if (window.innerWidth <= 740) return;
+
+        const cr = canvas.getBoundingClientRect();
+        const svg = document.createElementNS(NS, 'svg');
+        svg.classList.add('rm-connections');
+        svg.setAttribute('width', String(cr.width));
+        svg.setAttribute('height', String(cr.height));
+
+        const groupCenters: { cx: number; top: number; bottom: number }[] = [];
+
+        canvas.querySelectorAll('.rm-row').forEach(row => {
+            const box = row.querySelector('.rm-group-box');
+            if (!box) return;
+
+            const br = box.getBoundingClientRect();
+            const cx = br.left + br.width / 2 - cr.left;
+            const cy = br.top + br.height / 2 - cr.top;
+            const gLeft = br.left - cr.left;
+            const gRight = br.right - cr.left;
+            const gTop = br.top - cr.top;
+            const gBottom = br.bottom - cr.top;
+
+            groupCenters.push({ cx, top: gTop, bottom: gBottom });
+
+            // Draw bezier curves from group box to each node
+            row.querySelectorAll('.rm-node').forEach(node => {
+                const nr = node.getBoundingClientRect();
+                const nCy = nr.top + nr.height / 2 - cr.top;
+                const isLeft = !!node.closest('.rm-branch--left');
+
+                const sx = isLeft ? gLeft : gRight;
+                const sy = cy;
+                const ex = isLeft ? (nr.right - cr.left) : (nr.left - cr.left);
+                const ey = nCy;
+
+                // Control point offset for smooth S-curve
+                const dx = Math.abs(ex - sx) * 0.55;
+                const cpx1 = isLeft ? sx - dx : sx + dx;
+                const cpx2 = isLeft ? ex + dx : ex - dx;
+
+                const path = document.createElementNS(NS, 'path');
+                path.setAttribute('d', `M${sx},${sy} C${cpx1},${sy} ${cpx2},${ey} ${ex},${ey}`);
+                path.setAttribute('fill', 'none');
+                path.setAttribute('stroke', '#a5b4fc');
+                path.setAttribute('stroke-width', '2');
+                path.setAttribute('stroke-dasharray', '8 4');
+                path.setAttribute('stroke-linecap', 'round');
+                svg.appendChild(path);
+            });
+        });
+
+        // Vertical spine between consecutive group boxes
+        for (let i = 0; i < groupCenters.length - 1; i++) {
+            const a = groupCenters[i];
+            const b = groupCenters[i + 1];
+            const midY = (a.bottom + b.top) / 2;
+
+            const path = document.createElementNS(NS, 'path');
+            path.setAttribute('d',
+                `M${a.cx},${a.bottom} C${a.cx},${midY} ${b.cx},${midY} ${b.cx},${b.top}`
+            );
+            path.setAttribute('fill', 'none');
+            path.setAttribute('stroke', '#d1d5db');
+            path.setAttribute('stroke-width', '3');
+            svg.appendChild(path);
+        }
+
+        canvas.prepend(svg);
+    }
+
+    // Draw on page load (double rAF ensures layout is settled)
+    document.addEventListener('astro:page-load', () => {
+        requestAnimationFrame(() => {
+            requestAnimationFrame(drawConnections);
+        });
+    });
+
+    // Redraw on resize (debounced)
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(drawConnections, 150);
+    });
+</script>

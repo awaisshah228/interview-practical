@@ -21,6 +21,7 @@ interview-practical/
 | `js/2-variables-scope` | `var` / `let` / `const`, hoisting, scope chain, shadowing |
 | `js/3-js-tutorial` | **[Deprecated]** Webpack SPA — W3Schools-style JS tutorial |
 | `js/4-js-tutorial` | **Astro SSG** — Multi-language code tutorials with landing page, zero JS content, lazy Monaco editor |
+| `js/4-js-tutorial` (ai-video) | **AI Video & Automation** — Scraped aivideo.school course content + new AI Automation course (prompting, styles, workflows, tools, pipelines, batch processing, scheduling, APIs) |
 
 ## Getting Started
 

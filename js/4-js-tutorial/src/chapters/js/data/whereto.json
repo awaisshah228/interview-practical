@@ -36,6 +36,7 @@
       "// <script src=\"myScript.js\"></script>",
       "console.log(\"External scripts keep HTML clean!\");"
     ]},
-    { "type": "note", "text": "You cannot use both src and inline code in the same <script> tag. Inline code is ignored when src is set." }
+    { "type": "note", "text": "You cannot use both src and inline code in the same <script> tag. Inline code is ignored when src is set." },
+    { "type": "exercise", "question": "Which HTML tag is used to include JavaScript?", "options": ["<js>", "<javascript>", "<script>", "<code>"], "answer": 2 }
   ]
 }

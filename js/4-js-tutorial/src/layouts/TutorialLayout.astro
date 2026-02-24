@@ -1,5 +1,6 @@
 ---
 import type { Chapter } from "../lib/chapters";
+import { ClientRouter } from 'astro:transitions';
 import Header from "../components/Header.astro";
 import Sidebar from "../components/Sidebar.astro";
 import MonacoEditor from "../islands/MonacoEditor";
@@ -15,6 +16,7 @@ interface Props {
 }
 
 const { title, chapters, activeId, lang, langName, monacoLang } = Astro.props;
+const isCodeLang = monacoLang !== "plaintext";
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +24,9 @@ const { title, chapters, activeId, lang, langName, monacoLang } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | {langName} Tutorial</title>
+    <ClientRouter />
 </head>
-<body>
+<body data-code-lang={isCodeLang ? "true" : "false"}>
     <Header langName={langName} />
     <div id="sidebar-backdrop"></div>
     <div id="layout">
@@ -32,18 +35,26 @@ const { title, chapters, activeId, lang, langName, monacoLang } = Astro.props;
             <slot />
         </main>
     </div>
-    <MonacoEditor client:idle monacoLang={monacoLang} />
+    {isCodeLang && <MonacoEditor client:idle monacoLang={monacoLang} />}
     <script>
-        const toggle = document.getElementById("mobile-toggle");
-        const sidebar = document.getElementById("sidebar");
-        const backdrop = document.getElementById("sidebar-backdrop");
-        toggle?.addEventListener("click", () => {
-            sidebar?.classList.toggle("open");
-            backdrop?.classList.toggle("visible");
+        document.addEventListener("astro:page-load", () => {
+            const toggle = document.getElementById("mobile-toggle");
+            const sidebar = document.getElementById("sidebar");
+            const backdrop = document.getElementById("sidebar-backdrop");
+            toggle?.addEventListener("click", () => {
+                sidebar?.classList.toggle("open");
+                backdrop?.classList.toggle("visible");
+            });
+            backdrop?.addEventListener("click", () => {
+                sidebar?.classList.remove("open");
+                backdrop?.classList.remove("visible");
+            });
         });
-        backdrop?.addEventListener("click", () => {
-            sidebar?.classList.remove("open");
-            backdrop?.classList.remove("visible");
+        document.addEventListener("astro:after-swap", () => {
+            // Close mobile sidebar on navigation
+            document.getElementById("sidebar")?.classList.remove("open");
+            // Scroll content area to top
+            document.getElementById("content")?.scrollTo(0, 0);
         });
     </script>
 </body>

@@ -1,0 +1,116 @@
+{
+  "id": "array_sort",
+  "title": "JS Array Sort",
+  "group": "JS Arrays",
+  "content": [
+    { "type": "h1", "text": "JavaScript Array Sort" },
+    { "type": "p", "text": "Sorting arrays is a fundamental operation in programming. JavaScript provides the sort() and reverse() methods, but you need to understand their behavior to avoid common pitfalls, especially with numeric sorting." },
+
+    { "type": "h2", "text": "Basic sort() and reverse()" },
+    { "type": "p", "text": "sort() sorts an array in place and returns the sorted array. By default, it converts elements to strings and sorts them alphabetically (lexicographically). reverse() reverses the array in place." },
+    { "type": "example", "title": "Basic sort() and reverse()", "code": [
+      "// String sorting (default)",
+      "const fruits = [\"Banana\", \"Apple\", \"Cherry\", \"Date\"];",
+      "fruits.sort();",
+      "console.log(\"Sorted:\", fruits);",
+      "",
+      "// Reverse",
+      "fruits.reverse();",
+      "console.log(\"Reversed:\", fruits);",
+      "",
+      "// WARNING: Default sort converts to strings!",
+      "const numbers = [25, 100, 1, 40, 5];",
+      "numbers.sort();",
+      "console.log(\"String sort:\", numbers);",
+      "// [1, 100, 25, 40, 5] - NOT what you expect!"
+    ] },
+    { "type": "note", "text": "The default sort() converts values to strings and compares Unicode code points. This means 100 comes before 25 because '1' < '2'. Always provide a compare function for numeric sorting!" },
+
+    { "type": "h2", "text": "Numeric Sorting" },
+    { "type": "p", "text": "To sort numbers correctly, pass a compare function to sort(). The function takes two arguments (a, b) and returns: negative if a should come first, positive if b should come first, or 0 if equal." },
+    { "type": "example", "title": "Numeric Sorting", "code": [
+      "const numbers = [25, 100, 1, 40, 5];",
+      "",
+      "// Ascending (a - b)",
+      "numbers.sort((a, b) => a - b);",
+      "console.log(\"Ascending:\", numbers);",
+      "",
+      "// Descending (b - a)",
+      "numbers.sort((a, b) => b - a);",
+      "console.log(\"Descending:\", numbers);",
+      "",
+      "// Find min and max by sorting",
+      "const vals = [45, 12, 78, 3, 99, 23];",
+      "vals.sort((a, b) => a - b);",
+      "console.log(\"Min:\", vals[0]);",
+      "console.log(\"Max:\", vals[vals.length - 1]);"
+    ] },
+
+    { "type": "h2", "text": "String Sorting" },
+    { "type": "p", "text": "Default sort works well for strings, but it is case-sensitive (uppercase letters come before lowercase). Use localeCompare() for proper locale-aware sorting." },
+    { "type": "example", "title": "String Sorting", "code": [
+      "// Case-sensitive (default)",
+      "const words = [\"banana\", \"Apple\", \"cherry\", \"Date\"];",
+      "words.sort();",
+      "console.log(\"Default:\", words);",
+      "",
+      "// Case-insensitive",
+      "words.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));",
+      "console.log(\"Case-insensitive:\", words);",
+      "",
+      "// Locale-aware sorting",
+      "const german = [\"ae\", \"ä\", \"z\", \"a\"];",
+      "german.sort((a, b) => a.localeCompare(b, \"de\"));",
+      "console.log(\"German sort:\", german);"
+    ] },
+
+    { "type": "h2", "text": "Sorting Objects" },
+    { "type": "p", "text": "You can sort arrays of objects by providing a compare function that accesses the property you want to sort by." },
+    { "type": "example", "title": "Sorting Objects", "code": [
+      "const users = [",
+      "  { name: \"Charlie\", age: 35 },",
+      "  { name: \"Alice\", age: 25 },",
+      "  { name: \"Bob\", age: 30 },",
+      "  { name: \"Diana\", age: 28 }",
+      "];",
+      "",
+      "// Sort by age (ascending)",
+      "users.sort((a, b) => a.age - b.age);",
+      "console.log(\"By age:\", users.map(u => `${u.name}(${u.age})`));",
+      "",
+      "// Sort by name (alphabetical)",
+      "users.sort((a, b) => a.name.localeCompare(b.name));",
+      "console.log(\"By name:\", users.map(u => u.name));"
+    ] },
+
+    { "type": "h2", "text": "toSorted() and toReversed() (Non-Mutating)" },
+    { "type": "p", "text": "ES2023 introduced toSorted() and toReversed() which return new arrays instead of modifying the original. These are ideal when you want to preserve the original data." },
+    { "type": "example", "title": "toSorted() and toReversed()", "code": [
+      "const original = [3, 1, 4, 1, 5, 9, 2, 6];",
+      "",
+      "// toSorted() - returns new sorted array",
+      "const sorted = original.toSorted((a, b) => a - b);",
+      "console.log(\"Sorted:\", sorted);",
+      "console.log(\"Original:\", original);",
+      "",
+      "// toReversed() - returns new reversed array",
+      "const reversed = original.toReversed();",
+      "console.log(\"Reversed:\", reversed);",
+      "console.log(\"Original:\", original);",
+      "",
+      "// Chaining",
+      "const result = original.toSorted((a, b) => a - b).toReversed();",
+      "console.log(\"Sorted then reversed:\", result);"
+    ] },
+
+    { "type": "table", "rows": [
+      ["Method", "Mutates?", "Returns"],
+      ["sort()", "Yes", "Sorted array (same ref)"],
+      ["reverse()", "Yes", "Reversed array (same ref)"],
+      ["toSorted()", "No", "New sorted array"],
+      ["toReversed()", "No", "New reversed array"]
+    ] },
+
+    { "type": "exercise", "question": "What compare function correctly sorts numbers in ascending order?", "options": ["(a, b) => b - a", "(a, b) => a - b", "(a, b) => a > b", "(a, b) => a.localeCompare(b)"], "answer": 1 }
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "id": "arrays",
   "title": "JS Arrays",
-  "group": "JS Objects & Arrays",
+  "group": "JS Arrays",
   "content": [
     { "type": "h1", "text": "JavaScript Arrays" },
     { "type": "p",  "text": "An array is an ordered list of values accessed by index (starting at 0). Arrays are objects that can hold any mix of data types and resize dynamically." },
@@ -100,6 +100,7 @@
       "words.sort();                     // alphabetical",
       "console.log(words.join(\", \"));   // \"apple, banana, cherry\""
     ]},
-    { "type": "note", "text": "Array.sort() converts elements to strings by default — always pass a comparator (a, b) => a - b for numeric sorting." }
+    { "type": "note", "text": "Array.sort() converts elements to strings by default — always pass a comparator (a, b) => a - b for numeric sorting." },
+    { "type": "exercise", "question": "Which method adds an element to the end of an array?", "options": ["unshift()", "push()", "append()", "add()"], "answer": 1 }
   ]
 }

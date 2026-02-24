@@ -21,13 +21,12 @@ export const languages: Language[] = [
         description: "The language of the web — learn variables, functions, objects, and more",
         monacoLang: "javascript",
     },
-    // To add Python:
-    // {
-    //     id: "python",
-    //     name: "Python",
-    //     description: "General-purpose language for scripting, data science, and automation",
-    //     monacoLang: "python",
-    // },
+    {
+        id: "ai-video",
+        name: "AI Video & Automation",
+        description: "AI video creation, prompting, image generation, and automated video pipelines",
+        monacoLang: "plaintext",
+    },
 ];
 
 export function getLanguage(id: string): Language | undefined {

@@ -1,0 +1,102 @@
+---
+import { getChapters } from "../../lib/chapters";
+import { getLanguage } from "../../lib/languages";
+import TutorialLayout from "../../layouts/TutorialLayout.astro";
+import Roadmap from "../../components/Roadmap.astro";
+
+const language = getLanguage("ai-video")!;
+const chapters = getChapters("ai-video");
+const lang = "ai-video";
+
+const groups = [
+    {
+        label: "AI Fundamentals",
+        color: "#f59e0b",
+        badge: "purple",
+        side: "right" as const,
+        nodes: [
+            { id: "ai_prompting", title: "AI Prompting", href: `/${lang}/ai_prompting` },
+            { id: "styles", title: "Styles in AI Prompts", href: `/${lang}/styles` },
+        ],
+    },
+    {
+        label: "AI Video Production",
+        color: "#2b78e4",
+        badge: "purple",
+        side: "left" as const,
+        nodes: [
+            { id: "ai_video_workflow", title: "AI Video Workflow", href: `/${lang}/ai_video_workflow` },
+            { id: "ai_video_ideas", title: "AI Video Ideas", href: `/${lang}/ai_video_ideas` },
+            { id: "ai_video_scripts", title: "AI Video Scripts", href: `/${lang}/ai_video_scripts` },
+        ],
+    },
+    {
+        label: "AI Image & Video Tools",
+        color: "#d9534f",
+        badge: "green",
+        side: "right" as const,
+        nodes: [
+            { id: "ai_image_generation", title: "AI Image Generation", href: `/${lang}/ai_image_generation` },
+            { id: "ai_video_tools", title: "AI Video Tools", href: `/${lang}/ai_video_tools` },
+        ],
+    },
+    {
+        label: "AI Automation",
+        color: "#04AA6D",
+        badge: "purple",
+        side: "both" as const,
+        nodes: [
+            { id: "ai_automation_intro", title: "Automation Intro", href: `/${lang}/ai_automation_intro` },
+            { id: "automated_pipelines", title: "Automated Pipelines", href: `/${lang}/automated_pipelines` },
+            { id: "batch_processing", title: "Batch Processing", href: `/${lang}/batch_processing` },
+            { id: "scheduling_publishing", title: "Scheduling & Publishing", href: `/${lang}/scheduling_publishing` },
+            { id: "api_integrations", title: "API Integrations", href: `/${lang}/api_integrations` },
+            { id: "workflow_tools", title: "Workflow Tools", href: `/${lang}/workflow_tools` },
+        ],
+    },
+    {
+        label: "Extras",
+        color: "#6b7280",
+        badge: "grey",
+        side: "right" as const,
+        nodes: [
+            { id: "extras", title: "Extras & Resources", href: `/${lang}/extras` },
+        ],
+    },
+];
+---
+<TutorialLayout
+    title="Introduction"
+    chapters={chapters}
+    activeId="__intro__"
+    lang={language.id}
+    langName={language.name}
+    monacoLang={language.monacoLang}
+>
+    <!-- Course roadmap -->
+    <Roadmap
+        title="AI Video & Automation"
+        subtitle="Step by step guide to mastering AI video creation and automation"
+        groups={groups}
+        totalChapters={chapters.length}
+    />
+
+    <!-- Details section below roadmap -->
+    <div class="rm-intro">
+        <h2>What You'll Learn</h2>
+        <p>This course covers the full AI video creation stack, from prompting fundamentals to fully automated publishing workflows:</p>
+        <ul class="rm-intro-list">
+            <li><strong>AI Fundamentals</strong> — Master prompting techniques and visual styles for AI-generated content</li>
+            <li><strong>Video Production</strong> — Plan workflows, generate ideas, and write scripts with AI assistance</li>
+            <li><strong>Image & Video Tools</strong> — Hands-on with Midjourney, DALL·E, Runway, Pika, and more</li>
+            <li><strong>Automation</strong> — Build pipelines, batch process content, schedule publishing, and integrate APIs</li>
+        </ul>
+
+        <h2>Who Is This For?</h2>
+        <p>Content creators, marketers, developers, and anyone looking to leverage AI for video production at scale. No coding experience required for the fundamentals — the automation sections introduce API concepts gradually.</p>
+
+        <div class="rm-intro-cta">
+            <a href={`/${lang}/ai_prompting`} class="nav-btn">Start with AI Prompting &rarr;</a>
+        </div>
+    </div>
+</TutorialLayout>

@@ -42,6 +42,7 @@
       "// document.write(5 + 6);",
       "console.log(\"document.write() would output:\", 5 + 6);"
     ]},
-    { "type": "note", "text": "Never use document.write() in a live production site — it overwrites the entire page content when called after load." }
+    { "type": "note", "text": "Never use document.write() in a live production site — it overwrites the entire page content when called after load." },
+    { "type": "exercise", "question": "Which method is used to write to the browser's developer console?", "options": ["document.write()", "window.alert()", "console.log()", "innerHTML"], "answer": 2 }
   ]
 }

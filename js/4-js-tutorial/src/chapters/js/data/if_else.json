@@ -1,7 +1,7 @@
 {
   "id": "if_else",
   "title": "JS If...Else",
-  "group": "JS Control Flow",
+  "group": "JS Conditions",
   "content": [
     { "type": "h1", "text": "JavaScript If...Else" },
     { "type": "p",  "text": "Conditional statements control the flow of code based on conditions. JavaScript has if, else, else if, and the ternary operator." },
@@ -74,6 +74,7 @@
       ["else if",     "Test multiple conditions in sequence"],
       ["ternary ?:",  "Short inline if/else for simple values"]
     ]},
-    { "type": "note", "text": "Always use curly braces {} for code blocks, even for single-line statements. It prevents hard-to-find bugs." }
+    { "type": "note", "text": "Always use curly braces {} for code blocks, even for single-line statements. It prevents hard-to-find bugs." },
+    { "type": "exercise", "question": "Which keyword catches all remaining conditions in an if...else chain?", "options": ["else if", "else", "default", "finally"], "answer": 1 }
   ]
 }

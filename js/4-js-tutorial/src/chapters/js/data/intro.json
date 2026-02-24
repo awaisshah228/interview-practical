@@ -29,6 +29,7 @@
     ]},
     { "type": "h2", "text": "A Bit of History" },
     { "type": "p",  "text": "JavaScript was invented by Brendan Eich in 1995. It became an ECMA standard in 1997. ECMA-262 is the official standard name. ECMAScript is the official name of the language." },
-    { "type": "note", "text": "JavaScript and Java are completely different languages, both in concept and design." }
+    { "type": "note", "text": "JavaScript and Java are completely different languages, both in concept and design." },
+    { "type": "exercise", "question": "What was JavaScript originally created for?", "options": ["Server-side programming", "Web page interactivity", "Database management", "Mobile app development"], "answer": 1 }
   ]
 }

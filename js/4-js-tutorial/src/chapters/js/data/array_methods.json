@@ -1,0 +1,120 @@
+{
+  "id": "array_methods",
+  "title": "JS Array Methods",
+  "group": "JS Arrays",
+  "content": [
+    { "type": "h1", "text": "JavaScript Array Methods" },
+    { "type": "p", "text": "JavaScript arrays come with a rich set of built-in methods for adding, removing, and transforming elements. Mastering these methods is essential for efficient JavaScript development." },
+
+    { "type": "h2", "text": "push() and pop()" },
+    { "type": "p", "text": "push() adds one or more elements to the end of an array and returns the new length. pop() removes the last element and returns it. These methods modify the original array." },
+    { "type": "example", "title": "push() and pop()", "code": [
+      "const fruits = [\"Apple\", \"Banana\"];",
+      "",
+      "// push - add to end",
+      "const newLen = fruits.push(\"Cherry\", \"Date\");",
+      "console.log(\"After push:\", fruits);",
+      "console.log(\"New length:\", newLen);",
+      "",
+      "// pop - remove from end",
+      "const removed = fruits.pop();",
+      "console.log(\"Popped:\", removed);",
+      "console.log(\"After pop:\", fruits);"
+    ] },
+
+    { "type": "h2", "text": "shift() and unshift()" },
+    { "type": "p", "text": "shift() removes the first element and returns it. unshift() adds one or more elements to the beginning and returns the new length. These are slower than push/pop for large arrays." },
+    { "type": "example", "title": "shift() and unshift()", "code": [
+      "const fruits = [\"Apple\", \"Banana\", \"Cherry\"];",
+      "",
+      "// shift - remove from beginning",
+      "const first = fruits.shift();",
+      "console.log(\"Shifted:\", first);",
+      "console.log(\"After shift:\", fruits);",
+      "",
+      "// unshift - add to beginning",
+      "fruits.unshift(\"Mango\", \"Grape\");",
+      "console.log(\"After unshift:\", fruits);"
+    ] },
+
+    { "type": "h2", "text": "splice()" },
+    { "type": "p", "text": "splice() is the most versatile array method. It can add, remove, or replace elements at any position. It modifies the original array and returns the removed elements." },
+    { "type": "example", "title": "splice()", "code": [
+      "const colors = [\"Red\", \"Green\", \"Blue\", \"Yellow\", \"Purple\"];",
+      "",
+      "// Remove 2 elements starting at index 1",
+      "const removed = colors.splice(1, 2);",
+      "console.log(\"Removed:\", removed);",
+      "console.log(\"After remove:\", colors);",
+      "",
+      "// Insert without removing (deleteCount = 0)",
+      "colors.splice(1, 0, \"Orange\", \"Pink\");",
+      "console.log(\"After insert:\", colors);",
+      "",
+      "// Replace: remove 1, insert 2",
+      "colors.splice(2, 1, \"Cyan\", \"Magenta\");",
+      "console.log(\"After replace:\", colors);"
+    ] },
+    { "type": "note", "text": "splice() mutates the original array. If you need a non-mutating version, use toSpliced() (ES2023)." },
+
+    { "type": "h2", "text": "slice() and concat()" },
+    { "type": "p", "text": "slice() returns a shallow copy of a portion of an array without modifying the original. concat() merges two or more arrays into a new array." },
+    { "type": "example", "title": "slice() and concat()", "code": [
+      "const arr = [\"a\", \"b\", \"c\", \"d\", \"e\"];",
+      "",
+      "// slice(start, end) - end not included",
+      "console.log(\"slice(1, 3):\", arr.slice(1, 3));",
+      "console.log(\"slice(2):\", arr.slice(2));",
+      "console.log(\"slice(-2):\", arr.slice(-2));",
+      "console.log(\"Original:\", arr);",
+      "",
+      "// concat",
+      "const arr1 = [1, 2];",
+      "const arr2 = [3, 4];",
+      "const arr3 = [5, 6];",
+      "const merged = arr1.concat(arr2, arr3);",
+      "console.log(\"Concatenated:\", merged);",
+      "console.log(\"arr1 unchanged:\", arr1);"
+    ] },
+
+    { "type": "h2", "text": "flat(), flatMap(), Array.from(), Array.of()" },
+    { "type": "p", "text": "flat() flattens nested arrays. flatMap() maps each element then flattens the result by one level. Array.from() creates arrays from iterables. Array.of() creates arrays from arguments." },
+    { "type": "example", "title": "flat(), flatMap(), Array.from(), Array.of()", "code": [
+      "// flat() - flatten nested arrays",
+      "const nested = [1, [2, 3], [4, [5, 6]]];",
+      "console.log(\"flat(1):\", nested.flat());",
+      "console.log(\"flat(Infinity):\", nested.flat(Infinity));",
+      "",
+      "// flatMap() - map then flatten one level",
+      "const sentences = [\"Hello world\", \"Good morning\"];",
+      "const words = sentences.flatMap(s => s.split(\" \"));",
+      "console.log(\"flatMap:\", words);",
+      "",
+      "// Array.from() - create array from iterable",
+      "const str = \"Hello\";",
+      "console.log(\"from string:\", Array.from(str));",
+      "console.log(\"from range:\", Array.from({length: 5}, (_, i) => i + 1));",
+      "",
+      "// Array.of() - create array from arguments",
+      "console.log(\"Array.of(1,2,3):\", Array.of(1, 2, 3));",
+      "console.log(\"Array.of(7):\", Array.of(7));"
+    ] },
+
+    { "type": "table", "rows": [
+      ["Method", "Mutates?", "Returns"],
+      ["push()", "Yes", "New length"],
+      ["pop()", "Yes", "Removed element"],
+      ["shift()", "Yes", "Removed element"],
+      ["unshift()", "Yes", "New length"],
+      ["splice()", "Yes", "Removed elements array"],
+      ["slice()", "No", "New array"],
+      ["concat()", "No", "New merged array"],
+      ["flat()", "No", "New flattened array"],
+      ["flatMap()", "No", "New array"],
+      ["Array.from()", "N/A", "New array"],
+      ["Array.of()", "N/A", "New array"]
+    ] },
+
+    { "type": "exercise", "question": "What does splice(1, 0, 'X') do?", "options": ["Removes 1 element at index 0", "Replaces element at index 1 with 'X'", "Inserts 'X' at index 1 without removing anything", "Removes 'X' from the array"], "answer": 2 }
+  ]
+}

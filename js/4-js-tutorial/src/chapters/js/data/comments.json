@@ -1,7 +1,7 @@
 {
   "id": "comments",
   "title": "JS Comments",
-  "group": "JS Tutorial",
+  "group": "JS Syntax",
   "content": [
     { "type": "h1", "text": "JavaScript Comments" },
     { "type": "p",  "text": "JavaScript comments can be used to explain code and make it more readable. Comments can also be used to prevent execution when testing." },
@@ -46,6 +46,7 @@
       ["Multi-line",  "/* text */",     "Long descriptions or block commenting"],
       ["JSDoc",       "/** @param */",  "Documenting functions for tools"]
     ]},
-    { "type": "note", "text": "Single-line comments are the most common. Use multi-line comments for formal documentation." }
+    { "type": "note", "text": "Single-line comments are the most common. Use multi-line comments for formal documentation." },
+    { "type": "exercise", "question": "How do you write a single-line comment in JavaScript?", "options": ["<!-- comment -->", "// comment", "# comment", "/* comment */"], "answer": 1 }
   ]
 }

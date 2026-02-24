@@ -58,6 +58,7 @@
       ["Hoisting",           "Declaration hoisted, value is undefined"],
       ["Global scope",       "Adds to window object in browsers"]
     ]},
-    { "type": "note", "text": "Avoid var in modern JavaScript. Use let or const instead — they are block-scoped and don't have these quirks." }
+    { "type": "note", "text": "Avoid var in modern JavaScript. Use let or const instead — they are block-scoped and don't have these quirks." },
+    { "type": "exercise", "question": "What type of scope does var have?", "options": ["Block scope", "Function scope", "Global scope only", "Module scope"], "answer": 1 }
   ]
 }

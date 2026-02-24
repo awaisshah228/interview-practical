@@ -1,0 +1,107 @@
+{
+  "id": "modules",
+  "title": "JS Modules",
+  "group": "JS Modules",
+  "content": [
+    { "type": "h1", "text": "JavaScript Modules" },
+    { "type": "p", "text": "JavaScript modules allow you to break up your code into separate files. Each module has its own scope and can export values that other modules can import. Modules help organize code, prevent naming conflicts, and promote reusability." },
+
+    { "type": "h2", "text": "What Are Modules?" },
+    { "type": "p", "text": "A module is simply a JavaScript file that can export and import functionality. Before modules, all JavaScript files shared the global scope, leading to naming conflicts and hard-to-maintain code." },
+    { "type": "example", "title": "Module Concept", "code": [
+      "// Before modules: everything is global",
+      "// file1.js: var name = 'Alice';",
+      "// file2.js: var name = 'Bob'; // Overwrites!",
+      "",
+      "// With modules: each file has its own scope",
+      "// math.js: export function add(a, b) { return a + b; }",
+      "// app.js: import { add } from './math.js';",
+      "",
+      "// Simulating module behavior",
+      "const mathModule = (function() {",
+      "  function add(a, b) { return a + b; }",
+      "  function multiply(a, b) { return a * b; }",
+      "  return { add, multiply };",
+      "})();",
+      "",
+      "console.log(mathModule.add(2, 3));",
+      "console.log(mathModule.multiply(4, 5));"
+    ]},
+
+    { "type": "h2", "text": "Script type=\"module\"" },
+    { "type": "p", "text": "To use modules in the browser, you must add type=\"module\" to the script tag. This tells the browser to treat the file as a module with its own scope." },
+    { "type": "example", "title": "Using type=\"module\" in HTML", "code": [
+      "// In HTML:",
+      "// <script type=\"module\" src=\"app.js\"></script>",
+      "",
+      "// Key differences from regular scripts:",
+      "// 1. Module scope (not global)",
+      "// 2. Strict mode by default",
+      "// 3. Deferred by default",
+      "// 4. Executed only once (even if imported multiple times)",
+      "",
+      "console.log('Module scripts are deferred by default');",
+      "console.log('They run after the HTML is parsed');",
+      "console.log('Like adding the defer attribute');"
+    ]},
+
+    { "type": "h2", "text": "Module Scope" },
+    { "type": "p", "text": "Variables and functions declared in a module are scoped to that module by default. They are not added to the global scope. Only explicitly exported items are accessible to other modules." },
+    { "type": "example", "title": "Module Scope vs Global Scope", "code": [
+      "// Simulating module scope",
+      "const moduleA = (function() {",
+      "  const secret = 'hidden';",
+      "  const publicValue = 'visible';",
+      "",
+      "  return { publicValue };",
+      "})();",
+      "",
+      "console.log(moduleA.publicValue);",
+      "// moduleA.secret would be undefined",
+      "console.log('secret' in moduleA);",
+      "",
+      "// In real modules:",
+      "// const secret = 'hidden';        // NOT accessible outside",
+      "// export const visible = 'public'; // Accessible via import"
+    ]},
+
+    { "type": "h2", "text": "Strict Mode by Default" },
+    { "type": "p", "text": "Modules automatically run in strict mode. This means you cannot use undeclared variables, duplicate parameter names, or other sloppy mode features." },
+    { "type": "example", "title": "Strict Mode in Modules", "code": [
+      "// In modules, strict mode is automatic",
+      "// No need for 'use strict';",
+      "",
+      "// These would cause errors in a module:",
+      "// x = 10;  // ReferenceError: x is not defined",
+      "// delete Object.prototype;  // TypeError",
+      "",
+      "// Strict mode benefits",
+      "const strictExample = (function() {",
+      "  'use strict';",
+      "  let x = 10;",
+      "  console.log('Strict mode prevents silent errors');",
+      "  console.log('Variables must be declared: x = ' + x);",
+      "  return x;",
+      "})();",
+      "",
+      "console.log('Result: ' + strictExample);"
+    ]},
+
+    { "type": "h2", "text": "Module Benefits and Browser Support" },
+    { "type": "p", "text": "Modules provide many benefits for code organization and are supported in all modern browsers. Bundlers like Webpack and Vite can also handle modules for older browser support." },
+    { "type": "table", "rows": [
+      ["Benefit", "Description"],
+      ["Encapsulation", "Each module has its own scope"],
+      ["Reusability", "Import functionality across files"],
+      ["Dependency management", "Clear dependency chain via imports"],
+      ["Maintainability", "Smaller, focused files"],
+      ["No naming conflicts", "Module-scoped variables"],
+      ["Strict mode", "Automatic strict mode prevents bugs"],
+      ["Deferred loading", "Modules are deferred by default"]
+    ]},
+
+    { "type": "note", "text": "Modules are loaded using CORS (Cross-Origin Resource Sharing), so they don't work with the file:// protocol. You need a local server to test modules during development. Tools like live-server, Vite, or Webpack dev server handle this automatically." },
+
+    { "type": "exercise", "question": "What attribute must be added to a script tag to use ES modules?", "options": ["src=\"module\"", "type=\"module\"", "module=\"true\"", "lang=\"module\""], "answer": 1 }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "booleans",
+  "title": "JS Booleans",
+  "group": "JS Conditions",
+  "content": [
+    { "type": "h1", "text": "JavaScript Booleans" },
+    { "type": "p", "text": "A JavaScript Boolean represents one of two values: true or false. Booleans are the foundation of all conditional testing and decision-making in JavaScript." },
+
+    { "type": "h2", "text": "Boolean Values" },
+    { "type": "p", "text": "The boolean type has only two values: true and false. They are often the result of comparisons and conditions." },
+    { "type": "example", "title": "Basic Booleans", "code": [
+      "let isActive = true;",
+      "let isDeleted = false;",
+      "",
+      "console.log(isActive);          // true",
+      "console.log(typeof isActive);   // \"boolean\"",
+      "",
+      "// Comparisons return booleans",
+      "console.log(10 > 5);    // true",
+      "console.log(10 < 5);    // false",
+      "console.log(10 === 10); // true",
+      "console.log(10 !== 10); // false"
+    ]},
+
+    { "type": "h2", "text": "The Boolean() Function" },
+    { "type": "p", "text": "The Boolean() function converts any value to a boolean. This is useful for explicitly checking the truthiness of a value." },
+    { "type": "example", "title": "Boolean() Conversion", "code": [
+      "// Truthy values convert to true",
+      "console.log(Boolean(100));        // true",
+      "console.log(Boolean(\"hello\"));    // true",
+      "console.log(Boolean([]));         // true",
+      "console.log(Boolean({}));         // true",
+      "console.log(Boolean(\" \"));       // true (space is truthy!)",
+      "console.log(Boolean(\"false\"));   // true (non-empty string!)",
+      "",
+      "// Falsy values convert to false",
+      "console.log(Boolean(0));          // false",
+      "console.log(Boolean(-0));         // false",
+      "console.log(Boolean(\"\"));        // false",
+      "console.log(Boolean(null));       // false",
+      "console.log(Boolean(undefined));  // false",
+      "console.log(Boolean(NaN));        // false"
+    ]},
+
+    { "type": "h2", "text": "Truthy and Falsy Values" },
+    { "type": "p", "text": "Every value in JavaScript has an inherent boolean value. There are only 6 falsy values — everything else is truthy." },
+    { "type": "table", "rows": [
+      ["Falsy Values", "Description"],
+      ["false", "The keyword false"],
+      ["0, -0", "Zero and negative zero"],
+      ["\"\"", "Empty string"],
+      ["null", "Absence of any value"],
+      ["undefined", "Variable declared but not assigned"],
+      ["NaN", "Not a Number"]
+    ]},
+    { "type": "example", "title": "Common Truthy/Falsy Gotchas", "code": [
+      "// These are all TRUTHY (might be surprising!)",
+      "console.log(Boolean(\"0\"));      // true (non-empty string)",
+      "console.log(Boolean(\"false\"));  // true (non-empty string)",
+      "console.log(Boolean([]));        // true (empty array)",
+      "console.log(Boolean({}));        // true (empty object)",
+      "console.log(Boolean(-1));        // true (non-zero number)",
+      "console.log(Boolean(Infinity)); // true",
+      "",
+      "// Practical check: is string empty?",
+      "let input = \"\";",
+      "if (!input) {",
+      "  console.log(\"Input is empty\"); // This runs",
+      "}",
+      "",
+      "// Practical check: does value exist?",
+      "let user = null;",
+      "if (!user) {",
+      "  console.log(\"No user found\"); // This runs",
+      "}"
+    ]},
+
+    { "type": "h2", "text": "The !! (Double NOT) Operator" },
+    { "type": "p", "text": "The double NOT operator (!!) is a shorthand way to convert any value to its boolean equivalent. The first ! converts to boolean and negates, the second ! negates back." },
+    { "type": "example", "title": "Double NOT Operator", "code": [
+      "// Single ! negates",
+      "console.log(!true);       // false",
+      "console.log(!0);          // true",
+      "console.log(!\"hello\");   // false",
+      "",
+      "// Double !! converts to boolean",
+      "console.log(!!\"hello\");  // true",
+      "console.log(!!0);         // false",
+      "console.log(!!null);      // false",
+      "console.log(!!undefined); // false",
+      "console.log(!!1);         // true",
+      "console.log(!![]);        // true",
+      "",
+      "// Practical use",
+      "let name = \"Alice\";",
+      "let hasName = !!name;",
+      "console.log(hasName); // true",
+      "console.log(typeof hasName); // \"boolean\""
+    ]},
+
+    { "type": "h2", "text": "Comparisons Return Booleans" },
+    { "type": "p", "text": "All comparison operators return boolean values. You can store comparison results in variables and use them later in your code." },
+    { "type": "example", "title": "Boolean Results from Comparisons", "code": [
+      "let age = 25;",
+      "let isAdult = age >= 18;",
+      "let isSenior = age >= 65;",
+      "let isTeenager = age >= 13 && age <= 19;",
+      "",
+      "console.log(isAdult);    // true",
+      "console.log(isSenior);   // false",
+      "console.log(isTeenager); // false",
+      "",
+      "// Use boolean variables in conditions",
+      "if (isAdult && !isSenior) {",
+      "  console.log(\"Working age adult\");",
+      "}",
+      "",
+      "// Boolean in array methods",
+      "let numbers = [1, 2, 3, 4, 5, 6];",
+      "let evens = numbers.filter(n => n % 2 === 0);",
+      "console.log(evens); // [2, 4, 6]"
+    ]},
+
+    { "type": "note", "text": "Never compare to true or false directly (if (x === true)). Instead, just use the value: if (x). The exception is when you specifically need to distinguish true from other truthy values." },
+
+    { "type": "exercise", "question": "What does Boolean(\"\") return?", "options": ["true", "false", "\"\"", "undefined"], "answer": 1 }
+  ]
+}

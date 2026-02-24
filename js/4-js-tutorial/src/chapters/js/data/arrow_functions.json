@@ -77,6 +77,7 @@
       ["As constructors", "No",                       "Yes"],
       ["Best for",        "Callbacks, array methods", "Methods, constructors"]
     ]},
-    { "type": "note", "text": "Do not use arrow functions as object methods or constructors — they don't have their own this and cannot be used with new." }
+    { "type": "note", "text": "Do not use arrow functions as object methods or constructors — they don't have their own this and cannot be used with new." },
+    { "type": "exercise", "question": "What does an arrow function NOT have its own binding for?", "options": ["return", "this", "parameters", "const"], "answer": 1 }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "id": "while_loop",
   "title": "JS While Loop",
-  "group": "JS Control Flow",
+  "group": "JS Loops",
   "content": [
     { "type": "h1", "text": "JavaScript While Loop" },
     { "type": "p",  "text": "The while loop loops through a block of code as long as a specified condition is true. Use it when you don't know in advance how many iterations you need." },
@@ -64,6 +64,7 @@
       "    ? \"Found \" + target + \" at index \" + idx",
       "    : \"Not found\");"
     ]},
-    { "type": "note", "text": "Always ensure the condition will eventually become false or use break — an infinite loop freezes the browser tab." }
+    { "type": "note", "text": "Always ensure the condition will eventually become false or use break — an infinite loop freezes the browser tab." },
+    { "type": "exercise", "question": "When is the condition checked in a do...while loop?", "options": ["Before the first iteration", "After each iteration", "Only once at the start", "It depends on the condition"], "answer": 1 }
   ]
 }

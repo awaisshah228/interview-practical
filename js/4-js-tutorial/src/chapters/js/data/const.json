@@ -48,6 +48,7 @@
       ["Must initialise",   "✓ Yes",       "✗ No",    "✗ No"],
       ["Hoisted",           "TDZ",         "TDZ",     "✓ (undefined)"]
     ]},
-    { "type": "note", "text": "Best practice: use const by default. Switch to let only when you know the value needs to change. Never use var in modern code." }
+    { "type": "note", "text": "Best practice: use const by default. Switch to let only when you know the value needs to change. Never use var in modern code." },
+    { "type": "exercise", "question": "Can you change properties of a const object?", "options": ["No, const makes everything immutable", "Yes, const only prevents reassignment of the variable", "Only with Object.assign()", "Only in strict mode"], "answer": 1 }
   ]
 }

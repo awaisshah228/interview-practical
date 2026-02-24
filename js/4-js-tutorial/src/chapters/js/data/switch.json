@@ -1,7 +1,7 @@
 {
   "id": "switch",
   "title": "JS Switch",
-  "group": "JS Control Flow",
+  "group": "JS Conditions",
   "content": [
     { "type": "h1", "text": "JavaScript Switch Statement" },
     { "type": "p",  "text": "The switch statement selects one of many code blocks to execute. It is a cleaner alternative to many else if chains when comparing one value against many cases." },
@@ -69,6 +69,7 @@
       "    case 5:   console.log(\"Number 5\"); break;  // matches!",
       "}"
     ]},
-    { "type": "note", "text": "Always add a break to each case unless you intentionally want fall-through. Missing breaks are one of the most common JavaScript bugs." }
+    { "type": "note", "text": "Always add a break to each case unless you intentionally want fall-through. Missing breaks are one of the most common JavaScript bugs." },
+    { "type": "exercise", "question": "What keyword stops execution from falling through to the next case in a switch?", "options": ["stop", "exit", "break", "return"], "answer": 2 }
   ]
 }

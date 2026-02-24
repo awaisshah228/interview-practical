@@ -72,6 +72,7 @@
       "console.log(area(10, 3));   // 30",
       "console.log(area(7, 6));    // 42"
     ]},
-    { "type": "note", "text": "Function declarations are hoisted — you can call them before they appear in the code. Function expressions are NOT hoisted." }
+    { "type": "note", "text": "Function declarations are hoisted — you can call them before they appear in the code. Function expressions are NOT hoisted." },
+    { "type": "exercise", "question": "Which keyword is used to define a function in JavaScript?", "options": ["def", "func", "function", "method"], "answer": 2 }
   ]
 }

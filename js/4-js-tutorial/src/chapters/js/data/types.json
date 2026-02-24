@@ -1,0 +1,117 @@
+{
+  "id": "types",
+  "title": "JS Types",
+  "group": "JS Variables",
+  "content": [
+    { "type": "h1", "text": "JavaScript Data Types" },
+    { "type": "p", "text": "JavaScript has 8 data types. Understanding types is fundamental to writing correct JavaScript code. Variables in JavaScript are dynamically typed, meaning the same variable can hold different types at different times." },
+
+    { "type": "h2", "text": "The typeof Operator" },
+    { "type": "p", "text": "The typeof operator returns the type of a variable or expression as a string. It is one of the most useful tools for debugging and type checking." },
+    { "type": "example", "title": "Using typeof", "code": [
+      "let name = \"Alice\";",
+      "let age = 30;",
+      "let isActive = true;",
+      "let x;",
+      "",
+      "console.log(typeof name);      // \"string\"",
+      "console.log(typeof age);       // \"number\"",
+      "console.log(typeof isActive);  // \"boolean\"",
+      "console.log(typeof x);         // \"undefined\"",
+      "console.log(typeof null);      // \"object\" (known bug)"
+    ]},
+
+    { "type": "h2", "text": "Primitive Types" },
+    { "type": "p", "text": "JavaScript has 7 primitive data types. Primitives are immutable and compared by value." },
+    { "type": "table", "rows": [
+      ["Type", "typeof Result", "Example"],
+      ["String", "\"string\"", "\"Hello\""],
+      ["Number", "\"number\"", "42, 3.14, NaN"],
+      ["Boolean", "\"boolean\"", "true, false"],
+      ["Undefined", "\"undefined\"", "undefined"],
+      ["Null", "\"object\"", "null"],
+      ["Symbol", "\"symbol\"", "Symbol(\"id\")"],
+      ["BigInt", "\"bigint\"", "9007199254740991n"]
+    ]},
+    { "type": "example", "title": "Primitive Types in Action", "code": [
+      "let str = \"Hello World\";",
+      "let num = 42;",
+      "let float = 3.14;",
+      "let bool = true;",
+      "let undef = undefined;",
+      "let empty = null;",
+      "let sym = Symbol(\"id\");",
+      "let big = 9007199254740991n;",
+      "",
+      "console.log(typeof str);   // \"string\"",
+      "console.log(typeof num);   // \"number\"",
+      "console.log(typeof float); // \"number\"",
+      "console.log(typeof bool);  // \"boolean\"",
+      "console.log(typeof undef); // \"undefined\"",
+      "console.log(typeof empty); // \"object\"",
+      "console.log(typeof sym);   // \"symbol\"",
+      "console.log(typeof big);   // \"bigint\""
+    ]},
+
+    { "type": "h2", "text": "Object Type" },
+    { "type": "p", "text": "Everything that is not a primitive is an object. This includes arrays, functions, dates, and regular expressions. Objects are compared by reference, not by value." },
+    { "type": "example", "title": "Object Types", "code": [
+      "let obj = { name: \"Alice\" };",
+      "let arr = [1, 2, 3];",
+      "let func = function() {};",
+      "let date = new Date();",
+      "",
+      "console.log(typeof obj);   // \"object\"",
+      "console.log(typeof arr);   // \"object\"",
+      "console.log(typeof func);  // \"function\"",
+      "console.log(typeof date);  // \"object\"",
+      "",
+      "// Use Array.isArray() to check for arrays",
+      "console.log(Array.isArray(arr));  // true",
+      "console.log(Array.isArray(obj));  // false"
+    ]},
+
+    { "type": "h2", "text": "Dynamic Typing" },
+    { "type": "p", "text": "JavaScript is dynamically typed. This means a variable can change its type during execution. You do not need to declare the type of a variable — JavaScript figures it out automatically." },
+    { "type": "example", "title": "Dynamic Typing", "code": [
+      "let x = 5;",
+      "console.log(typeof x); // \"number\"",
+      "",
+      "x = \"Hello\";",
+      "console.log(typeof x); // \"string\"",
+      "",
+      "x = true;",
+      "console.log(typeof x); // \"boolean\"",
+      "",
+      "x = undefined;",
+      "console.log(typeof x); // \"undefined\""
+    ]},
+
+    { "type": "h2", "text": "Type Coercion Basics" },
+    { "type": "p", "text": "JavaScript automatically converts types when needed. This is called type coercion. It can be implicit (automatic) or explicit (manual using functions like Number(), String(), Boolean())." },
+    { "type": "example", "title": "Type Coercion", "code": [
+      "// Implicit coercion",
+      "let result1 = \"5\" + 3;",
+      "console.log(result1);        // \"53\" (number coerced to string)",
+      "console.log(typeof result1); // \"string\"",
+      "",
+      "let result2 = \"5\" - 3;",
+      "console.log(result2);        // 2 (string coerced to number)",
+      "console.log(typeof result2); // \"number\"",
+      "",
+      "// Explicit coercion",
+      "let str = \"42\";",
+      "let num = Number(str);",
+      "console.log(num);        // 42",
+      "console.log(typeof num); // \"number\"",
+      "",
+      "let val = 0;",
+      "let bool = Boolean(val);",
+      "console.log(bool); // false"
+    ]},
+
+    { "type": "note", "text": "typeof null returns \"object\" — this is a well-known bug in JavaScript that has existed since the first version. It was never fixed because too much existing code depends on this behavior." },
+
+    { "type": "exercise", "question": "What does typeof \"42\" return?", "options": ["\"number\"", "\"string\"", "\"object\"", "\"undefined\""], "answer": 1 }
+  ]
+}

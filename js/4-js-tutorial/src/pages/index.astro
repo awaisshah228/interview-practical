@@ -11,11 +11,12 @@ import { getChapters } from "../lib/chapters";
         {languages.map(lang => {
             const chapters = getChapters(lang.id);
             const firstId = chapters[0]?.id ?? "";
+            const hasRoadmap = lang.id === "ai-video";
             return (
                 <LanguageCard
                     name={lang.name}
                     description={lang.description}
-                    href={`/${lang.id}/${firstId}`}
+                    href={hasRoadmap ? `/${lang.id}/` : `/${lang.id}/${firstId}`}
                     chapterCount={chapters.length}
                 />
             );

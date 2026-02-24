@@ -1,7 +1,7 @@
 {
   "id": "strings",
   "title": "JS Strings",
-  "group": "JS Objects & Arrays",
+  "group": "JS Strings",
   "content": [
     { "type": "h1", "text": "JavaScript Strings" },
     { "type": "p",  "text": "Strings are used for storing and manipulating text. A JavaScript string is a sequence of characters written with quotes." },
@@ -85,6 +85,7 @@
       "console.log(str.trim().replace(\"World\",\"JS\")); // \"Hello, JS!\"",
       "console.log(\"a,b,c\".split(\",\"));             // [\"a\", \"b\", \"c\"]"
     ]},
-    { "type": "note", "text": "Strings are immutable — string methods return new strings and do not modify the original string." }
+    { "type": "note", "text": "Strings are immutable — string methods return new strings and do not modify the original string." },
+    { "type": "exercise", "question": "Which string method returns the first index of a substring, or -1 if not found?", "options": ["search()", "find()", "indexOf()", "locate()"], "answer": 2 }
   ]
 }

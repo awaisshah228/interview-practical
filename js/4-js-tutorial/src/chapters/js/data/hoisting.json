@@ -57,6 +57,7 @@
       ["function decl.",    "✓ Yes",    "✓ Yes (full body)",   "Yes (fully works)"],
       ["function expr.",    "Variable only", "✗ No",           "No (TypeError)"]
     ]},
-    { "type": "note", "text": "Best practice: always declare variables at the top of their scope to avoid confusion around hoisting. Prefer let and const over var." }
+    { "type": "note", "text": "Best practice: always declare variables at the top of their scope to avoid confusion around hoisting. Prefer let and const over var." },
+    { "type": "exercise", "question": "Which declaration type is hoisted AND initialized with its full body?", "options": ["var", "let", "const", "Function declaration"], "answer": 3 }
   ]
 }
