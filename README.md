@@ -9,7 +9,7 @@ interview-practical/
 └── js/
     ├── 1-basic/            # ES Modules, Webpack bundling, dev server
     ├── 2-variables-scope/  # var / let / const, scope chain, hoisting
-    └── ...                 # More topics coming
+    └── 3-js-tutorial/      # W3Schools-style interactive JS tutorial
 ```
 
 ## Topics
@@ -18,6 +18,7 @@ interview-practical/
 |--------|-------|
 | `js/1-basic` | ES Modules, Webpack, HtmlWebpackPlugin, webpack-dev-server |
 | `js/2-variables-scope` | `var` / `let` / `const`, hoisting, scope chain, shadowing |
+| `js/3-js-tutorial` | Interactive W3Schools-style tutorial — Variables, var/let/const, Scope, Hoisting |
 
 ## Getting Started
 
