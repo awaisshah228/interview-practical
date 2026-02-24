@@ -76,5 +76,13 @@ module.exports = {
         open: true,                                   // open browser automatically
         hot: true,                                    // Hot Module Replacement — swap modules without full reload
         watchFiles: ["src/**/*.html", "src/**/*.js"], // also trigger reload when HTML/JS source files change
+        client: {
+            // Monaco's clipboard service internally cancels a DeferredPromise when
+            // the editor loses focus — this is harmless but leaks into the overlay.
+            // Filter it out so it doesn't block the screen during development.
+            overlay: {
+                runtimeErrors: (error) => error?.message !== "Canceled",
+            },
+        },
     },
 };
