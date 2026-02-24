@@ -1,0 +1,54 @@
+{
+  "id": "syntax",
+  "title": "JS Syntax",
+  "group": "JS Tutorial",
+  "content": [
+    { "type": "h1", "text": "JavaScript Syntax" },
+    { "type": "p",  "text": "JavaScript syntax is the set of rules that define a correctly structured JavaScript program." },
+    { "type": "h2", "text": "Values: Literals and Variables" },
+    { "type": "p",  "text": "JavaScript has two types of values: fixed values (literals) and variable values (variables)." },
+    { "type": "example", "title": "Literals", "code": [
+      "// Number literals",
+      "console.log(10.5);",
+      "console.log(1000);",
+      "",
+      "// String literals",
+      "console.log(\"Hello World\");",
+      "console.log('Single quotes work too');"
+    ]},
+    { "type": "h2", "text": "Variables" },
+    { "type": "p",  "text": "Variables are used to store data values. JavaScript uses let, const, and var keywords to declare variables." },
+    { "type": "example", "title": "Variables", "code": [
+      "let x = 5;",
+      "let y = 6;",
+      "let z = x + y;",
+      "console.log(\"x + y =\", z);"
+    ]},
+    { "type": "h2", "text": "Operators and Expressions" },
+    { "type": "example", "title": "Arithmetic and Assignment", "code": [
+      "let a = (5 + 6) * 10;   // arithmetic",
+      "console.log(a);          // 110",
+      "",
+      "let name = \"John\";       // assignment",
+      "console.log(name);"
+    ]},
+    { "type": "h2", "text": "Case Sensitivity" },
+    { "type": "p",  "text": "JavaScript is case-sensitive. Variables named lastName and lastname are different variables." },
+    { "type": "example", "title": "Case Sensitivity", "code": [
+      "let lastName = \"Doe\";",
+      "let lastname = \"Smith\";   // completely different variable!",
+      "console.log(lastName);    // Doe",
+      "console.log(lastname);    // Smith"
+    ]},
+    { "type": "h2", "text": "Naming Conventions" },
+    { "type": "p",  "text": "JavaScript programmers use camelCase for variable names: firstName, masterCard, interestRate." },
+    { "type": "table", "rows": [
+      ["Convention",  "Example",       "Used For"],
+      ["camelCase",   "firstName",     "Variables, functions (standard JS)"],
+      ["PascalCase",  "FirstName",     "Classes, constructors"],
+      ["UPPER_SNAKE", "MAX_SIZE",      "Constants"],
+      ["underscore",  "first_name",    "Sometimes (older style)"]
+    ]},
+    { "type": "note", "text": "Hyphens (like first-name) are not allowed in JavaScript identifiers — they are reserved for subtraction." }
+  ]
+}

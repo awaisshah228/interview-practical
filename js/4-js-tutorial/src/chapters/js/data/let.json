@@ -1,0 +1,52 @@
+{
+  "id": "let",
+  "title": "JS let",
+  "group": "JS Variables",
+  "content": [
+    { "type": "h1", "text": "JavaScript let" },
+    { "type": "p",  "text": "The let keyword was introduced in ES6 (2015). let is block-scoped and fixes the main quirks of var." },
+    { "type": "h2", "text": "let is Block-Scoped" },
+    { "type": "p",  "text": "A let variable only exists inside the block ({}) where it was declared. It does not leak into the outer scope." },
+    { "type": "example", "title": "Block Scope", "code": [
+      "if (true) {",
+      "    let x = 10;   // only lives inside this if block",
+      "    console.log(x);  // 10",
+      "}",
+      "// console.log(x);  // ReferenceError: x is not defined"
+    ]},
+    { "type": "h2", "text": "let Cannot Be Re-declared" },
+    { "type": "example", "title": "No Re-declaration", "code": [
+      "let name = \"Alice\";",
+      "// let name = \"Bob\"; // SyntaxError: already declared",
+      "",
+      "name = \"Bob\";         // reassigning is fine",
+      "console.log(name);    // \"Bob\""
+    ]},
+    { "type": "h2", "text": "Temporal Dead Zone (TDZ)" },
+    { "type": "p",  "text": "let is hoisted but NOT initialised. Accessing it before declaration throws a ReferenceError. The period before declaration is called the Temporal Dead Zone." },
+    { "type": "example", "title": "Temporal Dead Zone", "code": [
+      "// console.log(value);  // ReferenceError: Cannot access before initialisation",
+      "let value = 42;",
+      "console.log(value);     // 42"
+    ]},
+    { "type": "h2", "text": "let Fixes the Loop Bug" },
+    { "type": "example", "title": "let in Loops", "code": [
+      "// Each iteration gets its OWN block-scoped variable",
+      "const fns = [];",
+      "for (let i = 0; i < 3; i++) {",
+      "    fns.push(() => i);",
+      "}",
+      "console.log(fns[0]());  // 0",
+      "console.log(fns[1]());  // 1",
+      "console.log(fns[2]());  // 2"
+    ]},
+    { "type": "table", "rows": [
+      ["Feature",       "let"],
+      ["Scope",         "Block"],
+      ["Re-declare",    "Not allowed"],
+      ["Hoisted",       "Yes, but in TDZ — cannot use before declaration"],
+      ["Reassign",      "Yes"]
+    ]},
+    { "type": "note", "text": "Use let when you know the value will change. For values that should not change, use const." }
+  ]
+}

@@ -9,7 +9,8 @@ interview-practical/
 └── js/
     ├── 1-basic/            # ES Modules, Webpack bundling, dev server
     ├── 2-variables-scope/  # var / let / const, scope chain, hoisting
-    └── 3-js-tutorial/      # W3Schools-style interactive JS tutorial
+    ├── 3-js-tutorial/      # [DEPRECATED] Webpack SPA version of the JS tutorial
+    └── 4-js-tutorial/      # Astro SSG multi-language tutorial with landing page
 ```
 
 ## Topics
@@ -18,14 +19,15 @@ interview-practical/
 |--------|-------|
 | `js/1-basic` | ES Modules, Webpack, HtmlWebpackPlugin, webpack-dev-server |
 | `js/2-variables-scope` | `var` / `let` / `const`, hoisting, scope chain, shadowing |
-| `js/3-js-tutorial` | Interactive W3Schools-style tutorial — Variables, var/let/const, Scope, Hoisting |
+| `js/3-js-tutorial` | **[Deprecated]** Webpack SPA — W3Schools-style JS tutorial |
+| `js/4-js-tutorial` | **Astro SSG** — Multi-language code tutorials with landing page, zero JS content, lazy Monaco editor |
 
 ## Getting Started
 
 Each subfolder is a standalone project. Navigate into one and install dependencies:
 
 ```bash
-cd js/1-basic
+cd js/4-js-tutorial
 npm install
 npm start       # dev server with live reload
 npm run build   # production build

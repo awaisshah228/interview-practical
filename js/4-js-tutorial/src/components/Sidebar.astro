@@ -1,0 +1,61 @@
+---
+import type { Chapter } from "../lib/chapters";
+
+interface Props {
+    chapters: Chapter[];
+    activeId: string;
+    lang: string;
+}
+
+const { chapters, activeId, lang } = Astro.props;
+
+// Build groups preserving insertion order
+const groupOrder: string[] = [];
+const groupMap: Record<string, Chapter[]> = {};
+
+for (const ch of chapters) {
+    const g = ch.group || "Other";
+    if (!groupMap[g]) {
+        groupMap[g] = [];
+        groupOrder.push(g);
+    }
+    groupMap[g].push(ch);
+}
+
+// Determine which group contains the active chapter (auto-expand it)
+const activeGroup = chapters.find(ch => ch.id === activeId)?.group || "";
+---
+<nav id="sidebar">
+    {groupOrder.map(groupName => {
+        const items = groupMap[groupName];
+        const isActiveGroup = groupName === activeGroup;
+        return (
+            <div class:list={["sidebar-group", { open: isActiveGroup }]}>
+                <button class="sidebar-label" data-collapse>
+                    <span>{groupName}</span>
+                    <svg class="chevron" width="12" height="12" viewBox="0 0 12 12">
+                        <path d="M3 4.5L6 7.5L9 4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="sidebar-items">
+                    {items.map(ch => (
+                        <a
+                            href={`/${lang}/${ch.id}`}
+                            class:list={["nav-item", { active: ch.id === activeId }]}
+                        >
+                            {ch.title}
+                        </a>
+                    ))}
+                </div>
+            </div>
+        );
+    })}
+</nav>
+
+<script>
+    document.querySelectorAll("[data-collapse]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            btn.closest(".sidebar-group")?.classList.toggle("open");
+        });
+    });
+</script>

@@ -1,0 +1,47 @@
+{
+  "id": "output",
+  "title": "JS Output",
+  "group": "JS Tutorial",
+  "content": [
+    { "type": "h1", "text": "JavaScript Output" },
+    { "type": "p",  "text": "JavaScript can display data in different ways. Here are the four most common methods." },
+    { "type": "table", "rows": [
+      ["Method",           "Where Output Goes"],
+      ["innerHTML",        "Into an HTML element"],
+      ["document.write()", "Directly into the page (testing only)"],
+      ["window.alert()",   "Browser pop-up alert box"],
+      ["console.log()",    "Browser developer console"],
+      ["window.print()",   "Sends page to printer"]
+    ]},
+    { "type": "h2", "text": "Using innerHTML" },
+    { "type": "p",  "text": "The most common way to display data in HTML. Access an element by id and set its innerHTML property." },
+    { "type": "example", "title": "innerHTML Example", "code": [
+      "let result = 5 + 6;",
+      "console.log(\"5 + 6 =\", result);",
+      "// In a browser: document.getElementById(\"demo\").innerHTML = result;"
+    ]},
+    { "type": "h2", "text": "Using console.log()" },
+    { "type": "p",  "text": "console.log() is mostly used for debugging. Open the browser developer tools (F12) to see console output." },
+    { "type": "example", "title": "console.log() Examples", "code": [
+      "console.log(\"Hello from console.log!\");",
+      "console.log(5 + 6);",
+      "console.log([1, 2, 3]);",
+      "console.log({ name: \"Alice\", age: 30 });"
+    ]},
+    { "type": "h2", "text": "Using window.alert()" },
+    { "type": "example", "title": "alert() Example", "code": [
+      "// alert() shows a popup — window prefix is optional",
+      "// window.alert(5 + 6);",
+      "// alert(5 + 6);",
+      "console.log(\"alert() would show a browser popup with: \" + (5 + 6));"
+    ]},
+    { "type": "h2", "text": "Using document.write()" },
+    { "type": "p",  "text": "document.write() is useful for testing only. If used after the page loads it will delete all existing HTML." },
+    { "type": "example", "title": "document.write() Danger", "code": [
+      "// Only safe to use during page loading (testing)",
+      "// document.write(5 + 6);",
+      "console.log(\"document.write() would output:\", 5 + 6);"
+    ]},
+    { "type": "note", "text": "Never use document.write() in a live production site — it overwrites the entire page content when called after load." }
+  ]
+}

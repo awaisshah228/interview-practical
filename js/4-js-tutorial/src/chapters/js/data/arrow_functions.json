@@ -1,0 +1,82 @@
+{
+  "id": "arrow_functions",
+  "title": "JS Arrow Functions",
+  "group": "JS Functions",
+  "content": [
+    { "type": "h1", "text": "JavaScript Arrow Functions" },
+    { "type": "p",  "text": "Arrow functions (ES6) provide a shorter syntax for function expressions. They omit the function keyword and often the return statement and curly braces." },
+    { "type": "h2", "text": "Regular vs Arrow Function" },
+    { "type": "example", "title": "Syntax Comparison", "code": [
+      "// Regular function expression",
+      "const addRegular = function(a, b) {",
+      "    return a + b;",
+      "};",
+      "",
+      "// Arrow function — same thing, shorter",
+      "const addArrow = (a, b) => a + b;",
+      "",
+      "console.log(addRegular(3, 4));   // 7",
+      "console.log(addArrow(3, 4));     // 7"
+    ]},
+    { "type": "h2", "text": "Arrow Function Variations" },
+    { "type": "table", "rows": [
+      ["Case",             "Syntax",                        "Example"],
+      ["No params",        "() => expr",                   "() => 42"],
+      ["One param",        "x => expr",                    "x => x * 2"],
+      ["Multi params",     "(a, b) => expr",               "(a, b) => a + b"],
+      ["Multi-line body",  "(a) => { ...; return val; }",  "(n) => { if(n<0) return 0; return n; }"]
+    ]},
+    { "type": "example", "title": "Arrow Function Variations", "code": [
+      "// No parameters",
+      "const sayHi = () => \"Hello!\";",
+      "console.log(sayHi());",
+      "",
+      "// One parameter (parentheses optional)",
+      "const double = x => x * 2;",
+      "console.log(double(5));   // 10",
+      "",
+      "// Multi-line with explicit return",
+      "const clamp = (value, min, max) => {",
+      "    if (value < min) return min;",
+      "    if (value > max) return max;",
+      "    return value;",
+      "};",
+      "console.log(clamp(15, 0, 10));  // 10"
+    ]},
+    { "type": "h2", "text": "Arrow Functions and this" },
+    { "type": "p",  "text": "Arrow functions do NOT have their own this. They inherit this from the surrounding (lexical) scope — perfect for callbacks." },
+    { "type": "example", "title": "this in Arrow vs Regular", "code": [
+      "const timer = {",
+      "    seconds: 0,",
+      "    start() {",
+      "        // Arrow inherits 'this' from start() — refers to timer",
+      "        const tick = () => { this.seconds++; };",
+      "        tick(); tick(); tick();",
+      "        console.log(\"Seconds:\", this.seconds);  // 3",
+      "    }",
+      "};",
+      "timer.start();"
+    ]},
+    { "type": "h2", "text": "Arrow Functions in Array Methods" },
+    { "type": "example", "title": "map, filter, reduce", "code": [
+      "const numbers = [1, 2, 3, 4, 5];",
+      "",
+      "const doubled = numbers.map(n => n * 2);",
+      "const evens   = numbers.filter(n => n % 2 === 0);",
+      "const sum     = numbers.reduce((acc, n) => acc + n, 0);",
+      "",
+      "console.log(doubled);   // [2, 4, 6, 8, 10]",
+      "console.log(evens);     // [2, 4]",
+      "console.log(sum);       // 15"
+    ]},
+    { "type": "table", "rows": [
+      ["Feature",         "Arrow Function",           "Regular Function"],
+      ["Syntax",          "Shorter",                  "Longer"],
+      ["this binding",    "Inherited (lexical)",       "Own this"],
+      ["Hoisting",        "No",                       "Yes (declarations only)"],
+      ["As constructors", "No",                       "Yes"],
+      ["Best for",        "Callbacks, array methods", "Methods, constructors"]
+    ]},
+    { "type": "note", "text": "Do not use arrow functions as object methods or constructors — they don't have their own this and cannot be used with new." }
+  ]
+}

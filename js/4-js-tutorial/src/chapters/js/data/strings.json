@@ -1,0 +1,90 @@
+{
+  "id": "strings",
+  "title": "JS Strings",
+  "group": "JS Objects & Arrays",
+  "content": [
+    { "type": "h1", "text": "JavaScript Strings" },
+    { "type": "p",  "text": "Strings are used for storing and manipulating text. A JavaScript string is a sequence of characters written with quotes." },
+    { "type": "h2", "text": "Creating Strings" },
+    { "type": "example", "title": "String Literals", "code": [
+      "let single   = 'Hello World';",
+      "let double   = \"Hello World\";",
+      "let backtick = `Hello World`;   // template literal",
+      "",
+      "console.log(single);",
+      "console.log(double);",
+      "console.log(backtick);",
+      "console.log(typeof single);   // \"string\""
+    ]},
+    { "type": "h2", "text": "Template Literals (ES6)" },
+    { "type": "p",  "text": "Template literals use backticks. They support embedded expressions and multi-line strings." },
+    { "type": "example", "title": "Template Literals", "code": [
+      "const name = \"Alice\";",
+      "const age  = 30;",
+      "",
+      "// String interpolation with ${}",
+      "const msg = `Hello, my name is ${name} and I am ${age} years old.`;",
+      "console.log(msg);",
+      "",
+      "// Expressions inside ${}",
+      "console.log(`5 + 3 = ${5 + 3}`);",
+      "",
+      "// Multi-line",
+      "const multiLine = `Line 1",
+      "Line 2",
+      "Line 3`;",
+      "console.log(multiLine);"
+    ]},
+    { "type": "h2", "text": "String Length" },
+    { "type": "example", "title": "length Property", "code": [
+      "let text = \"Hello, World!\";",
+      "console.log(text.length);    // 13",
+      "console.log(\"\".length);      // 0"
+    ]},
+    { "type": "h2", "text": "Escape Characters" },
+    { "type": "table", "rows": [
+      ["Sequence", "Meaning"],
+      ["\\\\",     "Backslash"],
+      ["\\'",      "Single quote"],
+      ["\\\"",     "Double quote"],
+      ["\\n",      "New line"],
+      ["\\t",      "Tab"]
+    ]},
+    { "type": "example", "title": "Escape Characters", "code": [
+      "let text1 = \"He said, \\\"Hello!\\\"\";",
+      "let text2 = 'It\\'s a great day!';",
+      "let text3 = \"Line 1\\nLine 2\";",
+      "",
+      "console.log(text1);",
+      "console.log(text2);",
+      "console.log(text3);"
+    ]},
+    { "type": "h2", "text": "Common String Methods" },
+    { "type": "table", "rows": [
+      ["Method",              "What It Does"],
+      ["toUpperCase()",       "Converts to uppercase"],
+      ["toLowerCase()",       "Converts to lowercase"],
+      ["trim()",              "Removes whitespace from both ends"],
+      ["includes(str)",       "Returns true if str is found"],
+      ["startsWith(str)",     "Returns true if starts with str"],
+      ["endsWith(str)",       "Returns true if ends with str"],
+      ["indexOf(str)",        "Returns first index of str, or -1"],
+      ["slice(start, end)",   "Extracts part of a string"],
+      ["replace(old, new)",   "Replaces first match"],
+      ["split(separator)",    "Splits into an array"],
+      ["padStart(n, ch)",     "Pads from start to reach length n"],
+      ["repeat(n)",           "Repeats string n times"]
+    ]},
+    { "type": "example", "title": "String Methods in Action", "code": [
+      "let str = \"  Hello, World!  \";",
+      "",
+      "console.log(str.trim());                      // \"Hello, World!\"",
+      "console.log(str.trim().toUpperCase());        // \"HELLO, WORLD!\"",
+      "console.log(str.trim().includes(\"World\"));    // true",
+      "console.log(str.trim().slice(7, 12));         // \"World\"",
+      "console.log(str.trim().replace(\"World\",\"JS\")); // \"Hello, JS!\"",
+      "console.log(\"a,b,c\".split(\",\"));             // [\"a\", \"b\", \"c\"]"
+    ]},
+    { "type": "note", "text": "Strings are immutable — string methods return new strings and do not modify the original string." }
+  ]
+}

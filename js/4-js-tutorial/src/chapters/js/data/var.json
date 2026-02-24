@@ -1,0 +1,63 @@
+{
+  "id": "var",
+  "title": "JS var",
+  "group": "JS Variables",
+  "content": [
+    { "type": "h1", "text": "JavaScript var" },
+    { "type": "p",  "text": "var was the original way to declare variables in JavaScript (before ES6). It has several quirks that can lead to bugs." },
+    { "type": "h2", "text": "var is Function-Scoped" },
+    { "type": "p",  "text": "A var variable lives in the enclosing function, not the block. This means it leaks out of if/for blocks." },
+    { "type": "example", "title": "var Leaks Out of Blocks", "code": [
+      "if (true) {",
+      "    var x = 10;   // leaks outside the if block",
+      "}",
+      "console.log(x);   // 10  (no error!)"
+    ]},
+    { "type": "h2", "text": "var Can Be Re-declared" },
+    { "type": "example", "title": "Re-declaration", "code": [
+      "var name = \"Alice\";",
+      "var name = \"Bob\";   // no error — silently overwrites!",
+      "console.log(name);  // \"Bob\""
+    ]},
+    { "type": "h2", "text": "var is Hoisted" },
+    { "type": "p",  "text": "var declarations are hoisted to the top of their function. The variable exists but is undefined before the assignment line." },
+    { "type": "example", "title": "Hoisting Demo", "code": [
+      "console.log(message);   // undefined (not an error!)",
+      "var message = \"hello\";",
+      "console.log(message);   // \"hello\"",
+      "",
+      "// JavaScript sees it as:",
+      "// var message;          (hoisted declaration)",
+      "// console.log(message); (undefined)",
+      "// message = \"hello\";",
+      "// console.log(message);"
+    ]},
+    { "type": "h2", "text": "The Loop Bug" },
+    { "type": "p",  "text": "var in a for-loop shares the variable across all iterations — a classic bug with closures." },
+    { "type": "example", "title": "Loop Bug with var", "code": [
+      "// Bug: all callbacks share the SAME var i",
+      "const fns = [];",
+      "for (var i = 0; i < 3; i++) {",
+      "    fns.push(() => i);",
+      "}",
+      "console.log(fns[0]());  // 3 (not 0!)",
+      "console.log(fns[1]());  // 3",
+      "",
+      "// Fix: use let instead",
+      "const fns2 = [];",
+      "for (let j = 0; j < 3; j++) {",
+      "    fns2.push(() => j);",
+      "}",
+      "console.log(fns2[0]());  // 0",
+      "console.log(fns2[1]());  // 1"
+    ]},
+    { "type": "table", "rows": [
+      ["Quirk",              "Behaviour"],
+      ["Scope",              "Function-scoped (leaks out of blocks)"],
+      ["Re-declaration",     "Allowed — silently overwrites"],
+      ["Hoisting",           "Declaration hoisted, value is undefined"],
+      ["Global scope",       "Adds to window object in browsers"]
+    ]},
+    { "type": "note", "text": "Avoid var in modern JavaScript. Use let or const instead — they are block-scoped and don't have these quirks." }
+  ]
+}

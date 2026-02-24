@@ -1,0 +1,91 @@
+{
+  "id": "operators",
+  "title": "JS Operators",
+  "group": "JS Data Types",
+  "content": [
+    { "type": "h1", "text": "JavaScript Operators" },
+    { "type": "p",  "text": "Operators are used to perform operations on variables and values. JavaScript has arithmetic, assignment, comparison, and logical operators." },
+    { "type": "h2", "text": "Arithmetic Operators" },
+    { "type": "table", "rows": [
+      ["Operator", "Name",                  "Example", "Result"],
+      ["+",        "Addition",              "5 + 3",   "8"],
+      ["-",        "Subtraction",           "5 - 3",   "2"],
+      ["*",        "Multiplication",        "5 * 3",   "15"],
+      ["**",       "Exponentiation",        "5 ** 2",  "25"],
+      ["/",        "Division",              "10 / 2",  "5"],
+      ["%",        "Modulus (remainder)",   "10 % 3",  "1"],
+      ["++",       "Increment",             "x++",     "x + 1"],
+      ["--",       "Decrement",             "x--",     "x - 1"]
+    ]},
+    { "type": "example", "title": "Arithmetic Operators", "code": [
+      "let a = 10, b = 3;",
+      "console.log(a + b);    // 13",
+      "console.log(a - b);    // 7",
+      "console.log(a * b);    // 30",
+      "console.log(a ** b);   // 1000 (10 to the power of 3)",
+      "console.log(a / b);    // 3.333...",
+      "console.log(a % b);    // 1 (remainder)"
+    ]},
+    { "type": "h2", "text": "Assignment Operators" },
+    { "type": "table", "rows": [
+      ["Operator", "Example",  "Equivalent"],
+      ["=",        "x = 5",    "x = 5"],
+      ["+=",       "x += 3",   "x = x + 3"],
+      ["-=",       "x -= 3",   "x = x - 3"],
+      ["*=",       "x *= 3",   "x = x * 3"],
+      ["/=",       "x /= 3",   "x = x / 3"],
+      ["%=",       "x %= 3",   "x = x % 3"],
+      ["**=",      "x **= 3",  "x = x ** 3"]
+    ]},
+    { "type": "example", "title": "Assignment Operators", "code": [
+      "let x = 10;",
+      "x += 5;   console.log(x);   // 15",
+      "x -= 3;   console.log(x);   // 12",
+      "x *= 2;   console.log(x);   // 24",
+      "x /= 4;   console.log(x);   // 6",
+      "x **= 2;  console.log(x);   // 36"
+    ]},
+    { "type": "h2", "text": "Comparison Operators" },
+    { "type": "table", "rows": [
+      ["Operator", "Name",                    "Example",    "Result"],
+      ["==",       "Equal (loose)",           "5 == \"5\"", "true"],
+      ["===",      "Equal (strict)",          "5 === \"5\"","false"],
+      ["!=",       "Not equal (loose)",       "5 != 3",     "true"],
+      ["!==",      "Not equal (strict)",      "5 !== \"5\"","true"],
+      [">",        "Greater than",            "5 > 3",      "true"],
+      ["<",        "Less than",               "5 < 3",      "false"],
+      [">=",       "Greater than or equal",   "5 >= 5",     "true"],
+      ["<=",       "Less than or equal",      "5 <= 3",     "false"]
+    ]},
+    { "type": "example", "title": "== vs === (Very Important!)", "code": [
+      "console.log(5 == \"5\");    // true  — loose: converts types first",
+      "console.log(5 === \"5\");   // false — strict: types must match",
+      "console.log(null == undefined);   // true",
+      "console.log(null === undefined);  // false"
+    ]},
+    { "type": "h2", "text": "Logical Operators" },
+    { "type": "table", "rows": [
+      ["Operator", "Name", "Example",        "Result"],
+      ["&&",       "AND",  "true && false",  "false"],
+      ["||",       "OR",   "true || false",  "true"],
+      ["!",        "NOT",  "!true",          "false"]
+    ]},
+    { "type": "example", "title": "Logical Operators", "code": [
+      "let age = 25;",
+      "let hasId = true;",
+      "",
+      "console.log(age >= 18 && hasId);   // true  (both must be true)",
+      "console.log(age < 18 || hasId);    // true  (at least one true)",
+      "console.log(!hasId);               // false (inverts boolean)"
+    ]},
+    { "type": "h2", "text": "String + Operator" },
+    { "type": "example", "title": "String Concatenation", "code": [
+      "console.log(\"John\" + \" \" + \"Doe\");  // \"John Doe\"",
+      "",
+      "// Mixed types: number becomes string",
+      "console.log(\"5\" + 5);    // \"55\"  (not 10!)",
+      "console.log(5 + 5 + \"5\"); // \"105\" (left-to-right: 10, then \"105\")"
+    ]},
+    { "type": "note", "text": "Always use === (strict equality) instead of == to avoid unexpected type coercion bugs." }
+  ]
+}

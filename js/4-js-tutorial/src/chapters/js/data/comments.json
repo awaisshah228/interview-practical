@@ -1,0 +1,51 @@
+{
+  "id": "comments",
+  "title": "JS Comments",
+  "group": "JS Tutorial",
+  "content": [
+    { "type": "h1", "text": "JavaScript Comments" },
+    { "type": "p",  "text": "JavaScript comments can be used to explain code and make it more readable. Comments can also be used to prevent execution when testing." },
+    { "type": "h2", "text": "Single Line Comments" },
+    { "type": "p",  "text": "Single line comments start with //. Any text between // and the end of the line is ignored by JavaScript." },
+    { "type": "example", "title": "Single Line Comments", "code": [
+      "// This is a single-line comment",
+      "",
+      "let x = 5;       // Declare x, set it to 5",
+      "let y = 10;      // Declare y, set it to 10",
+      "",
+      "console.log(x + y);  // Output: 15"
+    ]},
+    { "type": "h2", "text": "Multi-line Comments" },
+    { "type": "p",  "text": "Multi-line comments start with /* and end with */. All text between /* and */ is ignored by JavaScript." },
+    { "type": "example", "title": "Multi-line Comments", "code": [
+      "/*",
+      "  This function adds two numbers.",
+      "  Parameters: a (number), b (number)",
+      "  Returns: their sum",
+      "*/",
+      "function add(a, b) {",
+      "    return a + b;",
+      "}",
+      "console.log(add(3, 4));   // 7"
+    ]},
+    { "type": "h2", "text": "Commenting Out Code" },
+    { "type": "p",  "text": "Comments can be used to prevent execution of code during testing." },
+    { "type": "example", "title": "Disabling Code with Comments", "code": [
+      "let message = \"Hello!\";",
+      "// console.log(\"This line is disabled\");",
+      "console.log(message);   // Only this runs",
+      "",
+      "/*",
+      "let debug = true;",
+      "console.log(\"Debug mode on\");",
+      "*/"
+    ]},
+    { "type": "table", "rows": [
+      ["Type",        "Syntax",         "Use When"],
+      ["Single-line", "// text",        "Short inline notes"],
+      ["Multi-line",  "/* text */",     "Long descriptions or block commenting"],
+      ["JSDoc",       "/** @param */",  "Documenting functions for tools"]
+    ]},
+    { "type": "note", "text": "Single-line comments are the most common. Use multi-line comments for formal documentation." }
+  ]
+}

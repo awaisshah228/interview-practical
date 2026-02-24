@@ -1,77 +1,30 @@
-# 3 — Code Tutorials (W3Schools-style) — Astro SSG
+# 3 — JS Tutorial (W3Schools-style) — Webpack SPA [DEPRECATED]
 
-An interactive multi-language tutorial site that mirrors the W3Schools layout: landing page to pick a language, left sidebar chapter navigation, pre-rendered content area, and a **"Try it Yourself"** Monaco editor panel that slides up from the bottom.
+> **Deprecated:** This is the original Webpack-based version. See `js/4-js-tutorial` for the Astro SSG version with multi-language support, landing page, and better performance.
 
-Built with **Astro** for instant page loads — every chapter is a static HTML page with zero JavaScript. Monaco loads lazily only when you click "Try it Yourself."
-
-## Features
-
-- **Multi-language** — landing page at `/` lets you pick a tutorial (JS, Python, etc.)
-- Pre-rendered static HTML — instant first paint, no FOUC
-- **Try it Yourself** button on every example — lazy-loads Monaco editor from CDN on first click
-- **Run** button (or `Ctrl+Enter`) executes code and displays `console.log` output
-- Prev / Next chapter navigation at the bottom of each page
-- Fully responsive — sidebar becomes a slide-in overlay on mobile
-
-## Adding a New Language
-
-1. Create `src/chapters/<lang>/data/*.json` — one JSON file per chapter
-2. Import them in `src/lib/chapters.ts` and add to `chapterMap`
-3. Add an entry to `src/lib/languages.ts`
-
-That's it — Astro generates all pages at build time.
-
-## Project Structure
-
-```
-3-js-tutorial/
-├── astro.config.mjs                  # Astro config with Preact integration
-├── src/
-│   ├── chapters/<lang>/data/*.json   # Chapter JSON files per language
-│   ├── styles/global.css             # W3Schools-inspired theme + landing page
-│   ├── lib/
-│   │   ├── languages.ts              # Language registry (add new languages here)
-│   │   └── chapters.ts               # Per-language chapter imports + types
-│   ├── layouts/
-│   │   ├── LandingLayout.astro       # Landing page shell (no sidebar)
-│   │   └── TutorialLayout.astro      # Tutorial shell: header, sidebar, content, monaco
-│   ├── components/
-│   │   ├── Header.astro              # Green header with back link
-│   │   ├── Sidebar.astro             # Grouped nav links (zero JS)
-│   │   ├── ChapterNav.astro          # Prev/Next links (zero JS)
-│   │   ├── LanguageCard.astro        # Card for landing page
-│   │   └── blocks/                   # Content block renderers (zero JS)
-│   ├── islands/
-│   │   └── MonacoEditor.tsx          # Preact island — only JS that ships to browser
-│   └── pages/
-│       ├── index.astro               # Landing page with language cards
-│       └── [lang]/[id].astro         # Generates all chapter pages at build time
-└── package.json
-```
-
-## URL Structure
-
-```
-/                  → Landing page (choose a language)
-/js/intro          → JavaScript Introduction
-/js/variables      → JavaScript Variables
-/python/intro      → Python Introduction (when added)
-```
+An interactive JavaScript tutorial site that mirrors the W3Schools layout: left sidebar chapter navigation, rendered content area, and a **"Try it Yourself"** Monaco editor panel that slides up from the bottom.
 
 ## Getting Started
 
 ```bash
 npm install
-npm start       # dev server → http://localhost:4321
-npm run build   # static build → dist/
-npm run preview # preview production build
+npm start       # dev server → http://localhost:8080
+npm run build   # production build → dist/
 ```
 
-## Architecture
+## Project Structure
 
-- **Astro SSG** — each chapter is a static HTML page generated at build time via `getStaticPaths()`
-- **Multi-language routing** — `[lang]/[id].astro` loops over all languages × chapters
-- **Island architecture** — Monaco editor is a Preact island (`client:idle`), loaded during browser idle time (~3KB Preact runtime)
-- **Lazy Monaco** — `@monaco-editor/loader` fetches Monaco from CDN only on first "Try it" click (~1MB, on-demand)
-- **CustomEvent bridge** — static "Try it" buttons dispatch a `try-it` event, the Preact island listens and opens the editor
-- **Code evaluation** uses `new Function(code)()` with a `console.log` override to capture output
+```
+3-js-tutorial/
+├── src/
+│   ├── index.html                 # HTML shell
+│   ├── styles.css                 # W3Schools-inspired theme
+│   ├── js/
+│   │   ├── index.js               # Entry point
+│   │   ├── monaco-setup.js        # Monaco worker setup
+│   │   └── renderer.js            # DOM renderer: sidebar, content, try-it panel
+│   └── chapters/
+│       └── js/data/*.json         # 24 chapter JSON files
+├── webpack.config.cjs             # Webpack 5 config
+└── package.json
+```

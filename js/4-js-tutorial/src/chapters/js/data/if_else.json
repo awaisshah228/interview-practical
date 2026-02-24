@@ -1,0 +1,79 @@
+{
+  "id": "if_else",
+  "title": "JS If...Else",
+  "group": "JS Control Flow",
+  "content": [
+    { "type": "h1", "text": "JavaScript If...Else" },
+    { "type": "p",  "text": "Conditional statements control the flow of code based on conditions. JavaScript has if, else, else if, and the ternary operator." },
+    { "type": "h2", "text": "The if Statement" },
+    { "type": "p",  "text": "Use the if statement to execute a block of code only when a condition is true." },
+    { "type": "example", "title": "if Statement", "code": [
+      "let hour = 14;",
+      "",
+      "if (hour < 18) {",
+      "    console.log(\"Good day!\");   // runs because 14 < 18",
+      "}"
+    ]},
+    { "type": "h2", "text": "The else Statement" },
+    { "type": "p",  "text": "Use else to specify code to run when the condition is false." },
+    { "type": "example", "title": "if...else", "code": [
+      "let hour = 20;",
+      "",
+      "if (hour < 18) {",
+      "    console.log(\"Good day!\");",
+      "} else {",
+      "    console.log(\"Good evening!\");  // runs because 20 >= 18",
+      "}"
+    ]},
+    { "type": "h2", "text": "The else if Statement" },
+    { "type": "p",  "text": "Use else if to test multiple conditions in sequence." },
+    { "type": "example", "title": "if...else if...else", "code": [
+      "let hour = 9;",
+      "",
+      "if (hour < 10) {",
+      "    console.log(\"Good morning!\");",
+      "} else if (hour < 18) {",
+      "    console.log(\"Good day!\");",
+      "} else {",
+      "    console.log(\"Good evening!\");",
+      "}"
+    ]},
+    { "type": "h2", "text": "The Ternary Operator" },
+    { "type": "p",  "text": "The ternary operator is a shorthand if...else. Syntax: condition ? valueIfTrue : valueIfFalse" },
+    { "type": "example", "title": "Ternary Operator", "code": [
+      "let age = 20;",
+      "let access = (age >= 18) ? \"Allowed\" : \"Denied\";",
+      "console.log(access);   // \"Allowed\"",
+      "",
+      "// Equivalent if/else:",
+      "let score = 85;",
+      "let grade = score >= 90 ? \"A\" : score >= 80 ? \"B\" : \"C\";",
+      "console.log(grade);    // \"B\""
+    ]},
+    { "type": "h2", "text": "Nested if Statements" },
+    { "type": "example", "title": "Nested if", "code": [
+      "let score = 85;",
+      "let passed = true;",
+      "",
+      "if (passed) {",
+      "    if (score >= 90) {",
+      "        console.log(\"Grade: A\");",
+      "    } else if (score >= 80) {",
+      "        console.log(\"Grade: B\");",
+      "    } else {",
+      "        console.log(\"Grade: C\");",
+      "    }",
+      "} else {",
+      "    console.log(\"Failed\");",
+      "}"
+    ]},
+    { "type": "table", "rows": [
+      ["Statement",   "When to Use"],
+      ["if",          "Execute code only when condition is true"],
+      ["if...else",   "Choose between two code paths"],
+      ["else if",     "Test multiple conditions in sequence"],
+      ["ternary ?:",  "Short inline if/else for simple values"]
+    ]},
+    { "type": "note", "text": "Always use curly braces {} for code blocks, even for single-line statements. It prevents hard-to-find bugs." }
+  ]
+}

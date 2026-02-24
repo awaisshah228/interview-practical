@@ -94,39 +94,94 @@ header {
     transition: transform 0.25s ease;
 }
 
-.sidebar-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    padding: 0.5rem 1rem 0.3rem;
+/* ── Collapsible sidebar groups ──────────────────────────────────────────── */
+.sidebar-group { }
+.sidebar-group + .sidebar-group {
+    border-top: 1px solid var(--border);
 }
 
+/* Group header (parent) — bold bar, clearly a section heading */
+.sidebar-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: #e8e8e8;
+    border: none;
+    border-left: 4px solid #ccc;
+    font-family: inherit;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    padding: 0.7rem 0.75rem 0.7rem 0.85rem;
+    cursor: pointer;
+    transition: background 0.12s, border-color 0.12s;
+}
+.sidebar-label:hover {
+    background: #ddd;
+    border-left-color: #aaa;
+}
+
+/* Open group header — green left accent */
+.sidebar-group.open .sidebar-label {
+    background: var(--green-light);
+    border-left-color: var(--green);
+    color: var(--green-dark);
+}
+
+.chevron {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    opacity: 0.4;
+}
+.sidebar-group.open .chevron {
+    transform: rotate(180deg);
+    opacity: 0.7;
+}
+
+/* Collapsed: items hidden */
+.sidebar-items {
+    display: none;
+}
+.sidebar-group.open .sidebar-items {
+    display: block;
+    background: #fbfbfb;
+    padding: 0.25rem 0;
+    border-left: 4px solid var(--green-light);
+}
+
+/* ── Nav items (children) — deeply indented, lighter, clearly nested ────── */
 .nav-item {
     display: block;
     width: 100%;
     text-align: left;
     background: none;
     border: none;
-    border-left: 3px solid transparent;
-    padding: 0.4rem 1rem;
-    font-size: 0.88rem;
-    color: var(--text);
+    padding: 0.4rem 1rem 0.4rem 2rem;
+    font-size: 0.84rem;
+    color: var(--text-muted);
     cursor: pointer;
     text-decoration: none;
     font-family: inherit;
+    border-left: 3px solid transparent;
+    margin-left: -4px;
     transition: background 0.12s, color 0.12s, border-color 0.12s;
 }
 .nav-item:hover {
-    background: #e8e8e8;
-    border-left-color: #aaa;
+    background: #efefef;
+    color: var(--text);
+    border-left-color: #bbb;
 }
+
+/* ── Active state — solid green, white text, unmissable ─────────────────── */
 .nav-item.active {
-    background: var(--green-light);
-    border-left-color: var(--green);
-    color: var(--green-dark);
+    background: var(--green);
+    border-left-color: var(--green-dark);
+    color: #fff;
     font-weight: 600;
+    border-radius: 0 4px 4px 0;
 }
 
 /* ══════════════════════════════════════════════════════════════════════════ */
