@@ -866,28 +866,76 @@ body[data-code-lang="false"] .try-it-btn { display: none; }
     transform: translateY(-1px);
 }
 
-/* ── Roadmap mobile ─────────────────────────────────────────────────────── */
+/* ── Zoom controls ─────────────────────────────────────────────────────── */
+.rm-zoom-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(6px);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+}
+.rm-zoom-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    user-select: none;
+    line-height: 1;
+}
+.rm-zoom-btn:hover {
+    background: var(--green-light);
+    border-color: var(--green);
+    color: var(--green-dark);
+}
+.rm-zoom-btn:active {
+    transform: scale(0.95);
+}
+.rm-zoom-btn svg {
+    width: 18px;
+    height: 18px;
+}
+.rm-zoom-label {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    min-width: 3rem;
+    justify-content: center;
+}
+
+/* Zoom viewport wrapper */
+.rm-viewport {
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+}
+.rm-viewport-inner {
+    transform-origin: 0 0;
+    transition: transform 0.2s ease;
+    min-width: 700px; /* keep desktop layout even on small screens */
+}
+
+/* ── Roadmap mobile — keep desktop layout, rely on zoom ────────────────── */
 @media (max-width: 740px) {
-    .rm-connections { display: none; }
-
-    .rm-row {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        padding-left: 16px;
-    }
-    .rm-center { justify-content: flex-start; padding: 0; }
-
-    .rm-branch--left,
-    .rm-branch--right {
-        align-items: flex-start;
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .rm-node { white-space: normal; }
     .rm-title-box { font-size: 1.3rem; }
-    .rm-legend { gap: 0.6rem; padding: 0.5rem 0.75rem; }
+    .rm-intro { margin-top: 1.5rem; padding-top: 1.25rem; }
+    .rm-intro-list li { font-size: 0.85rem; }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════ */

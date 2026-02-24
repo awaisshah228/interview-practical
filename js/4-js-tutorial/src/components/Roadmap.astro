@@ -2,6 +2,7 @@
 /**
  * Roadmap.astro — Visual course roadmap matching roadmap.sh style.
  * Uses SVG for connection lines and HTML for interactive nodes.
+ * Includes zoom in / zoom out / fit-to-view controls.
  */
 interface RoadmapNode {
     id: string;
@@ -42,6 +43,19 @@ const { title, subtitle, groups, totalChapters } = Astro.props;
     </div>
     {subtitle && <p class="rm-subtitle">{subtitle}</p>}
 
+    <!-- Zoom controls -->
+    <div class="rm-zoom-controls">
+        <button class="rm-zoom-btn" data-zoom="in" title="Zoom in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <span class="rm-zoom-label" data-zoom-label>100%</span>
+        <button class="rm-zoom-btn" data-zoom="out" title="Zoom out">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <button class="rm-zoom-btn" data-zoom="fit" title="Fit to view" style="font-size:0.7rem;width:auto;padding:0 0.6rem;">Fit</button>
+        <button class="rm-zoom-btn" data-zoom="reset" title="Reset to 100%" style="font-size:0.7rem;width:auto;padding:0 0.6rem;">100%</button>
+    </div>
+
     <!-- Legend -->
     <div class="rm-legend">
         <div class="rm-legend-item">
@@ -58,70 +72,175 @@ const { title, subtitle, groups, totalChapters } = Astro.props;
         </div>
     </div>
 
-    <!-- Roadmap flow -->
-    <div class="rm-canvas">
-        {groups.map((group) => (
-            <div class="rm-row" data-side={group.side}>
-                <!-- Central group box -->
-                <div class="rm-center">
-                    <div class="rm-group-box" style={`background:${group.color};border-color:${group.color}`}>
-                        {group.label}
-                    </div>
-                </div>
+    <!-- Zoomable viewport -->
+    <div class="rm-viewport">
+        <div class="rm-viewport-inner">
+            <!-- Roadmap flow -->
+            <div class="rm-canvas">
+                {groups.map((group) => (
+                    <div class="rm-row" data-side={group.side}>
+                        <!-- Central group box -->
+                        <div class="rm-center">
+                            <div class="rm-group-box" style={`background:${group.color};border-color:${group.color}`}>
+                                {group.label}
+                            </div>
+                        </div>
 
-                <!-- Left nodes -->
-                {(group.side === "left" || group.side === "both") && (
-                    <div class="rm-branch rm-branch--left">
-                        {group.nodes
-                            .filter((_, i) => group.side === "both" ? i < Math.ceil(group.nodes.length / 2) : true)
-                            .map((node) => (
-                                <a href={node.href} class="rm-node">
-                                    <span class="rm-node-text">{node.title}</span>
-                                    <span class={`rm-check rm-check--${group.badge}`}>&#10003;</span>
-                                </a>
-                            ))
-                        }
-                    </div>
-                )}
+                        <!-- Left nodes -->
+                        {(group.side === "left" || group.side === "both") && (
+                            <div class="rm-branch rm-branch--left">
+                                {group.nodes
+                                    .filter((_, i) => group.side === "both" ? i < Math.ceil(group.nodes.length / 2) : true)
+                                    .map((node) => (
+                                        <a href={node.href} class="rm-node">
+                                            <span class="rm-node-text">{node.title}</span>
+                                            <span class={`rm-check rm-check--${group.badge}`}>&#10003;</span>
+                                        </a>
+                                    ))
+                                }
+                            </div>
+                        )}
 
-                <!-- Right nodes -->
-                {(group.side === "right" || group.side === "both") && (
-                    <div class="rm-branch rm-branch--right">
-                        {group.nodes
-                            .filter((_, i) => group.side === "both" ? i >= Math.ceil(group.nodes.length / 2) : true)
-                            .map((node) => (
-                                <a href={node.href} class="rm-node">
-                                    <span class="rm-node-text">{node.title}</span>
-                                    <span class={`rm-check rm-check--${group.badge}`}>&#10003;</span>
-                                </a>
-                            ))
-                        }
+                        <!-- Right nodes -->
+                        {(group.side === "right" || group.side === "both") && (
+                            <div class="rm-branch rm-branch--right">
+                                {group.nodes
+                                    .filter((_, i) => group.side === "both" ? i >= Math.ceil(group.nodes.length / 2) : true)
+                                    .map((node) => (
+                                        <a href={node.href} class="rm-node">
+                                            <span class="rm-node-text">{node.title}</span>
+                                            <span class={`rm-check rm-check--${group.badge}`}>&#10003;</span>
+                                        </a>
+                                    ))
+                                }
+                            </div>
+                        )}
                     </div>
-                )}
+                ))}
             </div>
-        ))}
-    </div>
 
-    <!-- Bottom CTA -->
-    <div class="rm-cta">
-        <a href={groups[0]?.nodes[0]?.href || "#"} class="rm-cta-btn">
-            Start Learning &rarr;
-        </a>
+            <!-- Bottom CTA -->
+            <div class="rm-cta">
+                <a href={groups[0]?.nodes[0]?.href || "#"} class="rm-cta-btn">
+                    Start Learning &rarr;
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 
 <script>
     const NS = 'http://www.w3.org/2000/svg';
 
+    /* ── Zoom state ─────────────────────────────────────────────────────────── */
+    let currentScale = 1;
+    let naturalW = 0;
+    let naturalH = 0;
+    const MIN_SCALE = 0.3;
+    const MAX_SCALE = 2;
+    const STEP = 0.15;
+
+    function measureNatural() {
+        const inner = document.querySelector('.rm-viewport-inner') as HTMLElement;
+        if (!inner) return;
+        const prev = inner.style.transform;
+        inner.style.transform = 'none';
+        naturalW = inner.scrollWidth;
+        naturalH = inner.scrollHeight;
+        inner.style.transform = prev;
+    }
+
+    function applyZoom(scale: number) {
+        const inner = document.querySelector('.rm-viewport-inner') as HTMLElement;
+        const viewport = document.querySelector('.rm-viewport') as HTMLElement;
+        const label = document.querySelector('[data-zoom-label]');
+        if (!inner || !viewport) return;
+
+        currentScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, scale));
+        inner.style.transform = `scale(${currentScale})`;
+
+        // Shrink viewport to match visual size so no dead space below
+        if (naturalH > 0) {
+            viewport.style.height = `${naturalH * currentScale}px`;
+        }
+
+        if (label) label.textContent = `${Math.round(currentScale * 100)}%`;
+
+        // Redraw SVG connections after zoom (desktop only)
+        requestAnimationFrame(() => requestAnimationFrame(drawConnections));
+    }
+
+    function fitToView() {
+        const viewport = document.querySelector('.rm-viewport') as HTMLElement;
+        if (!viewport) return;
+
+        // Measure if not yet done
+        if (naturalW === 0) measureNatural();
+
+        const availW = viewport.clientWidth;
+        // Available height: from viewport top to bottom of screen
+        const vpRect = viewport.getBoundingClientRect();
+        const availH = window.innerHeight - vpRect.top - 16;
+
+        const fitScale = Math.max(MIN_SCALE, Math.min(availW / naturalW, availH / naturalH, 1));
+        applyZoom(fitScale);
+    }
+
+    /* ── Zoom controls ──────────────────────────────────────────────────────── */
+    function setupZoomControls() {
+        document.querySelectorAll('.rm-zoom-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = (btn as HTMLElement).dataset.zoom;
+                if (action === 'in') applyZoom(currentScale + STEP);
+                else if (action === 'out') applyZoom(currentScale - STEP);
+                else if (action === 'fit') fitToView();
+                else if (action === 'reset') applyZoom(1);
+            });
+        });
+
+        // Mouse wheel zoom (Ctrl/Cmd + scroll)
+        const viewport = document.querySelector('.rm-viewport');
+        viewport?.addEventListener('wheel', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                e.preventDefault();
+                const delta = (e as WheelEvent).deltaY > 0 ? -STEP : STEP;
+                applyZoom(currentScale + delta);
+            }
+        }, { passive: false });
+
+        // Touch pinch zoom
+        let lastPinchDist = 0;
+        viewport?.addEventListener('touchstart', (e) => {
+            const te = e as TouchEvent;
+            if (te.touches.length === 2) {
+                const dx = te.touches[0].clientX - te.touches[1].clientX;
+                const dy = te.touches[0].clientY - te.touches[1].clientY;
+                lastPinchDist = Math.hypot(dx, dy);
+            }
+        });
+        viewport?.addEventListener('touchmove', (e) => {
+            const te = e as TouchEvent;
+            if (te.touches.length === 2) {
+                const dx = te.touches[0].clientX - te.touches[1].clientX;
+                const dy = te.touches[0].clientY - te.touches[1].clientY;
+                const dist = Math.hypot(dx, dy);
+                if (lastPinchDist > 0) {
+                    const ratio = dist / lastPinchDist;
+                    applyZoom(currentScale * ratio);
+                }
+                lastPinchDist = dist;
+                e.preventDefault();
+            }
+        }, { passive: false });
+        viewport?.addEventListener('touchend', () => { lastPinchDist = 0; });
+    }
+
+    /* ── SVG connection drawing (desktop only) ──────────────────────────────── */
     function drawConnections() {
         const canvas = document.querySelector('.rm-canvas');
         if (!canvas) return;
 
-        // Remove previous SVG
         canvas.querySelector('.rm-connections')?.remove();
-
-        // Skip on mobile
-        if (window.innerWidth <= 740) return;
 
         const cr = canvas.getBoundingClientRect();
         const svg = document.createElementNS(NS, 'svg');
@@ -145,7 +264,6 @@ const { title, subtitle, groups, totalChapters } = Astro.props;
 
             groupCenters.push({ cx, top: gTop, bottom: gBottom });
 
-            // Draw bezier curves from group box to each node
             row.querySelectorAll('.rm-node').forEach(node => {
                 const nr = node.getBoundingClientRect();
                 const nCy = nr.top + nr.height / 2 - cr.top;
@@ -156,7 +274,6 @@ const { title, subtitle, groups, totalChapters } = Astro.props;
                 const ex = isLeft ? (nr.right - cr.left) : (nr.left - cr.left);
                 const ey = nCy;
 
-                // Control point offset for smooth S-curve
                 const dx = Math.abs(ex - sx) * 0.55;
                 const cpx1 = isLeft ? sx - dx : sx + dx;
                 const cpx2 = isLeft ? ex + dx : ex - dx;
@@ -172,7 +289,6 @@ const { title, subtitle, groups, totalChapters } = Astro.props;
             });
         });
 
-        // Vertical spine between consecutive group boxes
         for (let i = 0; i < groupCenters.length - 1; i++) {
             const a = groupCenters[i];
             const b = groupCenters[i + 1];
@@ -191,10 +307,24 @@ const { title, subtitle, groups, totalChapters } = Astro.props;
         canvas.prepend(svg);
     }
 
-    // Draw on page load (double rAF ensures layout is settled)
+    // Init on page load
     document.addEventListener('astro:page-load', () => {
+        currentScale = 1;
+        naturalW = 0;
+        naturalH = 0;
+        const inner = document.querySelector('.rm-viewport-inner') as HTMLElement;
+        const viewport = document.querySelector('.rm-viewport') as HTMLElement;
+        if (inner) inner.style.transform = 'none';
+        if (viewport) viewport.style.height = '';
+
         requestAnimationFrame(() => {
-            requestAnimationFrame(drawConnections);
+            requestAnimationFrame(() => {
+                measureNatural();
+                drawConnections();
+                setupZoomControls();
+                // Auto-fit so the full roadmap is visible on load
+                fitToView();
+            });
         });
     });
 
@@ -202,6 +332,9 @@ const { title, subtitle, groups, totalChapters } = Astro.props;
     let resizeTimer: ReturnType<typeof setTimeout>;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(drawConnections, 150);
+        resizeTimer = setTimeout(() => {
+            measureNatural();
+            drawConnections();
+        }, 150);
     });
 </script>
