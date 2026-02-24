@@ -1,0 +1,77 @@
+{
+  "id": "functions",
+  "title": "JS Functions",
+  "group": "JS Functions",
+  "content": [
+    { "type": "h1", "text": "JavaScript Functions" },
+    { "type": "p",  "text": "A function is a block of code designed to perform a specific task. It is executed when it is called (invoked). Functions make code reusable and maintainable." },
+    { "type": "h2", "text": "Defining a Function" },
+    { "type": "example", "title": "Function Declaration", "code": [
+      "// Define the function",
+      "function greet(name) {",
+      "    return \"Hello, \" + name + \"!\";",
+      "}",
+      "",
+      "// Call (invoke) it",
+      "console.log(greet(\"Alice\"));",
+      "console.log(greet(\"Bob\"));"
+    ]},
+    { "type": "h2", "text": "Parameters and Arguments" },
+    { "type": "p",  "text": "Parameters are the names listed in the function definition. Arguments are the values passed when calling the function." },
+    { "type": "example", "title": "Parameters and Arguments", "code": [
+      "function multiply(a, b) {   // a, b are parameters",
+      "    return a * b;",
+      "}",
+      "",
+      "console.log(multiply(3, 4));   // 3 and 4 are arguments → 12",
+      "console.log(multiply(10, 5));  // → 50"
+    ]},
+    { "type": "h2", "text": "Default Parameters" },
+    { "type": "example", "title": "Default Parameter Values", "code": [
+      "function power(base, exponent = 2) {",
+      "    return base ** exponent;",
+      "}",
+      "",
+      "console.log(power(3));      // 9  (exponent defaults to 2)",
+      "console.log(power(3, 3));   // 27 (exponent is 3)"
+    ]},
+    { "type": "h2", "text": "The return Statement" },
+    { "type": "p",  "text": "The return statement exits the function and sends a value back to the caller. Execution stops at return." },
+    { "type": "example", "title": "Return Values", "code": [
+      "function isEven(n) {",
+      "    return n % 2 === 0;",
+      "}",
+      "",
+      "console.log(isEven(4));   // true",
+      "console.log(isEven(7));   // false"
+    ]},
+    { "type": "h2", "text": "Function Expressions" },
+    { "type": "p",  "text": "A function can be stored in a variable. Unlike declarations, function expressions are NOT hoisted." },
+    { "type": "example", "title": "Function Expression", "code": [
+      "const square = function(x) {",
+      "    return x * x;",
+      "};",
+      "",
+      "console.log(square(5));   // 25",
+      "console.log(square(9));   // 81"
+    ]},
+    { "type": "h2", "text": "Why Use Functions?" },
+    { "type": "table", "rows": [
+      ["Benefit",          "Description"],
+      ["Reusability",      "Write once, call many times"],
+      ["Readability",      "Named blocks clarify intent"],
+      ["Testability",      "Isolate logic for easier testing"],
+      ["Maintainability",  "Fix in one place, fixed everywhere"]
+    ]},
+    { "type": "example", "title": "DRY — Don't Repeat Yourself", "code": [
+      "function area(width, height) {",
+      "    return width * height;",
+      "}",
+      "",
+      "console.log(area(5, 8));    // 40",
+      "console.log(area(10, 3));   // 30",
+      "console.log(area(7, 6));    // 42"
+    ]},
+    { "type": "note", "text": "Function declarations are hoisted — you can call them before they appear in the code. Function expressions are NOT hoisted." }
+  ]
+}

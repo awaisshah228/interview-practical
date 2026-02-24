@@ -1,0 +1,90 @@
+{
+  "id": "objects",
+  "title": "JS Objects",
+  "group": "JS Objects & Arrays",
+  "content": [
+    { "type": "h1", "text": "JavaScript Objects" },
+    { "type": "p",  "text": "Objects are used to store keyed collections of data. An object is a collection of properties (key-value pairs), where values can be data or functions (methods)." },
+    { "type": "h2", "text": "Creating an Object" },
+    { "type": "example", "title": "Object Literal", "code": [
+      "const person = {",
+      "    firstName: \"John\",",
+      "    lastName:  \"Doe\",",
+      "    age:       30,",
+      "    isStudent: false,",
+      "};",
+      "",
+      "console.log(person);",
+      "console.log(person.firstName);   // dot notation",
+      "console.log(person[\"age\"]);       // bracket notation"
+    ]},
+    { "type": "h2", "text": "Accessing Properties" },
+    { "type": "table", "rows": [
+      ["Notation",  "Syntax",              "Use When"],
+      ["Dot",       "obj.propertyName",    "Key is a valid identifier"],
+      ["Bracket",   "obj[\"key\"]",        "Key has spaces / is dynamic"]
+    ]},
+    { "type": "example", "title": "Dot vs Bracket Notation", "code": [
+      "const car = { make: \"Toyota\", model: \"Camry\", year: 2022 };",
+      "",
+      "console.log(car.make);       // Toyota",
+      "console.log(car[\"model\"]);   // Camry",
+      "",
+      "// Dynamic key with bracket notation:",
+      "let prop = \"year\";",
+      "console.log(car[prop]);      // 2022"
+    ]},
+    { "type": "h2", "text": "Adding and Modifying Properties" },
+    { "type": "example", "title": "Mutating Objects", "code": [
+      "const user = { name: \"Alice\" };",
+      "",
+      "user.age  = 28;         // add new property",
+      "user.name = \"Alicia\";   // modify existing property",
+      "console.log(user);      // { name: \"Alicia\", age: 28 }",
+      "",
+      "delete user.age;        // remove a property",
+      "console.log(user);      // { name: \"Alicia\" }"
+    ]},
+    { "type": "h2", "text": "Methods — Functions Inside Objects" },
+    { "type": "p",  "text": "A method is a function stored as an object property. Inside methods, this refers to the object." },
+    { "type": "example", "title": "Object Methods", "code": [
+      "const calculator = {",
+      "    value: 0,",
+      "    add(n)      { this.value += n; return this; },",
+      "    subtract(n) { this.value -= n; return this; },",
+      "    result()    { return this.value; },",
+      "};",
+      "",
+      "calculator.add(10).add(5).subtract(3);",
+      "console.log(calculator.result());   // 12"
+    ]},
+    { "type": "h2", "text": "Looping Over an Object" },
+    { "type": "example", "title": "for...in and Object Helpers", "code": [
+      "const scores = { math: 95, english: 88, science: 92 };",
+      "",
+      "for (let subject in scores) {",
+      "    console.log(subject + \": \" + scores[subject]);",
+      "}",
+      "",
+      "console.log(Object.keys(scores));    // [\"math\", \"english\", \"science\"]",
+      "console.log(Object.values(scores));  // [95, 88, 92]",
+      "console.log(Object.entries(scores)); // [[\"math\",95], ...]"
+    ]},
+    { "type": "h2", "text": "Nested Objects" },
+    { "type": "example", "title": "Nested Objects", "code": [
+      "const company = {",
+      "    name: \"Acme\",",
+      "    address: {",
+      "        street: \"123 Main St\",",
+      "        city:   \"Springfield\",",
+      "    },",
+      "    employees: [\"Alice\", \"Bob\", \"Carol\"],",
+      "};",
+      "",
+      "console.log(company.name);",
+      "console.log(company.address.city);",
+      "console.log(company.employees[0]);"
+    ]},
+    { "type": "note", "text": "Objects declared with const can still have their properties changed — const only prevents reassigning the variable itself." }
+  ]
+}

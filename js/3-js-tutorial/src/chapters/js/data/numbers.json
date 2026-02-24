@@ -1,0 +1,83 @@
+{
+  "id": "numbers",
+  "title": "JS Numbers",
+  "group": "JS Objects & Arrays",
+  "content": [
+    { "type": "h1", "text": "JavaScript Numbers" },
+    { "type": "p",  "text": "JavaScript has only one number type. Numbers are stored as 64-bit floating point values (IEEE 754). This applies to both integers and decimals." },
+    { "type": "h2", "text": "Number Literals" },
+    { "type": "example", "title": "Number Types", "code": [
+      "let integer = 42;",
+      "let decimal  = 3.14;",
+      "let negative = -100;",
+      "let sci1     = 123e5;    // 12300000",
+      "let sci2     = 123e-5;   // 0.00123",
+      "",
+      "console.log(integer, decimal, negative);",
+      "console.log(sci1, sci2);"
+    ]},
+    { "type": "h2", "text": "Floating-Point Precision" },
+    { "type": "p",  "text": "Floating-point arithmetic is not always 100% accurate. Use toFixed() for rounding display values." },
+    { "type": "example", "title": "Precision Issues", "code": [
+      "console.log(0.1 + 0.2);               // 0.30000000000000004 (!)",
+      "console.log((0.1 + 0.2).toFixed(1));  // \"0.3\"",
+      "",
+      "// Integer precision: safe up to 15 digits",
+      "console.log(999999999999999);    // fine",
+      "console.log(9999999999999999);   // loses precision"
+    ]},
+    { "type": "h2", "text": "NaN — Not a Number" },
+    { "type": "p",  "text": "NaN is returned by invalid numeric operations. Surprisingly, typeof NaN === \"number\"." },
+    { "type": "example", "title": "NaN", "code": [
+      "console.log(100 / \"Apple\");   // NaN",
+      "console.log(typeof NaN);       // \"number\"",
+      "console.log(isNaN(\"Hello\"));  // true",
+      "console.log(isNaN(42));        // false",
+      "console.log(NaN === NaN);      // false! Always use isNaN()"
+    ]},
+    { "type": "h2", "text": "Infinity" },
+    { "type": "example", "title": "Infinity", "code": [
+      "console.log(2 / 0);            // Infinity",
+      "console.log(-2 / 0);           // -Infinity",
+      "console.log(typeof Infinity);  // \"number\"",
+      "console.log(isFinite(100));    // true",
+      "console.log(isFinite(2 / 0));  // false"
+    ]},
+    { "type": "h2", "text": "Converting to Number" },
+    { "type": "example", "title": "Type Conversion", "code": [
+      "console.log(Number(\"42\"));       // 42",
+      "console.log(Number(\"3.14\"));     // 3.14",
+      "console.log(Number(\"\"));         // 0",
+      "console.log(Number(\"abc\"));      // NaN",
+      "console.log(parseInt(\"42px\"));   // 42",
+      "console.log(parseFloat(\"3.5em\")); // 3.5"
+    ]},
+    { "type": "h2", "text": "Math Methods" },
+    { "type": "table", "rows": [
+      ["Method",              "Description",                    "Example"],
+      ["Math.round(n)",       "Round to nearest integer",       "Math.round(4.6) → 5"],
+      ["Math.floor(n)",       "Round down",                     "Math.floor(4.9) → 4"],
+      ["Math.ceil(n)",        "Round up",                       "Math.ceil(4.1) → 5"],
+      ["Math.abs(n)",         "Absolute value",                 "Math.abs(-5) → 5"],
+      ["Math.max(...)",       "Largest value",                  "Math.max(1,5,3) → 5"],
+      ["Math.min(...)",       "Smallest value",                 "Math.min(1,5,3) → 1"],
+      ["Math.sqrt(n)",        "Square root",                    "Math.sqrt(16) → 4"],
+      ["Math.pow(b,e)",       "Power",                          "Math.pow(2,8) → 256"],
+      ["Math.random()",       "Random float [0, 1)",            "Math.random()"],
+      ["toFixed(n)",          "String with n decimal places",   "3.14.toFixed(1) → '3.1'"]
+    ]},
+    { "type": "example", "title": "Math in Action", "code": [
+      "console.log(Math.round(4.6));    // 5",
+      "console.log(Math.floor(4.9));    // 4",
+      "console.log(Math.ceil(4.1));     // 5",
+      "console.log(Math.abs(-42));      // 42",
+      "console.log(Math.max(1, 5, 3));  // 5",
+      "console.log(Math.sqrt(16));      // 4",
+      "",
+      "// Random integer between 1 and 10:",
+      "let rand = Math.floor(Math.random() * 10) + 1;",
+      "console.log(\"Random 1-10:\", rand);"
+    ]},
+    { "type": "note", "text": "Use Number.isNaN() rather than the global isNaN() — the global version coerces its argument first, giving unexpected results." }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "whereto",
+  "title": "JS Where To",
+  "group": "JS Tutorial",
+  "content": [
+    { "type": "h1", "text": "JavaScript Where To" },
+    { "type": "p",  "text": "JavaScript code is inserted between <script> and </script> tags. You can place scripts in the <head>, in the <body>, or in an external file." },
+    { "type": "h2", "text": "In the <body>" },
+    { "type": "p",  "text": "Placing scripts at the bottom of the <body> element improves the display speed, because script interpretation slows down the display." },
+    { "type": "example", "title": "Example — function called from button", "code": [
+      "function showMessage() {",
+      "    console.log(\"Button clicked!\");",
+      "}",
+      "showMessage();"
+    ]},
+    { "type": "h2", "text": "In the <head>" },
+    { "type": "example", "title": "Example — function defined in head", "code": [
+      "function greet(name) {",
+      "    return \"Hello, \" + name + \"!\";",
+      "}",
+      "console.log(greet(\"World\"));"
+    ]},
+    { "type": "h2", "text": "External JavaScript" },
+    { "type": "p",  "text": "Scripts can be placed in external files. External scripts are referenced with a src attribute: <script src=\"myScript.js\"></script>" },
+    { "type": "table", "rows": [
+      ["Advantage",              "Why It Helps"],
+      ["Separation of concerns", "HTML and JS are in separate files"],
+      ["Reusability",            "One script used by many HTML pages"],
+      ["Caching",                "Browser caches the file for faster loads"],
+      ["Readability",            "Cleaner HTML markup"]
+    ]},
+    { "type": "example", "title": "External script references", "code": [
+      "// Reference external scripts with src attribute:",
+      "// <script src=\"https://example.com/js/myScript.js\"></script>",
+      "// <script src=\"/js/myScript.js\"></script>",
+      "// <script src=\"myScript.js\"></script>",
+      "console.log(\"External scripts keep HTML clean!\");"
+    ]},
+    { "type": "note", "text": "You cannot use both src and inline code in the same <script> tag. Inline code is ignored when src is set." }
+  ]
+}

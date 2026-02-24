@@ -1,0 +1,82 @@
+{
+  "id": "datatypes",
+  "title": "JS Data Types",
+  "group": "JS Data Types",
+  "content": [
+    { "type": "h1", "text": "JavaScript Data Types" },
+    { "type": "p",  "text": "JavaScript has 8 data types: 7 primitive types and 1 object type. The typeof operator returns the type of a value." },
+    { "type": "table", "rows": [
+      ["Type",      "Example Value",               "typeof Result"],
+      ["Number",    "42, 3.14",                    "\"number\""],
+      ["BigInt",    "12345678901234567890n",        "\"bigint\""],
+      ["String",    "\"Hello\", 'World'",          "\"string\""],
+      ["Boolean",   "true, false",                 "\"boolean\""],
+      ["Undefined", "let x;",                      "\"undefined\""],
+      ["Null",      "null",                        "\"object\" (historical bug)"],
+      ["Symbol",    "Symbol(\"id\")",              "\"symbol\""],
+      ["Object",    "{}, [], new Date()",          "\"object\""]
+    ]},
+    { "type": "h2", "text": "Numbers" },
+    { "type": "example", "title": "Number Type", "code": [
+      "let integer = 42;",
+      "let decimal  = 3.14;",
+      "let negative = -100;",
+      "",
+      "console.log(typeof integer);   // \"number\"",
+      "console.log(typeof decimal);   // \"number\"",
+      "console.log(integer + decimal);"
+    ]},
+    { "type": "h2", "text": "Strings" },
+    { "type": "example", "title": "String Type", "code": [
+      "let single   = 'Hello';",
+      "let double   = \"World\";",
+      "let template = `${single} ${double}!`;  // template literal",
+      "",
+      "console.log(single);",
+      "console.log(double);",
+      "console.log(template);"
+    ]},
+    { "type": "h2", "text": "Booleans" },
+    { "type": "example", "title": "Boolean Type", "code": [
+      "let isOpen   = true;",
+      "let isClosed = false;",
+      "",
+      "console.log(typeof isOpen);   // \"boolean\"",
+      "console.log(10 > 5);          // true",
+      "console.log(10 < 5);          // false"
+    ]},
+    { "type": "h2", "text": "Undefined and Null" },
+    { "type": "example", "title": "Undefined vs Null", "code": [
+      "let a;              // declared but not assigned",
+      "let b = null;       // intentionally empty",
+      "",
+      "console.log(a);             // undefined",
+      "console.log(typeof a);      // \"undefined\"",
+      "console.log(b);             // null",
+      "console.log(typeof b);      // \"object\" (historical JS bug)",
+      "console.log(a === b);       // false"
+    ]},
+    { "type": "h2", "text": "Objects and Arrays" },
+    { "type": "example", "title": "Object and Array Types", "code": [
+      "const person = { name: \"Alice\", age: 30 };",
+      "const colors  = [\"red\", \"green\", \"blue\"];",
+      "",
+      "console.log(typeof person);          // \"object\"",
+      "console.log(typeof colors);          // \"object\"",
+      "console.log(Array.isArray(colors));  // true"
+    ]},
+    { "type": "h2", "text": "Dynamic Typing" },
+    { "type": "p",  "text": "JavaScript is dynamically typed. The same variable can hold values of different types." },
+    { "type": "example", "title": "Dynamic Typing", "code": [
+      "let value = 42;",
+      "console.log(typeof value);   // \"number\"",
+      "",
+      "value = \"now a string\";",
+      "console.log(typeof value);   // \"string\"",
+      "",
+      "value = true;",
+      "console.log(typeof value);   // \"boolean\""
+    ]},
+    { "type": "note", "text": "When you add a Number and a String, JavaScript treats the number as a string: 5 + \"5\" = \"55\"." }
+  ]
+}

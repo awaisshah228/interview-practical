@@ -1,0 +1,65 @@
+{
+  "id": "for_loop",
+  "title": "JS For Loop",
+  "group": "JS Control Flow",
+  "content": [
+    { "type": "h1", "text": "JavaScript For Loop" },
+    { "type": "p",  "text": "Loops execute a block of code a number of times. The for loop is used when you know in advance how many iterations you need." },
+    { "type": "h2", "text": "The for Loop" },
+    { "type": "p",  "text": "Syntax: for (init; condition; increment). (1) init runs once before the loop starts, (2) condition is checked before each iteration, (3) increment runs after each iteration." },
+    { "type": "example", "title": "Basic for Loop", "code": [
+      "for (let i = 0; i < 5; i++) {",
+      "    console.log(\"Iteration:\", i);",
+      "}"
+    ]},
+    { "type": "h2", "text": "Looping Through an Array" },
+    { "type": "example", "title": "Array Iteration", "code": [
+      "const fruits = [\"Apple\", \"Banana\", \"Cherry\", \"Mango\"];",
+      "",
+      "for (let i = 0; i < fruits.length; i++) {",
+      "    console.log(i + \": \" + fruits[i]);",
+      "}"
+    ]},
+    { "type": "h2", "text": "The for...in Loop" },
+    { "type": "p",  "text": "The for...in loop iterates over the keys (property names) of an object." },
+    { "type": "example", "title": "for...in — Object Keys", "code": [
+      "const person = { name: \"Alice\", age: 30, city: \"Paris\" };",
+      "",
+      "for (let key in person) {",
+      "    console.log(key + \": \" + person[key]);",
+      "}"
+    ]},
+    { "type": "h2", "text": "The for...of Loop" },
+    { "type": "p",  "text": "The for...of loop iterates over the values of an iterable (array, string, Set, Map, etc.)." },
+    { "type": "example", "title": "for...of — Array Values", "code": [
+      "const colors = [\"red\", \"green\", \"blue\"];",
+      "",
+      "for (let color of colors) {",
+      "    console.log(color);",
+      "}",
+      "",
+      "// Also works on strings:",
+      "for (let char of \"Hello\") {",
+      "    console.log(char);",
+      "}"
+    ]},
+    { "type": "table", "rows": [
+      ["Loop",       "Iterates Over",           "Best For"],
+      ["for",        "index (0, 1, 2...)",      "Known number of iterations"],
+      ["for...in",   "Object property keys",    "Enumerating object properties"],
+      ["for...of",   "Iterable values",         "Arrays, strings, Sets, Maps"],
+      ["forEach()",  "Array element + index",   "Array callbacks (no break)"]
+    ]},
+    { "type": "h2", "text": "Nested Loops" },
+    { "type": "example", "title": "Multiplication Table (3x3)", "code": [
+      "for (let i = 1; i <= 3; i++) {",
+      "    let row = \"\";",
+      "    for (let j = 1; j <= 3; j++) {",
+      "        row += (i * j) + \"\\t\";",
+      "    }",
+      "    console.log(row);",
+      "}"
+    ]},
+    { "type": "note", "text": "Use for...of (not for...in) to loop over arrays. for...in is for objects and can iterate inherited properties." }
+  ]
+}

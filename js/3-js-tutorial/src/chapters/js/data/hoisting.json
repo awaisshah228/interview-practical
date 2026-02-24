@@ -1,0 +1,62 @@
+{
+  "id": "hoisting",
+  "title": "JS Hoisting",
+  "group": "JS Scope",
+  "content": [
+    { "type": "h1", "text": "JavaScript Hoisting" },
+    { "type": "p",  "text": "Hoisting is JavaScript's default behaviour of moving declarations to the top of their scope before execution. Only the declaration is hoisted — not the initialisation." },
+    { "type": "h2", "text": "var Hoisting" },
+    { "type": "p",  "text": "var declarations are hoisted and initialised to undefined. You can use a var variable before its declaration line, but its value will be undefined." },
+    { "type": "example", "title": "var Hoisting Demo", "code": [
+      "console.log(name);   // undefined (hoisted, not an error!)",
+      "var name = \"Alice\";",
+      "console.log(name);   // \"Alice\"",
+      "",
+      "// JavaScript processes this as:",
+      "// var name;          ← hoisted",
+      "// console.log(name); ← undefined",
+      "// name = \"Alice\";",
+      "// console.log(name); ← \"Alice\""
+    ]},
+    { "type": "h2", "text": "let and const — Temporal Dead Zone" },
+    { "type": "p",  "text": "let and const are also hoisted but NOT initialised. Accessing them before declaration throws a ReferenceError. The gap between hoisting and declaration is called the Temporal Dead Zone (TDZ)." },
+    { "type": "example", "title": "Temporal Dead Zone", "code": [
+      "// console.log(x);   // ReferenceError: Cannot access 'x' before initialization",
+      "let x = 10;",
+      "console.log(x);     // 10",
+      "",
+      "// console.log(y);  // ReferenceError",
+      "const y = 20;",
+      "console.log(y);     // 20"
+    ]},
+    { "type": "h2", "text": "Function Declaration Hoisting" },
+    { "type": "p",  "text": "Function declarations are fully hoisted — both the declaration AND the body. You can call them before they appear in the code." },
+    { "type": "example", "title": "Function Declarations are Fully Hoisted", "code": [
+      "// Call BEFORE the definition — works!",
+      "console.log(greet(\"Alice\"));   // \"Hello, Alice!\"",
+      "",
+      "function greet(name) {",
+      "    return \"Hello, \" + name + \"!\";",
+      "}"
+    ]},
+    { "type": "h2", "text": "Function Expressions are NOT Hoisted" },
+    { "type": "example", "title": "Function Expression — Not Hoisted", "code": [
+      "// console.log(square(5));   // TypeError: square is not a function",
+      "",
+      "const square = function(x) {",
+      "    return x * x;",
+      "};",
+      "",
+      "console.log(square(5));   // 25  (works after declaration)"
+    ]},
+    { "type": "table", "rows": [
+      ["Declaration",       "Hoisted?", "Initialised?",        "Usable Before?"],
+      ["var",               "✓ Yes",    "✓ Yes (undefined)",   "Yes (undefined)"],
+      ["let",               "✓ Yes",    "✗ No (TDZ)",          "No (ReferenceError)"],
+      ["const",             "✓ Yes",    "✗ No (TDZ)",          "No (ReferenceError)"],
+      ["function decl.",    "✓ Yes",    "✓ Yes (full body)",   "Yes (fully works)"],
+      ["function expr.",    "Variable only", "✗ No",           "No (TypeError)"]
+    ]},
+    { "type": "note", "text": "Best practice: always declare variables at the top of their scope to avoid confusion around hoisting. Prefer let and const over var." }
+  ]
+}

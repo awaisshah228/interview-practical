@@ -1,0 +1,81 @@
+{
+  "id": "scope",
+  "title": "JS Scope",
+  "group": "JS Scope",
+  "content": [
+    { "type": "h1", "text": "JavaScript Scope" },
+    { "type": "p",  "text": "Scope determines where variables are accessible. JavaScript has three types of scope: Global, Function, and Block." },
+    { "type": "h2", "text": "Global Scope" },
+    { "type": "p",  "text": "Variables declared outside any function or block are in the global scope. They are accessible from anywhere in the script." },
+    { "type": "example", "title": "Global Scope", "code": [
+      "let globalVar = \"I am global\";",
+      "",
+      "function showGlobal() {",
+      "    console.log(globalVar);   // accessible inside function",
+      "}",
+      "",
+      "showGlobal();",
+      "console.log(globalVar);       // accessible outside too"
+    ]},
+    { "type": "h2", "text": "Function Scope" },
+    { "type": "p",  "text": "Variables declared inside a function are local to that function. They cannot be accessed from outside." },
+    { "type": "example", "title": "Function Scope", "code": [
+      "function greet() {",
+      "    let message = \"Hello!\";   // local to greet()",
+      "    console.log(message);",
+      "}",
+      "",
+      "greet();",
+      "// console.log(message);  // ReferenceError — not accessible here"
+    ]},
+    { "type": "h2", "text": "Block Scope (let and const)" },
+    { "type": "p",  "text": "Variables declared with let or const inside a block ({}) are only accessible within that block." },
+    { "type": "example", "title": "Block Scope", "code": [
+      "if (true) {",
+      "    let blockVar   = \"block scoped\";",
+      "    const blockConst = \"also block scoped\";",
+      "    console.log(blockVar);      // OK inside block",
+      "}",
+      "// console.log(blockVar);   // ReferenceError outside block"
+    ]},
+    { "type": "h2", "text": "The Scope Chain" },
+    { "type": "p",  "text": "Inner scopes can access outer scope variables, but outer scopes cannot access inner scope variables." },
+    { "type": "example", "title": "Scope Chain", "code": [
+      "let outer = \"outer\";",
+      "",
+      "function middle() {",
+      "    let mid = \"middle\";",
+      "",
+      "    function inner() {",
+      "        let innerVar = \"inner\";",
+      "        console.log(outer);     // ✓ can access outer",
+      "        console.log(mid);       // ✓ can access middle",
+      "        console.log(innerVar);  // ✓ can access own",
+      "    }",
+      "    inner();",
+      "    // console.log(innerVar);  // ✗ ReferenceError",
+      "}",
+      "middle();"
+    ]},
+    { "type": "h2", "text": "Variable Shadowing" },
+    { "type": "p",  "text": "When an inner scope declares a variable with the same name as an outer scope variable, it shadows the outer one." },
+    { "type": "example", "title": "Shadowing", "code": [
+      "let color = \"red\";",
+      "",
+      "function paint() {",
+      "    let color = \"blue\";   // shadows outer 'color'",
+      "    console.log(color);    // \"blue\"",
+      "}",
+      "",
+      "paint();",
+      "console.log(color);        // \"red\" — outer unchanged"
+    ]},
+    { "type": "table", "rows": [
+      ["Scope",     "Declared With",        "Accessible From"],
+      ["Global",    "Outside all blocks",   "Anywhere in the script"],
+      ["Function",  "Inside a function",    "Only within that function"],
+      ["Block",     "let/const in a block", "Only within that block"]
+    ]},
+    { "type": "note", "text": "var does NOT respect block scope — it leaks out of if/for blocks. Always use let or const for predictable scoping." }
+  ]
+}

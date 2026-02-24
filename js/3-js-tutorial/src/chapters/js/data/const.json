@@ -1,0 +1,53 @@
+{
+  "id": "const",
+  "title": "JS const",
+  "group": "JS Variables",
+  "content": [
+    { "type": "h1", "text": "JavaScript const" },
+    { "type": "p",  "text": "The const keyword was introduced in ES6 (2015). Use const when the variable value should not be reassigned. It must be initialised at declaration." },
+    { "type": "h2", "text": "const Cannot Be Reassigned" },
+    { "type": "example", "title": "Immutable Binding", "code": [
+      "const PI = 3.14159;",
+      "console.log(PI);",
+      "",
+      "// PI = 3;   // TypeError: Assignment to constant variable"
+    ]},
+    { "type": "h2", "text": "const Must Be Initialised" },
+    { "type": "example", "title": "Initialisation at Declaration", "code": [
+      "const MAX = 100;   // OK",
+      "",
+      "// const LIMIT;    // SyntaxError: Missing initializer in const declaration"
+    ]},
+    { "type": "h2", "text": "const Objects Are Mutable" },
+    { "type": "p",  "text": "const prevents reassigning the variable, but it does NOT make the object immutable. Properties can still be changed." },
+    { "type": "example", "title": "const Object — Properties Can Change", "code": [
+      "const person = { name: \"Alice\", age: 30 };",
+      "",
+      "person.age  = 31;           // OK — mutating a property",
+      "person.city = \"Paris\";      // OK — adding a property",
+      "console.log(person);",
+      "",
+      "// person = {};  // TypeError — reassigning const is not allowed"
+    ]},
+    { "type": "h2", "text": "const Arrays Are Mutable" },
+    { "type": "example", "title": "const Array — Elements Can Change", "code": [
+      "const colors = [\"red\", \"green\", \"blue\"];",
+      "",
+      "colors.push(\"yellow\");    // OK — mutating array",
+      "colors[0] = \"white\";      // OK — changing element",
+      "console.log(colors);",
+      "",
+      "// colors = [];  // TypeError — reassigning const is not allowed"
+    ]},
+    { "type": "h2", "text": "const vs let vs var" },
+    { "type": "table", "rows": [
+      ["Feature",           "const",       "let",     "var"],
+      ["Scope",             "Block",       "Block",   "Function"],
+      ["Reassign",          "✗ No",        "✓ Yes",   "✓ Yes"],
+      ["Redeclare",         "✗ No",        "✗ No",    "✓ Yes"],
+      ["Must initialise",   "✓ Yes",       "✗ No",    "✗ No"],
+      ["Hoisted",           "TDZ",         "TDZ",     "✓ (undefined)"]
+    ]},
+    { "type": "note", "text": "Best practice: use const by default. Switch to let only when you know the value needs to change. Never use var in modern code." }
+  ]
+}

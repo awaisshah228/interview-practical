@@ -1,0 +1,74 @@
+{
+  "id": "switch",
+  "title": "JS Switch",
+  "group": "JS Control Flow",
+  "content": [
+    { "type": "h1", "text": "JavaScript Switch Statement" },
+    { "type": "p",  "text": "The switch statement selects one of many code blocks to execute. It is a cleaner alternative to many else if chains when comparing one value against many cases." },
+    { "type": "h2", "text": "Syntax" },
+    { "type": "example", "title": "Switch — Days of the Week", "code": [
+      "let day = 3;",
+      "switch (day) {",
+      "    case 1: console.log(\"Monday\");    break;",
+      "    case 2: console.log(\"Tuesday\");   break;",
+      "    case 3: console.log(\"Wednesday\"); break;",
+      "    case 4: console.log(\"Thursday\");  break;",
+      "    case 5: console.log(\"Friday\");    break;",
+      "    default: console.log(\"Weekend\");",
+      "}"
+    ]},
+    { "type": "h2", "text": "The break Keyword" },
+    { "type": "p",  "text": "Without break, execution falls through to the next case — even if the value doesn't match." },
+    { "type": "example", "title": "Fall-through Without break", "code": [
+      "let x = 2;",
+      "switch (x) {",
+      "    case 1:",
+      "        console.log(\"Case 1\");",
+      "        // no break — falls through!",
+      "    case 2:",
+      "        console.log(\"Case 2\");",
+      "        // no break — falls through!",
+      "    case 3:",
+      "        console.log(\"Case 3\");",
+      "        break;",
+      "}",
+      "// Prints both \"Case 2\" and \"Case 3\""
+    ]},
+    { "type": "h2", "text": "The default Keyword" },
+    { "type": "p",  "text": "The default case runs when no other case matches. It is optional." },
+    { "type": "example", "title": "Default Case", "code": [
+      "let fruit = \"mango\";",
+      "switch (fruit) {",
+      "    case \"apple\":  console.log(\"Apple\");  break;",
+      "    case \"banana\": console.log(\"Banana\"); break;",
+      "    case \"cherry\": console.log(\"Cherry\"); break;",
+      "    default:       console.log(\"Unknown fruit: \" + fruit);",
+      "}"
+    ]},
+    { "type": "h2", "text": "Multiple Cases — Same Block" },
+    { "type": "example", "title": "Grouped Cases", "code": [
+      "let day = 6;",
+      "switch (day) {",
+      "    case 1:",
+      "    case 2:",
+      "    case 3:",
+      "    case 4:",
+      "    case 5:",
+      "        console.log(\"Weekday\"); break;",
+      "    case 6:",
+      "    case 7:",
+      "        console.log(\"Weekend\"); break;",
+      "}"
+    ]},
+    { "type": "h2", "text": "Strict Comparison" },
+    { "type": "p",  "text": "Switch uses strict equality (===). A string \"5\" will NOT match a number 5." },
+    { "type": "example", "title": "Strict Comparison in Switch", "code": [
+      "let val = 5;",
+      "switch (val) {",
+      "    case \"5\": console.log(\"String 5\"); break;  // won't match",
+      "    case 5:   console.log(\"Number 5\"); break;  // matches!",
+      "}"
+    ]},
+    { "type": "note", "text": "Always add a break to each case unless you intentionally want fall-through. Missing breaks are one of the most common JavaScript bugs." }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "statements",
+  "title": "JS Statements",
+  "group": "JS Tutorial",
+  "content": [
+    { "type": "h1", "text": "JavaScript Statements" },
+    { "type": "p",  "text": "A JavaScript program is a list of programming statements. Statements are executed one by one, in the same order as they are written." },
+    { "type": "h2", "text": "Statements and Semicolons" },
+    { "type": "p",  "text": "JavaScript statements are separated by semicolons. While not strictly required (ASI handles most cases), using them is best practice." },
+    { "type": "example", "title": "Example", "code": [
+      "let a = 5;",
+      "let b = 6;",
+      "let c = a + b;",
+      "console.log(c);   // 11"
+    ]},
+    { "type": "h2", "text": "Code Blocks" },
+    { "type": "p",  "text": "Statements can be grouped together in code blocks, inside curly brackets {...}. Groups of statements are commonly found in functions." },
+    { "type": "example", "title": "Code Block in a Function", "code": [
+      "function calculate() {",
+      "    let x = 10;",
+      "    let y = 20;",
+      "    let sum = x + y;",
+      "    console.log(\"Sum:\", sum);",
+      "}",
+      "calculate();"
+    ]},
+    { "type": "h2", "text": "White Space" },
+    { "type": "p",  "text": "JavaScript ignores multiple spaces. Add spaces around operators for readability." },
+    { "type": "example", "title": "Readable Spacing", "code": [
+      "// These are equivalent:",
+      "let x=5+6;",
+      "let y = 5 + 6;   // much easier to read",
+      "console.log(x, y);"
+    ]},
+    { "type": "h2", "text": "Common Keywords" },
+    { "type": "table", "rows": [
+      ["Keyword",   "Description"],
+      ["var",       "Declares a function-scoped variable"],
+      ["let",       "Declares a block-scoped variable"],
+      ["const",     "Declares a block-scoped constant"],
+      ["if",        "Executes a block conditionally"],
+      ["for",       "Marks a loop block"],
+      ["while",     "Marks a loop block"],
+      ["function",  "Declares a function"],
+      ["return",    "Exits a function and returns a value"],
+      ["switch",    "Marks a switch block"]
+    ]}
+  ]
+}
