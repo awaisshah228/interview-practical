@@ -243,24 +243,27 @@ export function render(chapters, monaco) {
     editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, runCode);
 
     // ── Chapter loading ───────────────────────────────────────────────────────
-    let navItems = [];
+    // chapterCache: Map<idx, HTMLElement>
+    // Each chapter's DOM is built ONCE on first visit and kept in memory.
+    // On revisit, the cached wrapper is simply re-attached — zero rebuild cost.
+    // Detached DOM nodes are not GC'd while the Map holds a reference to them,
+    // so event listeners (Try-it buttons) stay intact across navigation.
+    const chapterCache = new Map();
+    let   currentIdx   = -1;
+    let   navItems     = [];
 
-    function loadChapter(idx) {
+    function buildChapterDOM(idx) {
         const chapter = chapters[idx];
+        const wrapper = document.createElement("div");
+        wrapper.className = "chapter-content";
 
-        // Highlight active sidebar button
-        navItems.forEach((btn, i) => {
-            if (btn) btn.classList.toggle("active", i === idx);
-        });
-
-        // Render content blocks
-        content.innerHTML = "";
+        // Content blocks
         chapter.content.forEach(block => {
             const el = renderBlock(block, openTryIt);
-            if (el) content.appendChild(el);
+            if (el) wrapper.appendChild(el);
         });
 
-        // Prev / Next navigation
+        // Prev / Next nav — built once, event listeners stay alive in cache
         const nav = document.createElement("div");
         nav.className = "chapter-nav";
         if (idx > 0) {
@@ -277,8 +280,33 @@ export function render(chapters, monaco) {
             next.addEventListener("click", () => loadChapter(idx + 1));
             nav.appendChild(next);
         }
-        content.appendChild(nav);
+        wrapper.appendChild(nav);
 
+        return wrapper;
+    }
+
+    function loadChapter(idx) {
+        // Skip if already on this chapter
+        if (idx === currentIdx) {
+            sidebar.classList.remove("open");
+            backdrop.classList.remove("visible");
+            return;
+        }
+        currentIdx = idx;
+
+        // Update active sidebar button
+        navItems.forEach((btn, i) => {
+            if (btn) btn.classList.toggle("active", i === idx);
+        });
+
+        // Build DOM once; reuse on every subsequent visit
+        if (!chapterCache.has(idx)) {
+            chapterCache.set(idx, buildChapterDOM(idx));
+        }
+
+        // Swap content: replaceChildren detaches the old wrapper (kept alive in
+        // chapterCache) and attaches the new one — no DOM creation on revisits.
+        content.replaceChildren(chapterCache.get(idx));
         content.scrollTop = 0;
         sidebar.classList.remove("open");
         backdrop.classList.remove("visible");
@@ -297,4 +325,7 @@ export function render(chapters, monaco) {
         sidebar.classList.remove("open");
         backdrop.classList.remove("visible");
     });
+
+    // ── Reveal page (prevents FOUC) ──────────────────────────────────────────
+    document.body.classList.add("ready");
 }
