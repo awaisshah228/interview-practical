@@ -1,0 +1,142 @@
+/**
+ * styles.css
+ *
+ * All application styles for the JS Variables & Scope demo.
+ * Imported in src/js/index.js — webpack's css-loader resolves it and
+ * style-loader injects it as a <style> tag at runtime.
+ *
+ * Layout (full-viewport, no scroll):
+ *
+ *  ┌─ header ──────────────────────────────────────────────────────┐
+ *  ├─ #app ─────────────────────────────────────────────────────────┤
+ *  │  ┌─ #sidebar ──┬─ #main ──────────────────────────────────┐   │
+ *  │  │ nav groups  │  #editor-container  (Monaco, flex: 1)    │   │
+ *  │  │ nav items   ├─────────────────────────────────────────  │   │
+ *  │  │             │  #output-panel      (runtime result)      │   │
+ *  │  └─────────────┴──────────────────────────────────────────┘   │
+ *  └───────────────────────────────────────────────────────────────┘
+ */
+
+/* ── Reset & base ────────────────────────────────────────────────────────── */
+/* border-box makes width/height include padding — avoids layout surprises    */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0d1117;  /* GitHub dark background */
+    color: #c9d1d9;       /* GitHub dark foreground */
+    height: 100vh;        /* fill the full viewport */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;     /* prevent outer scroll — inner panels scroll instead */
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+header {
+    padding: 0.6rem 1.2rem;
+    background: #161b22;
+    border-bottom: 1px solid #21262d;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #58a6ff;       /* GitHub blue */
+    flex-shrink: 0;       /* never shrink even if content below is large */
+}
+
+/* ── App shell ───────────────────────────────────────────────────────────── */
+/* flex: 1 means it takes all remaining height after the header              */
+#app {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+#sidebar {
+    width: 240px;
+    flex-shrink: 0;           /* fixed width — never shrink */
+    background: #161b22;
+    border-right: 1px solid #21262d;
+    overflow-y: auto;         /* scroll if nav items overflow vertically */
+    padding: 0.5rem 0;
+}
+
+/* A nav-group wraps one section title + its demo buttons */
+.nav-group { margin-bottom: 0.25rem; }
+
+/* Section heading inside the sidebar (e.g. "var — function scope") */
+.nav-group-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #f0883e;           /* orange — matches h2 in other projects */
+    padding: 0.6rem 0.75rem 0.3rem;
+}
+
+/* Each clickable demo item in the sidebar */
+.nav-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.75rem 0.35rem 1.1rem;
+    cursor: pointer;
+    line-height: 1.4;
+    border-left: 2px solid transparent; /* placeholder for active indicator */
+    transition: color 0.15s, background 0.15s;
+}
+/* Hover state */
+.nav-item:hover { color: #c9d1d9; background: #21262d; }
+/* Active/selected state — blue left border highlights the current demo */
+.nav-item.active {
+    color: #58a6ff;
+    border-left-color: #58a6ff;
+    background: #1c2333;
+}
+
+/* ── Main area ───────────────────────────────────────────────────────────── */
+/* Takes all remaining width after the sidebar                               */
+#main {
+    flex: 1;
+    display: flex;
+    flex-direction: column; /* editor on top, output panel below */
+    overflow: hidden;
+}
+
+/* Monaco editor wrapper — flex: 1 so it fills all space above the output   */
+#editor-container {
+    flex: 1;
+    min-height: 0; /* required: flex children don't shrink below content by default */
+}
+
+/* ── Output panel ────────────────────────────────────────────────────────── */
+/* Pinned to the bottom of #main; shows the runtime result of the demo      */
+#output-panel {
+    flex-shrink: 0;
+    background: #0d1117;
+    border-top: 1px solid #21262d;
+    padding: 0.6rem 1rem;
+    display: flex;
+    align-items: baseline; /* align label and text on the same text baseline */
+    gap: 1rem;
+}
+
+/* "OUTPUT" label badge */
+.output-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #56d364;           /* GitHub green */
+    flex-shrink: 0;           /* never wrap or shrink */
+}
+
+/* The actual runtime result text */
+#output-text {
+    font-family: "Fira Code", "Cascadia Code", monospace;
+    font-size: 0.82rem;
+    color: #56d364;
+    line-height: 1.5;
+}

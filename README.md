@@ -7,8 +7,9 @@ A collection of hands-on JavaScript and web development exercises organized by t
 ```
 interview-practical/
 └── js/
-    ├── 1-basic/        # ES Modules, Webpack bundling, dev server
-    └── ...             # More topics coming
+    ├── 1-basic/            # ES Modules, Webpack bundling, dev server
+    ├── 2-variables-scope/  # var / let / const, scope chain, hoisting
+    └── ...                 # More topics coming
 ```
 
 ## Topics
@@ -16,6 +17,7 @@ interview-practical/
 | Folder | Topic |
 |--------|-------|
 | `js/1-basic` | ES Modules, Webpack, HtmlWebpackPlugin, webpack-dev-server |
+| `js/2-variables-scope` | `var` / `let` / `const`, hoisting, scope chain, shadowing |
 
 ## Getting Started
 
