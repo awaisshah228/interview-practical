@@ -1,0 +1,17 @@
+---
+import type { Chapter } from "../lib/chapters";
+
+interface Props {
+    chapters: Chapter[];
+    currentIndex: number;
+    lang: string;
+}
+
+const { chapters, currentIndex, lang } = Astro.props;
+const prev = currentIndex > 0 ? chapters[currentIndex - 1] : null;
+const next = currentIndex < chapters.length - 1 ? chapters[currentIndex + 1] : null;
+---
+<div class="chapter-nav">
+    {prev && <a href={`/${lang}/${prev.id}`} class="nav-btn prev-btn">&#10094; {prev.title}</a>}
+    {next && <a href={`/${lang}/${next.id}`} class="nav-btn next-btn">{next.title} &#10095;</a>}
+</div>

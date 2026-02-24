@@ -1,0 +1,7 @@
+---
+interface Props { text: string; }
+const { text } = Astro.props;
+---
+<div class="note-box">
+    <strong>&#128221; Note: </strong><Fragment set:html={text} />
+</div>

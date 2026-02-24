@@ -1,0 +1,9 @@
+---
+interface Props {
+    text: string;
+    level: 1 | 2;
+}
+
+const { text, level } = Astro.props;
+---
+{level === 1 ? <h1>{text}</h1> : <h2>{text}</h2>}

@@ -1,0 +1,15 @@
+---
+interface Props {
+    name: string;
+    description: string;
+    href: string;
+    chapterCount: number;
+}
+
+const { name, description, href, chapterCount } = Astro.props;
+---
+<a href={href} class="lang-card">
+    <h2 class="lang-card-title">{name}</h2>
+    <p class="lang-card-desc">{description}</p>
+    <span class="lang-card-meta">{chapterCount} chapters</span>
+</a>

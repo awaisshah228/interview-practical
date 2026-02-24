@@ -1,0 +1,36 @@
+---
+import { languages, getLanguage } from "../../lib/languages";
+import { getChapters } from "../../lib/chapters";
+import TutorialLayout from "../../layouts/TutorialLayout.astro";
+import ContentBlock from "../../components/blocks/ContentBlock.astro";
+import ChapterNav from "../../components/ChapterNav.astro";
+
+export function getStaticPaths() {
+    const paths: any[] = [];
+    for (const language of languages) {
+        const chapters = getChapters(language.id);
+        chapters.forEach((chapter, index) => {
+            paths.push({
+                params: { lang: language.id, id: chapter.id },
+                props: { language, chapter, index, chapters },
+            });
+        });
+    }
+    return paths;
+}
+
+const { language, chapter, index, chapters } = Astro.props;
+---
+<TutorialLayout
+    title={chapter.title}
+    chapters={chapters}
+    activeId={chapter.id}
+    lang={language.id}
+    langName={language.name}
+    monacoLang={language.monacoLang}
+>
+    {chapter.content.map(block => (
+        <ContentBlock block={block} />
+    ))}
+    <ChapterNav chapters={chapters} currentIndex={index} lang={language.id} />
+</TutorialLayout>

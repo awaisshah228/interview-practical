@@ -1,25 +1,21 @@
 {
   "name": "3-js-tutorial",
-  "version": "1.0.0",
-  "description": "W3Schools-style JavaScript tutorial with Monaco Try-it editor",
-  "main": "src/js/index.js",
+  "version": "2.0.0",
+  "description": "W3Schools-style JavaScript tutorial — Astro SSG with Monaco Try-it editor",
   "scripts": {
-    "build": "webpack --config webpack.config.cjs --mode production",
-    "dev":   "webpack --config webpack.config.cjs --mode development",
-    "start": "webpack serve --config webpack.config.cjs --mode development"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "start": "astro dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
-  "devDependencies": {
-    "css-loader": "^7.1.4",
-    "html-webpack-plugin": "^5.6.6",
-    "monaco-editor": "^0.55.1",
-    "monaco-editor-webpack-plugin": "^7.1.1",
-    "style-loader": "^4.0.0",
-    "webpack": "^5.105.2",
-    "webpack-cli": "^6.0.1",
-    "webpack-dev-server": "^5.2.3"
+  "dependencies": {
+    "@astrojs/preact": "^4.0.0",
+    "astro": "^5.0.0",
+    "preact": "^10.25.0",
+    "@monaco-editor/loader": "^1.4.0"
   }
 }

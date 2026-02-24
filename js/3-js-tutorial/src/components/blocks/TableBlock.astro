@@ -1,0 +1,11 @@
+---
+interface Props { rows: string[][]; }
+const { rows } = Astro.props;
+const [header, ...body] = rows;
+---
+<div class="table-wrapper">
+    <table>
+        <tr>{header.map(cell => <th>{cell}</th>)}</tr>
+        {body.map(row => <tr>{row.map(cell => <td>{cell}</td>)}</tr>)}
+    </table>
+</div>

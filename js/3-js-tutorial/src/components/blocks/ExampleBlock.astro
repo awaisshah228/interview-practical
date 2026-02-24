@@ -1,0 +1,20 @@
+---
+interface Props {
+    title?: string;
+    code: string | string[];
+}
+
+const { title, code } = Astro.props;
+const codeStr = Array.isArray(code) ? code.join("\n") : code;
+---
+<div class="example-box">
+    <div class="example-label">{title || "Example"}</div>
+    <pre><code>{codeStr}</code></pre>
+    <button
+        class="try-it-btn"
+        data-code={codeStr}
+        onclick="window.dispatchEvent(new CustomEvent('try-it',{detail:{code:this.dataset.code}}))"
+    >
+        Try it Yourself &raquo;
+    </button>
+</div>

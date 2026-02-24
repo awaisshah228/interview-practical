@@ -1,0 +1,39 @@
+---
+import type { Chapter } from "../lib/chapters";
+
+interface Props {
+    chapters: Chapter[];
+    activeId: string;
+    lang: string;
+}
+
+const { chapters, activeId, lang } = Astro.props;
+
+// Build groups preserving insertion order (same logic as old renderer.js)
+const groupOrder: string[] = [];
+const groupMap: Record<string, Chapter[]> = {};
+
+for (const ch of chapters) {
+    const g = ch.group || "Other";
+    if (!groupMap[g]) {
+        groupMap[g] = [];
+        groupOrder.push(g);
+    }
+    groupMap[g].push(ch);
+}
+---
+<nav id="sidebar">
+    {groupOrder.map(groupName => (
+        <>
+            <p class="sidebar-label">{groupName}</p>
+            {groupMap[groupName].map(ch => (
+                <a
+                    href={`/${lang}/${ch.id}`}
+                    class:list={["nav-item", { active: ch.id === activeId }]}
+                >
+                    {ch.title}
+                </a>
+            ))}
+        </>
+    ))}
+</nav>

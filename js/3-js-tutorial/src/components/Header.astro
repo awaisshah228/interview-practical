@@ -1,0 +1,14 @@
+---
+interface Props {
+    langName?: string;
+}
+
+const { langName } = Astro.props;
+---
+<header>
+    <button id="mobile-toggle" aria-label="Toggle sidebar">&#9776;</button>
+    {langName
+        ? <><a href="/" class="logo-link">&#9664;</a><span class="logo">{langName}<span>Tutorial</span></span></>
+        : <span class="logo">Code<span>Tutorials</span></span>
+    }
+</header>

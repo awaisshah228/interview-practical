@@ -1,0 +1,24 @@
+---
+import LandingLayout from "../layouts/LandingLayout.astro";
+import LanguageCard from "../components/LanguageCard.astro";
+import { languages } from "../lib/languages";
+import { getChapters } from "../lib/chapters";
+---
+<LandingLayout>
+    <h1 class="landing-title">Choose a Tutorial</h1>
+    <p class="landing-subtitle">Interactive tutorials with a built-in code editor</p>
+    <div class="lang-grid">
+        {languages.map(lang => {
+            const chapters = getChapters(lang.id);
+            const firstId = chapters[0]?.id ?? "";
+            return (
+                <LanguageCard
+                    name={lang.name}
+                    description={lang.description}
+                    href={`/${lang.id}/${firstId}`}
+                    chapterCount={chapters.length}
+                />
+            );
+        })}
+    </div>
+</LandingLayout>

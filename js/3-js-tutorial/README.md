@@ -1,61 +1,77 @@
-# 3 — JS Tutorial (W3Schools-style)
+# 3 — Code Tutorials (W3Schools-style) — Astro SSG
 
-An interactive JavaScript tutorial site that mirrors the W3Schools layout: left sidebar chapter navigation, rendered content area, and a **"Try it Yourself"** Monaco editor panel that slides up from the bottom.
+An interactive multi-language tutorial site that mirrors the W3Schools layout: landing page to pick a language, left sidebar chapter navigation, pre-rendered content area, and a **"Try it Yourself"** Monaco editor panel that slides up from the bottom.
+
+Built with **Astro** for instant page loads — every chapter is a static HTML page with zero JavaScript. Monaco loads lazily only when you click "Try it Yourself."
 
 ## Features
 
-- Chapter-by-chapter navigation via a collapsible sidebar
-- Rendered content blocks: headings, paragraphs, note boxes, comparison tables, and syntax-highlighted code examples
-- **Try it Yourself** button on every example — loads the snippet into an embedded Monaco editor
-- **Run** button (or `Ctrl+Enter`) executes the code and displays `console.log` output
+- **Multi-language** — landing page at `/` lets you pick a tutorial (JS, Python, etc.)
+- Pre-rendered static HTML — instant first paint, no FOUC
+- **Try it Yourself** button on every example — lazy-loads Monaco editor from CDN on first click
+- **Run** button (or `Ctrl+Enter`) executes code and displays `console.log` output
 - Prev / Next chapter navigation at the bottom of each page
 - Fully responsive — sidebar becomes a slide-in overlay on mobile
 
-## Chapters
+## Adding a New Language
 
-| # | Chapter | Covers |
-|---|---------|--------|
-| 1 | Variables | `var`, `let`, `const` — overview and comparison table |
-| 2 | var | Function scope, hoisting, re-declaration, loop-var bug |
-| 3 | let | Block scope, TDZ, loop fix with `let` |
-| 4 | const | Immutable binding, mutable object/array content |
-| 5 | Scope | Global, function, block scope; scope chain; shadowing |
-| 6 | Hoisting | `var` hoisting, TDZ for `let`/`const`, function declaration hoisting |
+1. Create `src/chapters/<lang>/data/*.json` — one JSON file per chapter
+2. Import them in `src/lib/chapters.ts` and add to `chapterMap`
+3. Add an entry to `src/lib/languages.ts`
+
+That's it — Astro generates all pages at build time.
 
 ## Project Structure
 
 ```
 3-js-tutorial/
+├── astro.config.mjs                  # Astro config with Preact integration
 ├── src/
-│   ├── index.html                 # HTML shell (header, sidebar, content, try-it panel)
-│   ├── styles.css                 # W3Schools-inspired light theme + dark code blocks
-│   └── js/
-│       ├── index.js               # Entry point — wires chapters → render()
-│       ├── monaco-setup.js        # Sets MonacoEnvironment before editor loads
-│       ├── renderer.js            # DOM renderer: sidebar, content blocks, try-it panel
-│       └── chapters/
-│           ├── index.js           # Exports ordered chapters array
-│           ├── variables.js       # Chapter 1 data
-│           ├── var.js             # Chapter 2 data
-│           ├── let.js             # Chapter 3 data
-│           ├── const.js           # Chapter 4 data
-│           ├── scope.js           # Chapter 5 data
-│           └── hoisting.js        # Chapter 6 data
-├── webpack.config.cjs             # Webpack 5 config (Monaco plugin, CSS/TTF loaders)
+│   ├── chapters/<lang>/data/*.json   # Chapter JSON files per language
+│   ├── styles/global.css             # W3Schools-inspired theme + landing page
+│   ├── lib/
+│   │   ├── languages.ts              # Language registry (add new languages here)
+│   │   └── chapters.ts               # Per-language chapter imports + types
+│   ├── layouts/
+│   │   ├── LandingLayout.astro       # Landing page shell (no sidebar)
+│   │   └── TutorialLayout.astro      # Tutorial shell: header, sidebar, content, monaco
+│   ├── components/
+│   │   ├── Header.astro              # Green header with back link
+│   │   ├── Sidebar.astro             # Grouped nav links (zero JS)
+│   │   ├── ChapterNav.astro          # Prev/Next links (zero JS)
+│   │   ├── LanguageCard.astro        # Card for landing page
+│   │   └── blocks/                   # Content block renderers (zero JS)
+│   ├── islands/
+│   │   └── MonacoEditor.tsx          # Preact island — only JS that ships to browser
+│   └── pages/
+│       ├── index.astro               # Landing page with language cards
+│       └── [lang]/[id].astro         # Generates all chapter pages at build time
 └── package.json
+```
+
+## URL Structure
+
+```
+/                  → Landing page (choose a language)
+/js/intro          → JavaScript Introduction
+/js/variables      → JavaScript Variables
+/python/intro      → Python Introduction (when added)
 ```
 
 ## Getting Started
 
 ```bash
 npm install
-npm start       # dev server → http://localhost:8080
-npm run build   # production build → dist/
+npm start       # dev server → http://localhost:4321
+npm run build   # static build → dist/
+npm run preview # preview production build
 ```
 
-## Key Technical Details
+## Architecture
 
-- **`monaco-setup.js` must be the first import** — sets `self.MonacoEnvironment` so Monaco's workers load correctly via `publicPath: "/"`
-- **Single Monaco instance** created once; its content is swapped on every "Try it Yourself" click
+- **Astro SSG** — each chapter is a static HTML page generated at build time via `getStaticPaths()`
+- **Multi-language routing** — `[lang]/[id].astro` loops over all languages × chapters
+- **Island architecture** — Monaco editor is a Preact island (`client:idle`), loaded during browser idle time (~3KB Preact runtime)
+- **Lazy Monaco** — `@monaco-editor/loader` fetches Monaco from CDN only on first "Try it" click (~1MB, on-demand)
+- **CustomEvent bridge** — static "Try it" buttons dispatch a `try-it` event, the Preact island listens and opens the editor
 - **Code evaluation** uses `new Function(code)()` with a `console.log` override to capture output
-- **"Canceled" error** from Monaco's clipboard service is suppressed via `devServer.client.overlay` filter + `unhandledrejection` handler

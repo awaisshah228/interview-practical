@@ -1,0 +1,50 @@
+---
+import type { Chapter } from "../lib/chapters";
+import Header from "../components/Header.astro";
+import Sidebar from "../components/Sidebar.astro";
+import MonacoEditor from "../islands/MonacoEditor";
+import "../styles/global.css";
+
+interface Props {
+    title: string;
+    chapters: Chapter[];
+    activeId: string;
+    lang: string;
+    langName: string;
+    monacoLang: string;
+}
+
+const { title, chapters, activeId, lang, langName, monacoLang } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | {langName} Tutorial</title>
+</head>
+<body>
+    <Header langName={langName} />
+    <div id="sidebar-backdrop"></div>
+    <div id="layout">
+        <Sidebar chapters={chapters} activeId={activeId} lang={lang} />
+        <main id="content">
+            <slot />
+        </main>
+    </div>
+    <MonacoEditor client:idle monacoLang={monacoLang} />
+    <script>
+        const toggle = document.getElementById("mobile-toggle");
+        const sidebar = document.getElementById("sidebar");
+        const backdrop = document.getElementById("sidebar-backdrop");
+        toggle?.addEventListener("click", () => {
+            sidebar?.classList.toggle("open");
+            backdrop?.classList.toggle("visible");
+        });
+        backdrop?.addEventListener("click", () => {
+            sidebar?.classList.remove("open");
+            backdrop?.classList.remove("visible");
+        });
+    </script>
+</body>
+</html>
