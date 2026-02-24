@@ -10,11 +10,14 @@
 // ── Types ───────────────────────────────────────────────────────────────────
 
 export interface Block {
-    type: "h1" | "h2" | "p" | "note" | "table" | "example";
+    type: "h1" | "h2" | "p" | "note" | "table" | "example" | "exercise";
     text?: string;
     rows?: string[][];
     title?: string;
     code?: string | string[];
+    question?: string;
+    options?: string[];
+    answer?: number;
 }
 
 export interface Chapter {

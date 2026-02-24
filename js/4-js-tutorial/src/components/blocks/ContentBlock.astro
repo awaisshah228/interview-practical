@@ -5,6 +5,7 @@ import ParagraphBlock from "./ParagraphBlock.astro";
 import NoteBlock from "./NoteBlock.astro";
 import TableBlock from "./TableBlock.astro";
 import ExampleBlock from "./ExampleBlock.astro";
+import ExerciseBlock from "./ExerciseBlock.astro";
 
 interface Props { block: Block; }
 const { block } = Astro.props;
@@ -15,3 +16,4 @@ const { block } = Astro.props;
 {block.type === "note" && <NoteBlock text={block.text!} />}
 {block.type === "table" && <TableBlock rows={block.rows!} />}
 {block.type === "example" && <ExampleBlock title={block.title} code={block.code!} />}
+{block.type === "exercise" && <ExerciseBlock question={block.question!} options={block.options!} answer={block.answer!} />}

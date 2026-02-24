@@ -1,0 +1,47 @@
+---
+interface Props {
+    question: string;
+    options: string[];
+    answer: number;
+}
+
+const { question, options, answer } = Astro.props;
+const uid = `ex-${Math.random().toString(36).slice(2, 8)}`;
+---
+<div class="exercise-box" data-answer={answer} id={uid}>
+    <div class="exercise-title">Exercise:</div>
+    <div class="exercise-question">{question}</div>
+    <div class="exercise-options">
+        {options.map((opt, i) => (
+            <label class="exercise-option">
+                <input type="radio" name={uid} value={i} />
+                <span>{opt}</span>
+            </label>
+        ))}
+    </div>
+    <button class="exercise-submit">Submit Answer</button>
+    <div class="exercise-feedback"></div>
+</div>
+
+<script>
+    document.querySelectorAll(".exercise-box").forEach(box => {
+        const btn = box.querySelector(".exercise-submit") as HTMLButtonElement;
+        if (!btn || btn.dataset.bound) return;
+        btn.dataset.bound = "1";
+
+        btn.addEventListener("click", () => {
+            const selected = box.querySelector<HTMLInputElement>("input[type=radio]:checked");
+            const feedback = box.querySelector(".exercise-feedback") as HTMLElement;
+            if (!selected || !feedback) return;
+
+            const correct = Number(box.getAttribute("data-answer"));
+            if (Number(selected.value) === correct) {
+                feedback.textContent = "Correct!";
+                feedback.className = "exercise-feedback correct";
+            } else {
+                feedback.textContent = "Wrong, try again!";
+                feedback.className = "exercise-feedback wrong";
+            }
+        });
+    });
+</script>
