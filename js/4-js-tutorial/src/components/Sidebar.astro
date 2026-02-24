@@ -26,6 +26,14 @@ for (const ch of chapters) {
 const activeGroup = chapters.find(ch => ch.id === activeId)?.group || "";
 ---
 <nav id="sidebar" transition:persist>
+    {lang === "ai-video" && (
+        <a
+            href={`/${lang}/`}
+            class:list={["nav-item", "course-outline-link", { active: activeId === "__intro__" }]}
+        >
+            Course Outline
+        </a>
+    )}
     {groupOrder.map(groupName => {
         const items = groupMap[groupName];
         const isActiveGroup = groupName === activeGroup;

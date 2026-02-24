@@ -184,6 +184,16 @@ header {
     border-radius: 0 4px 4px 0;
 }
 
+.course-outline-link {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;
+    border-left: none;
+    padding: 0.5rem 0.75rem;
+}
+
 /* ══════════════════════════════════════════════════════════════════════════ */
 /* CONTENT AREA                                                               */
 /* ══════════════════════════════════════════════════════════════════════════ */
@@ -299,6 +309,23 @@ tr:nth-child(even) td { background: var(--surface); }
 
 /* Hide "Try it Yourself" for non-code languages (AI courses etc.) */
 body[data-code-lang="false"] .try-it-btn { display: none; }
+
+/* ── Course outline back link ────────────────────────────────────────────── */
+.course-outline-back {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--green);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    transition: background 0.15s, color 0.15s;
+}
+.course-outline-back:hover {
+    background: var(--green-light);
+    color: var(--green-dark);
+}
 
 /* ── Prev / Next chapter navigation ──────────────────────────────────────── */
 .chapter-nav {

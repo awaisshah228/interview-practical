@@ -29,6 +29,9 @@ const { language, chapter, index, chapters } = Astro.props;
     langName={language.name}
     monacoLang={language.monacoLang}
 >
+    {language.id === "ai-video" && (
+        <a href={`/${language.id}/`} class="course-outline-back">&larr; Course Outline</a>
+    )}
     <ChapterNav chapters={chapters} currentIndex={index} lang={language.id} />
     {chapter.content.map(block => (
         <ContentBlock block={block} />
