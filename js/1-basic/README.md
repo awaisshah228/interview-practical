@@ -6,19 +6,23 @@ A simple JavaScript project demonstrating ES module imports/exports, bundled and
 
 ```
 1-basic/
-├── index.html          # HTML template
-├── script.js           # Entry point
-├── utils.js            # Exported helper functions
-├── webpack.config.cjs  # Webpack configuration
-├── dist/               # Build output (generated)
+├── src/
+│   ├── index.html          # HTML template
+│   └── js/
+│       ├── index.js        # Entry point
+│       └── utils.js        # Exported helper functions
+├── dist/                   # Build output (generated, not committed)
 │   ├── index.html
 │   └── bundle.js
-└── package.json
+├── webpack.config.cjs      # Webpack configuration
+├── package.json
+└── README.md
 ```
 
 ## Scripts
 
 ```bash
+npm start       # Dev server with live reload (http://localhost:8080)
 npm run build   # Production build (minified)
 npm run dev     # Development build (readable)
 ```
@@ -28,3 +32,4 @@ npm run dev     # Development build (readable)
 - ES Modules (`import` / `export`)
 - Webpack bundling and minification
 - `HtmlWebpackPlugin` for automatic script injection
+- `webpack-dev-server` for live reload on file changes
