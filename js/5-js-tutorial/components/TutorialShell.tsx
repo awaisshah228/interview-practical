@@ -30,5 +30,12 @@ export default function TutorialShell({ children, "data-code-lang": codeLang }: 
         };
     }, []);
 
-    return <div data-code-lang={codeLang}>{children}</div>;
+    return (
+        <div
+            data-code-lang={codeLang}
+            style={{ display: "flex", flexDirection: "column", flex: 1, overflow: "hidden", height: "100vh" }}
+        >
+            {children}
+        </div>
+    );
 }
