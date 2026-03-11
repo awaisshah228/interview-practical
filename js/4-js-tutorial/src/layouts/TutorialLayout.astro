@@ -35,7 +35,7 @@ const isCodeLang = monacoLang !== "plaintext";
             <slot />
         </main>
     </div>
-    {isCodeLang && <MonacoEditor client:idle monacoLang={monacoLang} />}
+    {isCodeLang && <MonacoEditor client:idle monacoLang={monacoLang} transition:persist="monaco-editor" />}
     <script>
         document.addEventListener("astro:page-load", () => {
             const toggle = document.getElementById("mobile-toggle");

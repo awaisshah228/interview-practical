@@ -33,6 +33,7 @@ interface Props {
 
 export default function MonacoEditor({ monacoLang = "javascript" }: Props) {
     const [isOpen, setIsOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [output, setOutput] = useState("Click Run to see the output here.");
     const [label, setLabel] = useState({ text: "", cls: "" });
 
@@ -60,6 +61,7 @@ export default function MonacoEditor({ monacoLang = "javascript" }: Props) {
 
             // Lazy-load Monaco on first open
             if (!editorRef.current) {
+                setLoading(true);
                 const monaco = await loader.init();
                 monacoRef.current = monaco;
                 editorRef.current = monaco.editor.create(containerRef.current!, {
@@ -79,15 +81,33 @@ export default function MonacoEditor({ monacoLang = "javascript" }: Props) {
                     monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
                     runCode,
                 );
+                setLoading(false);
             } else {
                 editorRef.current.getModel().setValue(code);
             }
 
-            setTimeout(() => editorRef.current?.focus(), 300);
+            // Force Monaco to re-render correctly after transition
+            setTimeout(() => {
+                editorRef.current?.layout();
+                editorRef.current?.focus();
+            }, 300);
+        };
+
+        // Close panel & refresh editor on Astro page transition
+        const onSwap = () => {
+            setIsOpen(false);
+            setOutput("Click Run to see the output here.");
+            setLabel({ text: "", cls: "" });
+            // Force Monaco to recalculate layout after DOM swap
+            setTimeout(() => editorRef.current?.layout(), 100);
         };
 
         window.addEventListener("try-it", handler);
-        return () => window.removeEventListener("try-it", handler);
+        window.addEventListener("astro:after-swap", onSwap);
+        return () => {
+            window.removeEventListener("try-it", handler);
+            window.removeEventListener("astro:after-swap", onSwap);
+        };
     }, []);
 
     return (
@@ -102,7 +122,14 @@ export default function MonacoEditor({ monacoLang = "javascript" }: Props) {
                     &#10005; Close
                 </button>
             </div>
-            <div id="monaco-container" ref={containerRef}></div>
+            <div id="monaco-container" ref={containerRef}>
+                {loading && (
+                    <div id="monaco-loading">
+                        <div class="spinner"></div>
+                        Loading editor...
+                    </div>
+                )}
+            </div>
             <div id="try-it-result">
                 <span id="try-it-output-label" class={label.cls}>
                     {label.text}

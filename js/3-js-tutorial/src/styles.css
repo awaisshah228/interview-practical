@@ -336,8 +336,8 @@ tr:nth-child(even) td { background: var(--surface); }
     display: flex;
     align-items: baseline;
     gap: 0.75rem;
-    min-height: 46px;
-    max-height: 100px;
+    min-height: 60px;
+    max-height: 160px;
     overflow-y: auto;
 }
 #try-it-output-label {
