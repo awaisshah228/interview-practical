@@ -2,7 +2,12 @@
 
 import { useEffect } from "react";
 
-export default function TutorialShell({ children }: { children: React.ReactNode }) {
+interface Props {
+    children: React.ReactNode;
+    "data-code-lang"?: string;
+}
+
+export default function TutorialShell({ children, "data-code-lang": codeLang }: Props) {
     useEffect(() => {
         const toggle = document.getElementById("mobile-toggle");
         const sidebar = document.getElementById("sidebar");
@@ -25,5 +30,5 @@ export default function TutorialShell({ children }: { children: React.ReactNode 
         };
     }, []);
 
-    return <>{children}</>;
+    return <div data-code-lang={codeLang}>{children}</div>;
 }
