@@ -22,7 +22,7 @@ export default async function LangLayout({
     const isCodeLang = language.monacoLang !== "plaintext";
 
     return (
-        <TutorialShell>
+        <TutorialShell data-code-lang={isCodeLang ? "true" : "false"}>
             <Header langName={language.name} />
             <div id="sidebar-backdrop" />
             <div id="layout">
