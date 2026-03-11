@@ -1,0 +1,136 @@
+{
+  "id": "regexp",
+  "title": "JS RegExp",
+  "group": "JS RegExp",
+  "content": [
+    { "type": "h1", "text": "JavaScript Regular Expressions" },
+    { "type": "p", "text": "A regular expression (RegExp) is a sequence of characters that forms a search pattern. Regular expressions can be used for text search, text replace, and input validation." },
+    { "type": "h2", "text": "Creating a Regular Expression" },
+    { "type": "p", "text": "There are two ways to create a regular expression in JavaScript: using a literal notation with forward slashes, or using the RegExp constructor." },
+    {
+      "type": "example",
+      "title": "Creating RegExp with Literal and Constructor",
+      "code": [
+        "// Literal notation",
+        "const pattern1 = /hello/;",
+        "console.log(pattern1); // /hello/",
+        "",
+        "// Constructor notation",
+        "const pattern2 = new RegExp('hello');",
+        "console.log(pattern2); // /hello/",
+        "",
+        "// With flags",
+        "const pattern3 = /hello/gi;",
+        "const pattern4 = new RegExp('hello', 'gi');",
+        "console.log(pattern3); // /hello/gi",
+        "console.log(pattern4); // /hello/gi"
+      ]
+    },
+    { "type": "note", "text": "Use literal notation (/pattern/) when the pattern is known at compile time. Use the RegExp constructor when the pattern is dynamic (e.g., from user input)." },
+    { "type": "h2", "text": "The test() Method" },
+    { "type": "p", "text": "The test() method tests for a match in a string. It returns true if it finds a match, otherwise it returns false." },
+    {
+      "type": "example",
+      "title": "Using test() to Check for a Match",
+      "code": [
+        "const pattern = /world/;",
+        "const str = 'Hello world!';",
+        "",
+        "console.log(pattern.test(str)); // true",
+        "console.log(pattern.test('Hello!')); // false",
+        "",
+        "// Case-insensitive test",
+        "const pattern2 = /WORLD/i;",
+        "console.log(pattern2.test(str)); // true"
+      ]
+    },
+    { "type": "h2", "text": "The exec() Method" },
+    { "type": "p", "text": "The exec() method executes a search for a match in a string. It returns an array of information about the match, or null if no match is found." },
+    {
+      "type": "example",
+      "title": "Using exec() to Extract Match Details",
+      "code": [
+        "const pattern = /quick (brown)/;",
+        "const str = 'The quick brown fox';",
+        "const result = pattern.exec(str);",
+        "",
+        "console.log(result[0]); // 'quick brown'",
+        "console.log(result[1]); // 'brown'",
+        "console.log(result.index); // 4",
+        "console.log(result.input); // 'The quick brown fox'",
+        "",
+        "// No match returns null",
+        "const noMatch = /cat/.exec(str);",
+        "console.log(noMatch); // null"
+      ]
+    },
+    { "type": "h2", "text": "Regular Expression Flags" },
+    { "type": "p", "text": "Flags change how the regular expression behaves. They can be added after the closing slash of a literal or as a second argument to the RegExp constructor." },
+    {
+      "type": "table",
+      "rows": [
+        ["Flag", "Description"],
+        ["g", "Global search — find all matches, not just the first"],
+        ["i", "Case-insensitive search"],
+        ["m", "Multiline — ^ and $ match start/end of each line"],
+        ["s", "Dotall — . matches newline characters too"],
+        ["u", "Unicode — treat pattern as a sequence of Unicode code points"],
+        ["y", "Sticky — matches only from the index indicated by lastIndex"]
+      ]
+    },
+    {
+      "type": "example",
+      "title": "Using Flags",
+      "code": [
+        "// Global flag - find all matches",
+        "const str = 'cat bat cat bat';",
+        "console.log(str.match(/cat/g)); // ['cat', 'cat']",
+        "",
+        "// Case-insensitive flag",
+        "console.log(/hello/i.test('Hello World')); // true",
+        "",
+        "// Multiline flag",
+        "const multiline = 'First line\\nSecond line';",
+        "console.log(multiline.match(/^Second/m)); // ['Second']",
+        "console.log(multiline.match(/^Second/));  // null",
+        "",
+        "// Dotall flag",
+        "console.log(/hello.world/s.test('hello\\nworld')); // true",
+        "console.log(/hello.world/.test('hello\\nworld'));  // false"
+      ]
+    },
+    { "type": "h2", "text": "Common Use Cases" },
+    { "type": "p", "text": "Regular expressions are commonly used for validating input, searching and replacing text, and extracting information from strings." },
+    {
+      "type": "example",
+      "title": "Practical RegExp Use Cases",
+      "code": [
+        "// 1. Validate an email (basic)",
+        "const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;",
+        "console.log(emailPattern.test('user@example.com')); // true",
+        "console.log(emailPattern.test('invalid-email'));     // false",
+        "",
+        "// 2. Search and replace",
+        "const text = 'I love cats. Cats are great!';",
+        "const result = text.replace(/cats/gi, 'dogs');",
+        "console.log(result); // 'I love dogs. dogs are great!'",
+        "",
+        "// 3. Extract numbers from a string",
+        "const data = 'Order 123 has 5 items at $49.99';",
+        "const numbers = data.match(/\\d+\\.?\\d*/g);",
+        "console.log(numbers); // ['123', '5', '49.99']",
+        "",
+        "// 4. Split by multiple delimiters",
+        "const csv = 'one,two;three four';",
+        "const parts = csv.split(/[,;\\s]+/);",
+        "console.log(parts); // ['one', 'two', 'three', 'four']"
+      ]
+    },
+    {
+      "type": "exercise",
+      "question": "What does the test() method return when a match is found?",
+      "options": ["true", "The matched string", "An array of matches", "The index of the match"],
+      "answer": 0
+    }
+  ]
+}

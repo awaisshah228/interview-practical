@@ -1,0 +1,111 @@
+{
+  "id": "mouse_events",
+  "title": "JS Mouse Events",
+  "group": "JS Events",
+  "content": [
+    { "type": "h1", "text": "JavaScript Mouse Events" },
+    { "type": "p",  "text": "Mouse events fire when the user interacts with elements using a pointing device. JavaScript provides a rich set of mouse events that cover clicks, movement, hovering, and right-click context menus." },
+    { "type": "h2", "text": "Click Events" },
+    { "type": "p",  "text": "The click event fires when the user presses and releases the primary mouse button on an element. dblclick fires on a double-click. Both receive a MouseEvent object." },
+    { "type": "example", "title": "click and dblclick", "code": [
+      "const box = document.getElementById(\"box\");",
+      "",
+      "box.addEventListener(\"click\", (e) => {",
+      "  console.log(\"Single click at\", e.clientX, e.clientY);",
+      "});",
+      "",
+      "box.addEventListener(\"dblclick\", (e) => {",
+      "  console.log(\"Double click at\", e.clientX, e.clientY);",
+      "});"
+    ]},
+    { "type": "h2", "text": "mousedown and mouseup" },
+    { "type": "p",  "text": "mousedown fires when a mouse button is pressed, and mouseup fires when it is released. Together they form a click. The button property tells you which button was used (0 = left, 1 = middle, 2 = right)." },
+    { "type": "example", "title": "Press and Release", "code": [
+      "const box = document.getElementById(\"box\");",
+      "",
+      "box.addEventListener(\"mousedown\", (e) => {",
+      "  console.log(\"Mouse down — button:\", e.button);",
+      "  // 0 = left, 1 = middle, 2 = right",
+      "});",
+      "",
+      "box.addEventListener(\"mouseup\", (e) => {",
+      "  console.log(\"Mouse up — button:\", e.button);",
+      "});"
+    ]},
+    { "type": "h2", "text": "mousemove" },
+    { "type": "p",  "text": "Fires continuously as the mouse pointer moves over an element. Because it fires very frequently, heavy operations inside the handler should be throttled for performance." },
+    { "type": "example", "title": "Tracking Mouse Movement", "code": [
+      "const canvas = document.getElementById(\"canvas\");",
+      "",
+      "canvas.addEventListener(\"mousemove\", (e) => {",
+      "  console.log(`Mouse at (${e.offsetX}, ${e.offsetY})`);",
+      "});",
+      "",
+      "// Throttled version for better performance",
+      "let lastTime = 0;",
+      "canvas.addEventListener(\"mousemove\", (e) => {",
+      "  const now = Date.now();",
+      "  if (now - lastTime > 100) { // fire at most every 100ms",
+      "    console.log(`Throttled: (${e.offsetX}, ${e.offsetY})`);",
+      "    lastTime = now;",
+      "  }",
+      "});"
+    ]},
+    { "type": "h2", "text": "mouseenter / mouseleave vs mouseover / mouseout" },
+    { "type": "p",  "text": "These events detect when the pointer enters or leaves an element. The key difference is that mouseenter/mouseleave do NOT bubble and do NOT fire when moving between child elements, while mouseover/mouseout DO bubble and fire for child transitions." },
+    { "type": "example", "title": "Enter/Leave vs Over/Out", "code": [
+      "const parent = document.getElementById(\"parent\");",
+      "",
+      "// Does NOT fire when moving between children",
+      "parent.addEventListener(\"mouseenter\", () => {",
+      "  console.log(\"mouseenter — entered parent\");",
+      "});",
+      "parent.addEventListener(\"mouseleave\", () => {",
+      "  console.log(\"mouseleave — left parent\");",
+      "});",
+      "",
+      "// DOES fire when moving between children (bubbles)",
+      "parent.addEventListener(\"mouseover\", () => {",
+      "  console.log(\"mouseover — fires for children too\");",
+      "});",
+      "parent.addEventListener(\"mouseout\", () => {",
+      "  console.log(\"mouseout — fires for children too\");",
+      "});"
+    ]},
+    { "type": "table", "rows": [
+      ["Event pair",                  "Bubbles?", "Fires for child transitions?"],
+      ["mouseenter / mouseleave",     "No",       "No — only when entering/leaving the element itself"],
+      ["mouseover / mouseout",        "Yes",      "Yes — fires when moving between child elements"]
+    ]},
+    { "type": "h2", "text": "contextmenu (Right-Click)" },
+    { "type": "p",  "text": "The contextmenu event fires when the user right-clicks (or uses the context menu key). You can prevent the default context menu with e.preventDefault()." },
+    { "type": "example", "title": "Custom Context Menu", "code": [
+      "const area = document.getElementById(\"editor\");",
+      "",
+      "area.addEventListener(\"contextmenu\", (e) => {",
+      "  e.preventDefault(); // block default browser menu",
+      "  console.log(\"Right-click at\", e.clientX, e.clientY);",
+      "  console.log(\"Show custom context menu here\");",
+      "});"
+    ]},
+    { "type": "h2", "text": "Event Coordinates" },
+    { "type": "p",  "text": "Mouse events carry several coordinate properties. Choosing the right one depends on whether you need coordinates relative to the viewport, the page, the screen, or the target element." },
+    { "type": "table", "rows": [
+      ["Property",           "Relative To"],
+      ["clientX / clientY",  "The browser viewport (visible area)"],
+      ["pageX / pageY",      "The full document (includes scroll offset)"],
+      ["screenX / screenY",  "The physical monitor screen"],
+      ["offsetX / offsetY",  "The target element's padding edge"]
+    ]},
+    { "type": "example", "title": "Comparing Coordinates", "code": [
+      "document.addEventListener(\"click\", (e) => {",
+      "  console.log(\"clientX/Y:\", e.clientX, e.clientY);  // viewport",
+      "  console.log(\"pageX/Y:\",   e.pageX,   e.pageY);    // document",
+      "  console.log(\"screenX/Y:\", e.screenX, e.screenY);  // monitor",
+      "  console.log(\"offsetX/Y:\", e.offsetX, e.offsetY);  // element",
+      "});"
+    ]},
+    { "type": "note", "text": "Use mouseenter/mouseleave for hover effects — they are simpler and more predictable than mouseover/mouseout because they ignore child element transitions." },
+    { "type": "exercise", "question": "Which coordinate property gives the mouse position relative to the full document (including scrolled area)?", "options": ["clientX / clientY", "pageX / pageY", "screenX / screenY", "offsetX / offsetY"], "answer": 1 }
+  ]
+}

@@ -10,7 +10,8 @@ interview-practical/
     ├── 1-basic/            # ES Modules, Webpack bundling, dev server
     ├── 2-variables-scope/  # var / let / const, scope chain, hoisting
     ├── 3-js-tutorial/      # [DEPRECATED] Webpack SPA version of the JS tutorial
-    └── 4-js-tutorial/      # Astro SSG multi-language tutorial with landing page
+    ├── 4-js-tutorial/      # Astro SSG multi-language tutorial with landing page
+    └── 5-js-tutorial/      # Next.js App Router version of the tutorial platform
 ```
 
 ## Topics
@@ -22,6 +23,7 @@ interview-practical/
 | `js/3-js-tutorial` | **[Deprecated]** Webpack SPA — W3Schools-style JS tutorial |
 | `js/4-js-tutorial` | **Astro SSG** — Multi-language code tutorials with landing page, zero JS content, lazy Monaco editor |
 | `js/4-js-tutorial` (ai-video) | **AI Video & Automation** — Scraped aivideo.school course content + new AI Automation course (prompting, styles, workflows, tools, pipelines, batch processing, scheduling, APIs) |
+| `js/5-js-tutorial` | **Next.js 16 App Router** — Converted from Astro, static export, `@monaco-editor/react`, 141 SSG pages |
 
 ## Getting Started
 

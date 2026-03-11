@@ -1,0 +1,161 @@
+{
+  "id": "typeof",
+  "title": "JS typeof",
+  "group": "JS Data Types",
+  "content": [
+    { "type": "h1", "text": "JavaScript typeof Operator" },
+    { "type": "p", "text": "The typeof operator returns a string indicating the type of the operand. It is the most basic way to check data types in JavaScript, but it has some quirks you should be aware of." },
+    { "type": "h2", "text": "typeof for All Types" },
+    { "type": "p", "text": "The typeof operator works with all JavaScript data types. It can be used as an operator (typeof x) or as a function-like syntax (typeof(x))." },
+    {
+      "type": "example",
+      "title": "typeof with Different Types",
+      "code": [
+        "// Primitive types",
+        "console.log(typeof 'hello');     // 'string'",
+        "console.log(typeof 42);          // 'number'",
+        "console.log(typeof 3.14);        // 'number'",
+        "console.log(typeof true);        // 'boolean'",
+        "console.log(typeof undefined);   // 'undefined'",
+        "console.log(typeof Symbol('x')); // 'symbol'",
+        "console.log(typeof 10n);         // 'bigint'",
+        "",
+        "// Object types",
+        "console.log(typeof {});          // 'object'",
+        "console.log(typeof []);          // 'object'",
+        "console.log(typeof null);        // 'object' (bug!)",
+        "",
+        "// Function",
+        "console.log(typeof function(){}); // 'function'",
+        "console.log(typeof Math.floor);   // 'function'"
+      ]
+    },
+    {
+      "type": "table",
+      "rows": [
+        ["Value", "typeof Result"],
+        ["'hello'", "\"string\""],
+        ["42", "\"number\""],
+        ["true", "\"boolean\""],
+        ["undefined", "\"undefined\""],
+        ["null", "\"object\""],
+        ["Symbol()", "\"symbol\""],
+        ["10n", "\"bigint\""],
+        ["{}", "\"object\""],
+        ["[]", "\"object\""],
+        ["function(){}", "\"function\""]
+      ]
+    },
+    { "type": "h2", "text": "The typeof null Bug" },
+    { "type": "p", "text": "One of the most well-known quirks in JavaScript is that typeof null returns 'object'. This is a historical bug from the very first version of JavaScript that was never fixed for backward compatibility." },
+    {
+      "type": "example",
+      "title": "typeof null Quirk",
+      "code": [
+        "console.log(typeof null); // 'object'",
+        "",
+        "// This is a bug! null is NOT an object.",
+        "// To properly check for null:",
+        "const value = null;",
+        "",
+        "// Correct way to check for null",
+        "console.log(value === null); // true",
+        "",
+        "// Check for object but not null",
+        "function isObject(val) {",
+        "  return typeof val === 'object' && val !== null;",
+        "}",
+        "console.log(isObject({}));   // true",
+        "console.log(isObject(null)); // false",
+        "console.log(isObject([]));   // true"
+      ]
+    },
+    { "type": "note", "text": "Always use === null to check for null. Never rely on typeof to detect null values." },
+    { "type": "h2", "text": "typeof undefined and NaN" },
+    { "type": "p", "text": "The typeof operator is safe to use with undeclared variables — it returns 'undefined' instead of throwing an error. NaN (Not a Number) is of type 'number', which is counterintuitive." },
+    {
+      "type": "example",
+      "title": "typeof with undefined and NaN",
+      "code": [
+        "// typeof with undefined",
+        "let x;",
+        "console.log(typeof x);              // 'undefined'",
+        "console.log(typeof undeclaredVar);   // 'undefined' (no error!)",
+        "",
+        "// typeof with NaN",
+        "console.log(typeof NaN);             // 'number'",
+        "console.log(typeof (0 / 0));         // 'number'",
+        "console.log(typeof parseInt('abc')); // 'number'",
+        "",
+        "// Checking for NaN",
+        "console.log(NaN === NaN);         // false (NaN is not equal to itself!)",
+        "console.log(Number.isNaN(NaN));   // true",
+        "console.log(Number.isNaN('abc')); // false (string, not NaN)",
+        "console.log(isNaN('abc'));         // true (coerces to number first)"
+      ]
+    },
+    { "type": "h2", "text": "typeof vs instanceof" },
+    { "type": "p", "text": "typeof checks the primitive type of a value. instanceof checks whether an object is an instance of a particular constructor. Use typeof for primitives and instanceof for objects." },
+    {
+      "type": "example",
+      "title": "typeof vs instanceof",
+      "code": [
+        "// typeof for primitives",
+        "console.log(typeof 'hello');    // 'string'",
+        "console.log(typeof 42);         // 'number'",
+        "",
+        "// instanceof for objects",
+        "const arr = [1, 2, 3];",
+        "const date = new Date();",
+        "",
+        "console.log(arr instanceof Array);  // true",
+        "console.log(date instanceof Date);   // true",
+        "console.log(typeof arr);             // 'object' (not helpful!)",
+        "",
+        "// Array.isArray() is best for arrays",
+        "console.log(Array.isArray(arr));     // true",
+        "console.log(Array.isArray('hello')); // false",
+        "",
+        "// instanceof doesn't work with primitives",
+        "console.log('hello' instanceof String); // false",
+        "console.log(42 instanceof Number);      // false"
+      ]
+    },
+    { "type": "h2", "text": "Checking Types Safely" },
+    { "type": "p", "text": "For robust type checking, combine typeof with other techniques depending on what you need to detect." },
+    {
+      "type": "example",
+      "title": "Safe Type Checking Patterns",
+      "code": [
+        "function getType(value) {",
+        "  if (value === null) return 'null';",
+        "  if (Array.isArray(value)) return 'array';",
+        "  return typeof value;",
+        "}",
+        "",
+        "console.log(getType(42));        // 'number'",
+        "console.log(getType('hello'));   // 'string'",
+        "console.log(getType(null));      // 'null'",
+        "console.log(getType([1, 2]));   // 'array'",
+        "console.log(getType({}));        // 'object'",
+        "console.log(getType(undefined)); // 'undefined'",
+        "",
+        "// Using Object.prototype.toString for precise type",
+        "function preciseType(value) {",
+        "  return Object.prototype.toString.call(value).slice(8, -1);",
+        "}",
+        "console.log(preciseType([]));      // 'Array'",
+        "console.log(preciseType({}));      // 'Object'",
+        "console.log(preciseType(null));    // 'Null'",
+        "console.log(preciseType(/regex/)); // 'RegExp'",
+        "console.log(preciseType(new Date())); // 'Date'"
+      ]
+    },
+    {
+      "type": "exercise",
+      "question": "What does typeof null return in JavaScript?",
+      "options": ["'null'", "'undefined'", "'object'", "'boolean'"],
+      "answer": 2
+    }
+  ]
+}

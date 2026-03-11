@@ -1,0 +1,107 @@
+{
+  "id": "arithmetic",
+  "title": "JS Arithmetic",
+  "group": "JS Operators",
+  "content": [
+    { "type": "h1", "text": "JavaScript Arithmetic Operators" },
+    { "type": "p", "text": "Arithmetic operators perform mathematical operations on numbers. JavaScript supports all the standard arithmetic operations plus exponentiation and modulus." },
+
+    { "type": "h2", "text": "Basic Arithmetic Operators" },
+    { "type": "p", "text": "The basic arithmetic operators are addition (+), subtraction (-), multiplication (*), and division (/). These work the same as in regular mathematics." },
+    { "type": "table", "rows": [
+      ["Operator", "Description", "Example", "Result"],
+      ["+", "Addition", "5 + 3", "8"],
+      ["-", "Subtraction", "10 - 4", "6"],
+      ["*", "Multiplication", "3 * 7", "21"],
+      ["/", "Division", "15 / 3", "5"],
+      ["%", "Modulus (Remainder)", "10 % 3", "1"],
+      ["**", "Exponentiation", "2 ** 3", "8"]
+    ]},
+    { "type": "example", "title": "Basic Arithmetic", "code": [
+      "let a = 10;",
+      "let b = 3;",
+      "",
+      "console.log(a + b);  // 13",
+      "console.log(a - b);  // 7",
+      "console.log(a * b);  // 30",
+      "console.log(a / b);  // 3.3333333333333335",
+      "console.log(a % b);  // 1",
+      "console.log(a ** b); // 1000"
+    ]},
+
+    { "type": "h2", "text": "Modulus and Exponentiation" },
+    { "type": "p", "text": "The modulus operator (%) returns the remainder of a division. The exponentiation operator (**) raises the left operand to the power of the right operand." },
+    { "type": "example", "title": "Modulus and Exponentiation", "code": [
+      "// Modulus - useful for checking even/odd",
+      "console.log(10 % 2); // 0 (even)",
+      "console.log(11 % 2); // 1 (odd)",
+      "console.log(17 % 5); // 2",
+      "",
+      "// Exponentiation",
+      "console.log(2 ** 4);   // 16",
+      "console.log(3 ** 3);   // 27",
+      "console.log(25 ** 0.5); // 5 (square root)"
+    ]},
+
+    { "type": "h2", "text": "Increment and Decrement" },
+    { "type": "p", "text": "The increment operator (++) adds 1 to a variable. The decrement operator (--) subtracts 1. Both have prefix and postfix forms that behave differently." },
+    { "type": "example", "title": "Increment and Decrement", "code": [
+      "let x = 5;",
+      "",
+      "// Postfix: returns value THEN increments",
+      "console.log(x++); // 5 (returns 5, then x becomes 6)",
+      "console.log(x);   // 6",
+      "",
+      "// Prefix: increments THEN returns value",
+      "console.log(++x); // 7 (x becomes 7, then returns 7)",
+      "console.log(x);   // 7",
+      "",
+      "// Decrement works the same way",
+      "console.log(x--); // 7 (returns 7, then x becomes 6)",
+      "console.log(x);   // 6",
+      "console.log(--x); // 5 (x becomes 5, then returns 5)"
+    ]},
+
+    { "type": "h2", "text": "Operator Precedence" },
+    { "type": "p", "text": "Operator precedence determines the order in which operations are performed. Multiplication and division have higher precedence than addition and subtraction. Use parentheses to control the order." },
+    { "type": "example", "title": "Operator Precedence", "code": [
+      "// Multiplication before addition",
+      "let result1 = 2 + 3 * 4;",
+      "console.log(result1); // 14 (not 20)",
+      "",
+      "// Parentheses override precedence",
+      "let result2 = (2 + 3) * 4;",
+      "console.log(result2); // 20",
+      "",
+      "// Exponentiation before multiplication",
+      "let result3 = 2 * 3 ** 2;",
+      "console.log(result3); // 18 (2 * 9)",
+      "",
+      "// Complex expression",
+      "let result4 = 10 + 20 / 5 - 2 * 3;",
+      "console.log(result4); // 8 (10 + 4 - 6)"
+    ]},
+
+    { "type": "h2", "text": "Math with Special Values" },
+    { "type": "p", "text": "JavaScript handles special numeric values like Infinity and NaN. Division by zero does not throw an error — it returns Infinity. Invalid math operations return NaN (Not a Number)." },
+    { "type": "example", "title": "Special Values", "code": [
+      "console.log(10 / 0);          // Infinity",
+      "console.log(-10 / 0);         // -Infinity",
+      "console.log(0 / 0);           // NaN",
+      "console.log(\"hello\" * 2);     // NaN",
+      "console.log(NaN + 5);         // NaN",
+      "",
+      "// Check for NaN",
+      "console.log(isNaN(\"hello\" * 2)); // true",
+      "console.log(isNaN(42));           // false",
+      "",
+      "// Number.isFinite()",
+      "console.log(Number.isFinite(10));       // true",
+      "console.log(Number.isFinite(Infinity)); // false"
+    ]},
+
+    { "type": "note", "text": "The + operator is also used for string concatenation. If one operand is a string, JavaScript converts the other to a string and concatenates. Use Number() or parseInt() to ensure numeric addition." },
+
+    { "type": "exercise", "question": "What is the result of 10 % 3?", "options": ["3", "3.33", "1", "0"], "answer": 2 }
+  ]
+}

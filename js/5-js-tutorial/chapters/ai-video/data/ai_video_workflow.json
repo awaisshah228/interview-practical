@@ -1,0 +1,143 @@
+{
+  "id": "ai_video_workflow",
+  "title": "AI Video Workflow",
+  "group": "AI Video Production",
+  "content": [
+    { "type": "h1", "text": "AI Video Workflow — The 10-Step Production Pipeline" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Video+Production+Workflow&font=raleway", "alt": "AI Video Production Workflow overview diagram", "caption": "The complete 10-step AI video production pipeline from idea to final delivery" },
+    { "type": "p", "text": "Creating professional AI-generated videos requires a structured, repeatable workflow. This chapter breaks down the entire production process into <strong>10 distinct steps</strong>, each powered by specialized AI tools. Following this pipeline ensures consistent quality and efficient production from initial concept to final export." },
+    { "type": "note", "text": "You do not need to use every tool listed in every step. Pick the tools that best fit your project's style, budget, and complexity. The workflow is flexible — adapt it to your needs." },
+    { "type": "h2", "text": "Workflow Overview" },
+    { "type": "table", "rows": [
+      ["Step", "Phase", "Key Tools", "Output"],
+      ["1", "Idea Generation", "ChatGPT, Gemini, Perplexity, CoPilot, Claude", "Video concept & angle"],
+      ["2", "Video Script / Structure", "Squibler, ChatGPT, ChatSonic, Gemini, Text Cortex", "Written script & scene breakdown"],
+      ["3", "AI Audio", "Suno, ElevenLabs, Udio, Filmora", "Voiceover, music, narration"],
+      ["4", "Mood Board / Design", "Midjourney, Gemini", "Visual style reference board"],
+      ["5", "AI Storyboard", "Midjourney, Storyboarder, Photoshop", "Scene-by-scene visual plan"],
+      ["6", "AI Image Generation", "Midjourney, Runway, DALL-E, Photoshop, Grok, Stable Diffusion, Adobe Firefly, Gemini, Meta AI", "Still frames & key visuals"],
+      ["7", "AI Video Generation", "Runway, VEO, Sora, Pika, Luma Dream Machine, Hapier, Kaiber, InVideo, Akool, Heygen, Hedra, Flux", "Raw video clips"],
+      ["8", "AI Improve Resolution", "Topaz, Filmora, Morph Studios", "Upscaled high-res footage"],
+      ["9", "AI Editing", "Filmora, Premiere Pro, CapCut", "Edited timeline & final cut"],
+      ["10", "AI Sound Effects / Sound Design", "ElevenLabs", "SFX, ambient audio, final mix"]
+    ]},
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Workflow+Pipeline&font=raleway", "alt": "AI Video Workflow pipeline infographic", "caption": "Visual map of all 10 steps in the AI video production workflow" },
+
+    { "type": "h2", "text": "Step 1 — Idea Generation" },
+    { "type": "p", "text": "Every great video starts with a strong idea. AI tools can help you brainstorm concepts, identify trending topics, find unique angles, and validate whether an idea has audience appeal — all before you write a single word of script." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>ChatGPT</code>, <code>Gemini</code>, <code>Perplexity</code>, <code>CoPilot</code>, <code>Claude</code>" },
+    { "type": "p", "text": "Use ChatGPT or Claude for creative brainstorming and narrative angles. Use Perplexity for research-backed, data-driven topic validation with cited sources. Use Gemini for trending topic discovery via Google's data ecosystem. Use CoPilot for structured, step-by-step ideation within Microsoft tools." },
+    { "type": "example", "title": "Idea Generation Prompt (ChatGPT)", "code": "I want to create a 3-minute AI-generated video for YouTube.\nMy niche is futuristic technology.\nSuggest 10 unique video ideas that:\n- Have viral potential\n- Can be fully produced with AI tools\n- Appeal to a tech-curious audience aged 18-35\nFor each idea, give a one-line hook and a brief description." },
+    { "type": "note", "text": "Spend time in this phase. A weak idea cannot be saved by great visuals. Validate your concept by checking search volume, social media trends, and competitor content before moving to Step 2." },
+
+    { "type": "h2", "text": "Step 2 — Video Script / Structure" },
+    { "type": "p", "text": "Once you have a validated idea, the next step is turning it into a structured script. The script defines your narration, scene descriptions, visual cues, pacing, and overall story arc. AI scriptwriting tools can generate full screenplays, dialogue, and scene breakdowns in minutes." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>Squibler</code>, <code>ChatGPT</code>, <code>ChatSonic</code>, <code>Gemini</code>, <code>Text Cortex</code>" },
+    { "type": "table", "rows": [
+      ["Tool", "Strength", "Best For"],
+      ["Squibler", "Professional screenplay formatting", "Narrative and dialogue-heavy scripts"],
+      ["ChatGPT", "Versatile, conversational iteration", "General-purpose scriptwriting"],
+      ["ChatSonic", "Real-time data awareness", "Trend-aware, topical scripts"],
+      ["Gemini", "Data-backed research integration", "Educational and factual scripts"],
+      ["Text Cortex", "Concise, high-impact writing", "Short-form and punchy scripts"]
+    ]},
+    { "type": "example", "title": "Scriptwriting Prompt (ChatGPT)", "code": "Write a 3-minute video script about \"The Future of AI Companions.\"\n\nFormat:\n- Scene number, visual description, narration text, on-screen text\n- Include an engaging hook in the first 5 seconds\n- End with a call to action\n- Tone: Conversational, wonder-filled, slightly philosophical\n- Target: YouTube audience aged 20-35" },
+    { "type": "note", "text": "Always include visual descriptions in your script. These descriptions become the prompts you feed into image and video generation tools in later steps." },
+
+    { "type": "h2", "text": "Step 3 — AI Audio" },
+    { "type": "p", "text": "Audio is one of the most critical layers in any video. AI audio tools can generate voiceovers, background music, narration, and even full songs. Getting audio right early in the process helps you pace your visuals and editing later." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>Suno</code>, <code>ElevenLabs</code>, <code>Udio</code>, <code>Filmora</code>" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=AI+Audio+Tools&font=raleway", "alt": "AI audio generation tools comparison", "caption": "Suno for music, ElevenLabs for voice cloning, Udio for songs, Filmora for integrated audio" },
+    { "type": "p", "text": "<strong>Suno</strong> generates full songs and instrumental tracks from text prompts — ideal for intros, outros, and background music. <strong>ElevenLabs</strong> is the industry leader in AI voice cloning and text-to-speech with natural, expressive voices. <strong>Udio</strong> specializes in genre-specific music generation. <strong>Filmora</strong> includes built-in AI audio features for quick voiceover and music generation during editing." },
+    { "type": "example", "title": "ElevenLabs Voice Prompt", "code": "Text: \"In a world where machines dream, one AI dared to imagine.\"\nVoice: Deep, cinematic narrator\nPace: Slow, dramatic\nEmotion: Wonder and gravitas" },
+    { "type": "note", "text": "Generate your voiceover <strong>before</strong> creating visuals. The audio track defines your video's pacing — you will time your generated images and video clips to match the narration beats." },
+
+    { "type": "h2", "text": "Step 4 — Mood Board / Design" },
+    { "type": "p", "text": "A mood board establishes the visual identity of your video before you generate any final assets. It defines colors, lighting styles, composition patterns, textures, and overall aesthetic direction. This step prevents visual inconsistency across your generated images and clips." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>Midjourney</code>, <code>Gemini</code>" },
+    { "type": "p", "text": "Use Midjourney to rapidly generate stylistic reference images. Use Gemini to research visual trends, color theory, and design principles relevant to your concept. Combine both to create a cohesive visual language for your project." },
+    { "type": "example", "title": "Midjourney Mood Board Prompt", "code": "Cyberpunk cityscape, neon blue and magenta palette,\nrain-soaked streets, holographic billboards,\ncinematic lighting, film grain texture,\nBlade Runner meets Studio Ghibli --ar 16:9 --v 7 --s 750" },
+
+    { "type": "h2", "text": "Step 5 — AI Storyboard" },
+    { "type": "p", "text": "The storyboard translates your script into a visual sequence. Each scene gets a rough visual representation showing composition, camera angle, character placement, and key actions. AI tools can generate storyboard frames from your script descriptions in seconds." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>Midjourney</code>, <code>Storyboarder</code>, <code>Photoshop</code>" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=AI+Storyboard+Example&font=raleway", "alt": "AI storyboard example with scene frames", "caption": "An AI-generated storyboard showing scene-by-scene visual planning" },
+    { "type": "p", "text": "Use Midjourney to generate each storyboard frame based on your script's visual descriptions. Use Storyboarder (free, open-source) to arrange frames into a proper storyboard layout with annotations. Use Photoshop to refine, annotate, or composite frames together." },
+    { "type": "note", "text": "Your storyboard does not need to be perfect. Its purpose is to plan shot composition and sequence flow. Think of it as a visual blueprint, not a final product." },
+
+    { "type": "h2", "text": "Step 6 — AI Image Generation" },
+    { "type": "p", "text": "This is where your video's visual assets come to life. AI image generation creates the still frames, backgrounds, character designs, and key visuals that form the foundation of your video. Many AI video tools use images as input, so high-quality image generation is critical." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>Midjourney</code>, <code>Runway</code>, <code>DALL-E</code>, <code>Photoshop</code>, <code>Grok</code>, <code>Stable Diffusion</code>, <code>Adobe Firefly</code>, <code>Gemini</code>, <code>Meta AI</code>" },
+    { "type": "table", "rows": [
+      ["Tool", "Strength", "Best Use Case"],
+      ["Midjourney", "Artistic, cinematic quality", "Hero shots, stylized scenes"],
+      ["Runway", "Motion-ready image generation", "Frames intended for video conversion"],
+      ["DALL-E", "Photorealism, inpainting", "Realistic scenes, editing existing images"],
+      ["Stable Diffusion", "Open-source, fully customizable", "Custom models, local generation"],
+      ["Adobe Firefly", "Creative Cloud integration", "Design assets, commercial-safe images"],
+      ["Grok", "Integrated with X/Twitter", "Social-media-ready visuals"],
+      ["Gemini", "Google ecosystem, contextual", "Data-driven visual content"],
+      ["Meta AI", "Social platform integration", "Accessible, quick generation"]
+    ]},
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=AI+Image+Comparison&font=raleway", "alt": "Comparison of AI-generated images from different tools", "caption": "The same prompt rendered by Midjourney, DALL-E, and Stable Diffusion showing stylistic differences" },
+    { "type": "note", "text": "Generate images at the highest resolution possible. These images will be fed into video generation tools in the next step, and higher input quality produces better video output." },
+    { "type": "example", "title": "Midjourney Image Generation Prompt", "code": "A futuristic scientist examining a holographic brain scan\nin a dimly lit laboratory, volumetric blue lighting,\nultra-detailed, photorealistic, cinematic composition,\nshallow depth of field --ar 16:9 --v 7 --q 2" },
+
+    { "type": "h2", "text": "Step 7 — AI Video Generation" },
+    { "type": "p", "text": "The centerpiece of the workflow. AI video generation tools transform your images, text prompts, or reference clips into moving video. This is the most rapidly evolving space in AI — new tools and capabilities emerge weekly." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>Runway</code>, <code>VEO</code>, <code>Sora</code>, <code>Pika</code>, <code>Luma Dream Machine</code>, <code>Hapier</code>, <code>Kaiber</code>, <code>InVideo</code>, <code>Akool</code>, <code>Heygen</code>, <code>Hedra</code>, <code>Flux</code>" },
+    { "type": "table", "rows": [
+      ["Tool", "Type", "Best For"],
+      ["Runway Gen-3", "Image/Text to Video", "High-quality cinematic clips, motion control"],
+      ["VEO (Google)", "Text to Video", "Realistic, physics-aware video generation"],
+      ["Sora (OpenAI)", "Text to Video", "Complex scenes with multiple subjects"],
+      ["Pika", "Image/Text to Video", "Quick stylized clips, easy interface"],
+      ["Luma Dream Machine", "Image to Video", "Smooth camera movements, 3D-aware scenes"],
+      ["Hapier", "Text to Video", "Automated video production pipelines"],
+      ["Kaiber", "Image/Audio to Video", "Music videos, audio-reactive visuals"],
+      ["InVideo", "Template-based AI Video", "Social media content, quick edits"],
+      ["Akool", "Face swap, lip sync", "Marketing videos, personalized content"],
+      ["Heygen", "AI Avatar videos", "Presenter-style, talking head videos"],
+      ["Hedra", "Character animation", "Animated character lip sync and expression"],
+      ["Flux", "Image to Video", "Stylized, artistic video generation"]
+    ]},
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=AI+Video+Gen+Tools&font=raleway", "alt": "AI video generation tool interfaces", "caption": "Runway, Sora, and Pika — three leading AI video generation platforms" },
+    { "type": "p", "text": "The general approach is: take a high-quality generated image from Step 6, upload it to a video generation tool, and provide a motion prompt describing how the scene should move. Tools like Runway and Luma allow precise camera control (pan, zoom, orbit) while others like Sora generate motion from text descriptions alone." },
+    { "type": "example", "title": "Runway Gen-3 Motion Prompt", "code": "Input: [Upload generated image of scientist in lab]\nMotion: Slow dolly forward, camera pushes toward the\nholographic brain scan. Subtle particle effects float\nin the foreground. The scientist's hand gestures\nslowly over the hologram. Duration: 4 seconds." },
+    { "type": "note", "text": "AI video clips are typically 4-10 seconds long. You will generate many short clips and assemble them in the editing phase (Step 9). Plan for this by scripting scenes that work in short segments." },
+
+    { "type": "h2", "text": "Step 8 — AI Improve Resolution (Upscaling)" },
+    { "type": "p", "text": "AI-generated video often outputs at lower resolutions or with artifacts. Upscaling tools use AI to enhance resolution, sharpen details, reduce noise, and improve overall visual quality — essential for professional output." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>Topaz Video AI</code>, <code>Filmora</code>, <code>Morph Studios</code>" },
+    { "type": "p", "text": "<strong>Topaz Video AI</strong> is the industry standard for AI upscaling. It can upscale video from 720p to 4K (or even 8K) while adding detail, reducing noise, and smoothing motion. <strong>Filmora</strong> offers built-in AI enhancement for quick fixes. <strong>Morph Studios</strong> provides cloud-based upscaling for large batches." },
+    { "type": "note", "text": "Always upscale <strong>before</strong> final editing. Importing upscaled footage into your editing timeline ensures your final export is at maximum quality throughout." },
+
+    { "type": "h2", "text": "Step 9 — AI Editing" },
+    { "type": "p", "text": "Editing is where all your generated assets come together. You combine video clips, images, voiceover, music, sound effects, text overlays, and transitions into a cohesive final video. AI-powered editing tools can automate cuts, suggest transitions, and even generate rough edits from your script." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>Filmora</code>, <code>Premiere Pro</code>, <code>CapCut</code>" },
+    { "type": "table", "rows": [
+      ["Tool", "Skill Level", "Best For"],
+      ["Filmora", "Beginner-Intermediate", "AI-powered features, quick edits, accessible interface"],
+      ["Premiere Pro", "Intermediate-Advanced", "Professional editing, full control, industry standard"],
+      ["CapCut", "Beginner", "Social media content, mobile editing, free"]
+    ]},
+    { "type": "p", "text": "Import your upscaled video clips, arrange them on the timeline to match your script, layer in your voiceover and music from Step 3, add transitions between scenes, and include text overlays for key points. Use AI features like auto-captioning, smart cut, and beat-sync to speed up the process." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=AI+Editing+Timeline&font=raleway", "alt": "AI editing timeline in Filmora", "caption": "A multi-track editing timeline assembling AI-generated clips, audio, and text" },
+
+    { "type": "h2", "text": "Step 10 — AI Sound Effects / Sound Design" },
+    { "type": "p", "text": "The final layer of polish. Sound effects and sound design bring your video to life — ambient sounds, transitions, impacts, whooshes, and atmospheric textures make the difference between amateur and professional production." },
+    { "type": "p", "text": "<strong>Recommended tools:</strong> <code>ElevenLabs</code>" },
+    { "type": "p", "text": "ElevenLabs has expanded beyond voice generation to include AI sound effect creation. Describe the sound you need — a futuristic door opening, rain on a tin roof, a spaceship engine hum — and the AI generates it. Layer these effects into your edited timeline for a complete audio experience." },
+    { "type": "example", "title": "ElevenLabs Sound Effect Prompt", "code": "Generate a sound effect:\n- Description: Futuristic holographic interface powering up\n- Duration: 2 seconds\n- Character: Electronic shimmer, ascending tone,\n  subtle digital glitch texture\n- Reference: Similar to sci-fi UI sounds in Blade Runner 2049" },
+    { "type": "note", "text": "Sound design is often underestimated but dramatically improves perceived production quality. Even simple ambient audio (room tone, nature sounds, city noise) can make AI-generated visuals feel more immersive and believable." },
+
+    { "type": "h2", "text": "Putting It All Together" },
+    { "type": "p", "text": "The 10-step workflow is designed to be <strong>iterative, not strictly linear</strong>. You may loop back to earlier steps — refining your script after generating test visuals, adjusting your mood board after seeing initial video output, or regenerating images after discovering a better style." },
+    { "type": "p", "text": "The key principle is: <strong>plan before you generate</strong>. Steps 1-5 (Idea, Script, Audio, Mood Board, Storyboard) are planning phases. Steps 6-10 (Image, Video, Upscale, Edit, Sound) are production phases. Thorough planning dramatically reduces wasted generation credits and revision cycles." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Workflow+Summary&font=raleway", "alt": "Complete AI video workflow summary diagram", "caption": "The full workflow: Plan (Steps 1-5) then Produce (Steps 6-10), with feedback loops between phases" },
+
+    { "type": "exercise", "question": "What is the recommended order for audio and visual generation in the AI video workflow?", "options": ["Generate visuals first, then create audio to match", "Generate audio first, then time visuals to the audio", "Generate audio and visuals simultaneously", "Audio is only added in the final editing step"], "answer": 1 },
+    { "type": "exercise", "question": "Why should you upscale AI-generated video before the editing phase?", "options": ["Upscaling is faster on individual clips than on a full timeline", "Editing software cannot handle low-resolution footage", "Importing upscaled footage ensures maximum quality in the final export", "Upscaling must happen before sound design"], "answer": 2 },
+    { "type": "exercise", "question": "Which tool is the industry standard for AI video upscaling?", "options": ["Filmora", "Topaz Video AI", "CapCut", "Morph Studios"], "answer": 1 }
+  ]
+}

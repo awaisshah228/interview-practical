@@ -1,0 +1,53 @@
+{
+  "id": "extras",
+  "title": "Extras & Resources",
+  "group": "Extras",
+  "content": [
+    { "type": "h1", "text": "Extras & Resources" },
+    { "type": "p", "text": "This section covers complementary software tools that go hand-in-hand with AI video generation. While AI tools handle the creative generation process, you will almost always need traditional video editing software to polish, cut, arrange, and export your final content. Mastering at least one of these editors dramatically increases the quality of your finished projects." },
+    { "type": "note", "text": "Each tool listed below includes a recommended free YouTube tutorial from a trusted creator. These tutorials are excellent starting points for beginners and can also help experienced editors learn new techniques." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Video+Editing+Software&font=raleway", "alt": "Video editing software overview", "caption": "Complementary editing tools are essential for polishing AI-generated video content" },
+
+    { "type": "h2", "text": "CapCut" },
+    { "type": "p", "text": "<strong>CapCut</strong> is a free, feature-rich video editor developed by ByteDance (the company behind TikTok). It is available on desktop, mobile, and as a web app. CapCut has become extremely popular for short-form content creation due to its intuitive interface, built-in effects library, and seamless export to social media platforms." },
+    { "type": "p", "text": "<strong>Best for:</strong> Short-form social media content (TikTok, Reels, Shorts), quick edits, captions and subtitles, trendy effects and transitions. CapCut's auto-caption feature and extensive template library make it the fastest path from raw AI clips to polished social posts." },
+    { "type": "p", "text": "<strong>Recommended Tutorial:</strong> <em>Ben Claremont</em> on YouTube. Ben provides clear, practical CapCut tutorials that focus on real-world workflows and creative techniques, covering everything from basic editing to advanced effects." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=CapCut+Editor&font=raleway", "alt": "CapCut editing interface", "caption": "CapCut offers a clean, modern interface with powerful editing features at no cost" },
+
+    { "type": "h2", "text": "Adobe Premiere Pro" },
+    { "type": "p", "text": "<strong>Adobe Premiere Pro</strong> is the industry-standard professional video editing software used in film, television, and professional content production worldwide. It offers the deepest feature set of any editor, including advanced color grading (via Lumetri Color), multi-cam editing, dynamic linking with After Effects, and extensive plugin support." },
+    { "type": "p", "text": "<strong>Best for:</strong> Professional and long-form video production, complex multi-track timelines, color grading, projects requiring integration with the Adobe Creative Cloud ecosystem (After Effects, Photoshop, Audition). It is the go-to choice when quality and flexibility are the top priorities." },
+    { "type": "p", "text": "<strong>Recommended Tutorial:</strong> <em>Primal Video</em> on YouTube. Primal Video offers beginner-to-advanced Premiere Pro tutorials with a focus on efficient workflows, keyboard shortcuts, and professional techniques that save time." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Premiere+Pro+Timeline&font=raleway", "alt": "Adobe Premiere Pro timeline view", "caption": "Premiere Pro is the industry standard for professional video editing" },
+
+    { "type": "h2", "text": "Filmora" },
+    { "type": "p", "text": "<strong>Filmora</strong> by Wondershare is a user-friendly video editor that bridges the gap between beginner tools like CapCut and professional software like Premiere Pro. It offers a clean drag-and-drop interface, a large library of built-in effects, transitions, and titles, and AI-powered features like smart cutout and AI copywriting." },
+    { "type": "p", "text": "<strong>Best for:</strong> Intermediate editors, YouTube content creators, educational videos, and anyone who wants more power than CapCut but a gentler learning curve than Premiere Pro. Filmora's one-time purchase option also makes it budget-friendly compared to Adobe's subscription model." },
+    { "type": "p", "text": "<strong>Recommended Tutorial:</strong> <em>Primal Video</em> on YouTube. Primal Video covers Filmora with the same practical, results-oriented teaching style, making it easy to get productive quickly." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Filmora+Editor&font=raleway", "alt": "Filmora editing interface", "caption": "Filmora balances ease of use with professional-level features" },
+
+    { "type": "h2", "text": "Adobe Photoshop" },
+    { "type": "p", "text": "<strong>Adobe Photoshop</strong> is the world's leading image editing software. While it is not a video editor, it is an essential companion tool for AI video creators. Use Photoshop to prepare reference images, create style boards, edit AI-generated frames, design thumbnails, build title cards, and refine character reference images before feeding them into AI video tools." },
+    { "type": "p", "text": "<strong>Best for:</strong> Image preparation for AI video tools (reference images, style boards, character sheets), thumbnail design, title card creation, frame-by-frame touch-ups, and compositing still elements for Frames-to-Video workflows." },
+    { "type": "p", "text": "<strong>Recommended Tutorial:</strong> <em>PIXimperfect</em> on YouTube. PIXimperfect (Unmesh Dinda) is widely regarded as one of the best Photoshop educators on the internet. His tutorials are detailed, well-paced, and cover everything from basic tools to advanced compositing and retouching." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Photoshop+Workspace&font=raleway", "alt": "Adobe Photoshop workspace", "caption": "Photoshop is essential for preparing reference images and style boards for AI video generation" },
+
+    { "type": "h2", "text": "DaVinci Resolve" },
+    { "type": "p", "text": "<strong>DaVinci Resolve</strong> by Blackmagic Design is a professional-grade video editor with the most powerful color grading tools available in any software. The free version includes nearly all features of the paid Studio version, making it the best free professional editor available. Its Fusion page provides built-in visual effects and motion graphics, and the Fairlight page offers a full digital audio workstation." },
+    { "type": "p", "text": "<strong>Best for:</strong> Color grading AI-generated footage, professional editing on a budget, visual effects compositing, projects requiring advanced audio post-production. DaVinci Resolve's color grading capabilities are unmatched and can transform the look of AI-generated video dramatically." },
+    { "type": "p", "text": "<strong>Recommended Tutorial:</strong> <em>Ben Claremont</em> on YouTube. Ben's DaVinci Resolve tutorials are practical and project-focused, helping you learn the software through real editing scenarios rather than abstract feature tours." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=DaVinci+Resolve&font=raleway", "alt": "DaVinci Resolve color grading panel", "caption": "DaVinci Resolve offers industry-leading color grading tools completely free" },
+
+    { "type": "h2", "text": "Comparison Table" },
+    { "type": "table", "rows": [
+      ["Tool", "Price", "Skill Level", "Best For", "Tutorial By"],
+      ["CapCut", "Free", "Beginner", "Short-form social media content", "Ben Claremont"],
+      ["Adobe Premiere Pro", "Subscription", "Intermediate-Advanced", "Professional long-form production", "Primal Video"],
+      ["Filmora", "One-time / Subscription", "Beginner-Intermediate", "YouTube & educational content", "Primal Video"],
+      ["Adobe Photoshop", "Subscription", "Intermediate", "Image prep & reference creation", "PIXimperfect"],
+      ["DaVinci Resolve", "Free (Studio: one-time)", "Intermediate-Advanced", "Color grading & professional editing", "Ben Claremont"]
+    ]},
+    { "type": "note", "text": "You do not need to learn all of these tools. Start with one editor (CapCut for beginners, DaVinci Resolve for free professional-grade editing) and add Photoshop when you need image preparation capabilities. Master one tool well before expanding to others." },
+    { "type": "exercise", "question": "Which editing tool would be the best choice for color grading AI-generated video on a budget?", "options": ["CapCut", "Adobe Premiere Pro", "DaVinci Resolve", "Filmora"], "answer": 2 }
+  ]
+}

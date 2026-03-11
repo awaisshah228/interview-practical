@@ -1,0 +1,122 @@
+{
+  "id": "number_properties",
+  "title": "JS Number Properties",
+  "group": "JS Numbers",
+  "content": [
+    { "type": "h1", "text": "JavaScript Number Properties" },
+    { "type": "p", "text": "The Number object in JavaScript has several static properties that represent important numeric constants. These properties define the boundaries and special values of the JavaScript number system (IEEE 754 double-precision floating point)." },
+
+    { "type": "h2", "text": "MAX_VALUE and MIN_VALUE" },
+    { "type": "p", "text": "Number.MAX_VALUE is the largest representable number in JavaScript. Number.MIN_VALUE is the smallest positive number (closest to zero, but not zero). Values beyond MAX_VALUE become Infinity." },
+    { "type": "example", "title": "MAX_VALUE and MIN_VALUE", "code": [
+      "console.log(Number.MAX_VALUE);",
+      "console.log(Number.MIN_VALUE);",
+      "",
+      "// MAX_VALUE is approximately 1.8e+308",
+      "console.log(Number.MAX_VALUE > 1000000);",
+      "",
+      "// MIN_VALUE is approximately 5e-324",
+      "console.log(Number.MIN_VALUE > 0);",
+      "console.log(Number.MIN_VALUE < 0.0001);",
+      "",
+      "// Overflow beyond MAX_VALUE",
+      "console.log(Number.MAX_VALUE * 2);"
+    ]},
+
+    { "type": "h2", "text": "MAX_SAFE_INTEGER and MIN_SAFE_INTEGER" },
+    { "type": "p", "text": "Number.MAX_SAFE_INTEGER (2^53 - 1) is the largest integer that can be represented exactly. Beyond this, integers lose precision. Number.MIN_SAFE_INTEGER is its negative counterpart." },
+    { "type": "example", "title": "Safe Integer Range", "code": [
+      "console.log(Number.MAX_SAFE_INTEGER);",
+      "console.log(Number.MIN_SAFE_INTEGER);",
+      "",
+      "// Safe integer check",
+      "console.log(Number.isSafeInteger(42));",
+      "console.log(Number.isSafeInteger(9007199254740991));",
+      "console.log(Number.isSafeInteger(9007199254740992));",
+      "",
+      "// Precision loss beyond safe range",
+      "let big = Number.MAX_SAFE_INTEGER;",
+      "console.log(big);",
+      "console.log(big + 1);",
+      "console.log(big + 2);",
+      "console.log(big + 1 === big + 2);"
+    ]},
+
+    { "type": "h2", "text": "POSITIVE_INFINITY and NEGATIVE_INFINITY" },
+    { "type": "p", "text": "Number.POSITIVE_INFINITY represents positive infinity, returned when you overflow the maximum number or divide by zero. Number.NEGATIVE_INFINITY is its negative counterpart." },
+    { "type": "example", "title": "Infinity Values", "code": [
+      "console.log(Number.POSITIVE_INFINITY);",
+      "console.log(Number.NEGATIVE_INFINITY);",
+      "",
+      "// How to get Infinity",
+      "console.log(1 / 0);",
+      "console.log(-1 / 0);",
+      "console.log(Number.MAX_VALUE * 2);",
+      "",
+      "// Infinity comparisons",
+      "console.log(Infinity > Number.MAX_VALUE);",
+      "console.log(-Infinity < Number.MIN_SAFE_INTEGER);",
+      "",
+      "// Checking for Infinity",
+      "console.log(Number.isFinite(Infinity));",
+      "console.log(Number.isFinite(42));",
+      "console.log(Infinity + Infinity);"
+    ]},
+
+    { "type": "h2", "text": "NaN (Not a Number)" },
+    { "type": "p", "text": "Number.NaN represents a value that is not a valid number. It results from invalid math operations. NaN is unique: it is not equal to anything, including itself." },
+    { "type": "example", "title": "NaN Property", "code": [
+      "console.log(Number.NaN);",
+      "console.log(typeof NaN);",
+      "",
+      "// Operations that produce NaN",
+      "console.log(0 / 0);",
+      "console.log(Math.sqrt(-1));",
+      "console.log(parseInt(\"hello\"));",
+      "console.log(undefined + 1);",
+      "",
+      "// NaN is not equal to itself!",
+      "console.log(NaN === NaN);",
+      "console.log(NaN == NaN);",
+      "",
+      "// Correct way to check for NaN",
+      "console.log(Number.isNaN(NaN));",
+      "console.log(Number.isNaN(\"hello\"));"
+    ]},
+
+    { "type": "h2", "text": "EPSILON" },
+    { "type": "p", "text": "Number.EPSILON is the smallest difference between two representable numbers. It is approximately 2.22e-16 and is useful for comparing floating-point numbers where tiny rounding errors can occur." },
+    { "type": "example", "title": "EPSILON for Float Comparison", "code": [
+      "console.log(Number.EPSILON);",
+      "",
+      "// Floating-point problem",
+      "console.log(0.1 + 0.2);",
+      "console.log(0.1 + 0.2 === 0.3);",
+      "",
+      "// Using EPSILON for safe comparison",
+      "function areEqual(a, b) {",
+      "  return Math.abs(a - b) < Number.EPSILON;",
+      "}",
+      "",
+      "console.log(areEqual(0.1 + 0.2, 0.3));",
+      "console.log(areEqual(1.0, 1.0));",
+      "console.log(areEqual(1.0, 1.1));"
+    ]},
+
+    { "type": "table", "rows": [
+      ["Property", "Value", "Description"],
+      ["MAX_VALUE", "~1.8e+308", "Largest representable number"],
+      ["MIN_VALUE", "~5e-324", "Smallest positive number (near zero)"],
+      ["MAX_SAFE_INTEGER", "9007199254740991", "Largest exact integer (2^53 - 1)"],
+      ["MIN_SAFE_INTEGER", "-9007199254740991", "Smallest exact integer"],
+      ["POSITIVE_INFINITY", "Infinity", "Positive infinity"],
+      ["NEGATIVE_INFINITY", "-Infinity", "Negative infinity"],
+      ["NaN", "NaN", "Not-a-Number value"],
+      ["EPSILON", "~2.22e-16", "Smallest float difference"]
+    ]},
+
+    { "type": "note", "text": "Number properties are static — access them on the Number object (Number.MAX_VALUE), not on a number variable. Writing myNum.MAX_VALUE returns undefined." },
+
+    { "type": "exercise", "question": "What does NaN === NaN return in JavaScript?", "options": ["true", "false", "NaN", "undefined"], "answer": 1 }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "async_intro",
+  "title": "JS Async Introduction",
+  "group": "JS Async",
+  "content": [
+    { "type": "h1", "text": "JavaScript Asynchronous Programming" },
+    { "type": "p", "text": "JavaScript is a single-threaded language, meaning it can only execute one piece of code at a time. Asynchronous programming allows JavaScript to perform long-running tasks (like fetching data) without blocking the main thread." },
+
+    { "type": "h2", "text": "Synchronous vs Asynchronous" },
+    { "type": "p", "text": "In synchronous code, each statement runs one after another, waiting for the previous one to complete. In asynchronous code, a task can be started and the program continues executing while waiting for the task to finish." },
+    { "type": "example", "title": "Synchronous Code", "code": [
+      "// Synchronous - runs in order",
+      "console.log('Step 1');",
+      "console.log('Step 2');",
+      "console.log('Step 3');",
+      "// Output: Step 1, Step 2, Step 3"
+    ]},
+    { "type": "example", "title": "Asynchronous Code", "code": [
+      "// Asynchronous - setTimeout delays execution",
+      "console.log('Step 1');",
+      "setTimeout(function() {",
+      "  console.log('Step 2 (delayed)');",
+      "}, 0);",
+      "console.log('Step 3');",
+      "// Output: Step 1, Step 3, Step 2 (delayed)"
+    ]},
+
+    { "type": "h2", "text": "Why Async Matters" },
+    { "type": "p", "text": "Without asynchronous programming, the browser would freeze during long operations like network requests, file reading, or timers. Async allows the UI to remain responsive while these operations complete in the background." },
+    { "type": "example", "title": "Blocking vs Non-Blocking", "code": [
+      "// Simulating a non-blocking operation",
+      "console.log('Requesting data...');",
+      "",
+      "setTimeout(function() {",
+      "  console.log('Data received!');",
+      "}, 2000);",
+      "",
+      "console.log('UI is still responsive!');",
+      "console.log('User can keep interacting...');"
+    ]},
+
+    { "type": "h2", "text": "The Event Loop" },
+    { "type": "p", "text": "The event loop is the mechanism that allows JavaScript to perform non-blocking operations. It continuously checks if the call stack is empty and moves tasks from the callback queue to the call stack for execution." },
+    { "type": "example", "title": "Event Loop in Action", "code": [
+      "console.log('1. Script start');",
+      "",
+      "setTimeout(function() {",
+      "  console.log('2. setTimeout callback');",
+      "}, 0);",
+      "",
+      "Promise.resolve().then(function() {",
+      "  console.log('3. Promise callback');",
+      "});",
+      "",
+      "console.log('4. Script end');",
+      "// Output order: 1, 4, 3, 2",
+      "// Promise (microtask) runs before setTimeout (macrotask)"
+    ]},
+
+    { "type": "h2", "text": "Call Stack, Callback Queue, and Microtask Queue" },
+    { "type": "p", "text": "The JavaScript engine uses several components to manage code execution. The call stack executes functions, the callback queue (macrotask queue) holds callbacks from setTimeout, events, etc., and the microtask queue holds promise callbacks and queueMicrotask." },
+    { "type": "table", "rows": [
+      ["Component", "Purpose", "Priority"],
+      ["Call Stack", "Executes functions in LIFO order", "Immediate"],
+      ["Microtask Queue", "Promise .then(), queueMicrotask()", "High (runs first)"],
+      ["Callback Queue", "setTimeout, setInterval, events", "Lower (runs after microtasks)"],
+      ["Event Loop", "Moves tasks from queues to stack", "Coordinator"]
+    ]},
+    { "type": "example", "title": "Microtasks vs Macrotasks", "code": [
+      "console.log('Start');",
+      "",
+      "// Macrotask (callback queue)",
+      "setTimeout(() => console.log('Timeout 1'), 0);",
+      "setTimeout(() => console.log('Timeout 2'), 0);",
+      "",
+      "// Microtask (microtask queue)",
+      "Promise.resolve().then(() => console.log('Promise 1'));",
+      "Promise.resolve().then(() => console.log('Promise 2'));",
+      "",
+      "console.log('End');",
+      "// Output: Start, End, Promise 1, Promise 2, Timeout 1, Timeout 2"
+    ]},
+
+    { "type": "note", "text": "Microtasks (Promises) always execute before macrotasks (setTimeout/setInterval) when the call stack is empty. This is why Promise callbacks run before setTimeout callbacks even if setTimeout has a delay of 0 milliseconds." },
+
+    { "type": "exercise", "question": "In the event loop, which queue has higher priority?", "options": ["Callback Queue (macrotasks)", "Microtask Queue", "They have equal priority", "It depends on the browser"], "answer": 1 }
+  ]
+}

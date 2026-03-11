@@ -1,0 +1,86 @@
+{
+  "id": "dom_elements",
+  "title": "JS DOM Elements",
+  "group": "JS HTML DOM",
+  "content": [
+    { "type": "h1", "text": "JavaScript DOM Elements" },
+    { "type": "p",  "text": "To manipulate HTML with JavaScript you first need to find (select) the elements. The DOM provides several methods ranging from simple id lookups to powerful CSS-selector queries." },
+    { "type": "h2", "text": "getElementById()" },
+    { "type": "p",  "text": "The fastest way to find a single element is by its unique id attribute. It returns the element object or null if no match is found." },
+    { "type": "example", "title": "Find by ID", "code": [
+      "const title = document.getElementById(\"page-title\");",
+      "console.log(title);            // <h1 id=\"page-title\">...</h1>",
+      "console.log(title.tagName);    // H1",
+      "console.log(title.id);         // page-title"
+    ]},
+    { "type": "h2", "text": "getElementsByClassName()" },
+    { "type": "p",  "text": "Returns a live HTMLCollection of all elements that have the specified class name. Because it is live, the collection updates automatically when the DOM changes." },
+    { "type": "example", "title": "Find by Class Name", "code": [
+      "const items = document.getElementsByClassName(\"list-item\");",
+      "console.log(items.length);     // number of matches",
+      "",
+      "// Loop through the collection",
+      "for (let i = 0; i < items.length; i++) {",
+      "  console.log(items[i].textContent);",
+      "}"
+    ]},
+    { "type": "h2", "text": "getElementsByTagName()" },
+    { "type": "p",  "text": "Returns a live HTMLCollection of all elements with the given tag name. Use \"*\" to select every element in the document." },
+    { "type": "example", "title": "Find by Tag Name", "code": [
+      "const paragraphs = document.getElementsByTagName(\"p\");",
+      "console.log(paragraphs.length);",
+      "",
+      "// Get all elements",
+      "const everything = document.getElementsByTagName(\"*\");",
+      "console.log(everything.length); // total element count"
+    ]},
+    { "type": "h2", "text": "querySelector() and querySelectorAll()" },
+    { "type": "p",  "text": "These modern methods accept any valid CSS selector string. querySelector() returns the first match (or null). querySelectorAll() returns a static NodeList of all matches." },
+    { "type": "example", "title": "CSS Selector Queries", "code": [
+      "// First element with class 'card'",
+      "const card = document.querySelector(\".card\");",
+      "console.log(card);",
+      "",
+      "// All <li> inside .nav",
+      "const navLinks = document.querySelectorAll(\".nav li\");",
+      "console.log(navLinks.length);",
+      "",
+      "// Attribute selector",
+      "const required = document.querySelectorAll(\"input[required]\");",
+      "console.log(required.length);",
+      "",
+      "// Pseudo-class selector",
+      "const firstP = document.querySelector(\"p:first-of-type\");",
+      "console.log(firstP.textContent);"
+    ]},
+    { "type": "h2", "text": "Live vs Static Collections" },
+    { "type": "p",  "text": "A key distinction is whether a collection updates automatically when the DOM changes (live) or stays fixed (static)." },
+    { "type": "table", "rows": [
+      ["Method",                      "Returns",         "Live?"],
+      ["getElementById()",            "Element / null",  "N/A"],
+      ["getElementsByClassName()",    "HTMLCollection",  "Yes"],
+      ["getElementsByTagName()",      "HTMLCollection",  "Yes"],
+      ["querySelector()",             "Element / null",  "N/A"],
+      ["querySelectorAll()",          "NodeList",        "No (static)"]
+    ]},
+    { "type": "example", "title": "Live vs Static Demo", "code": [
+      "// Live collection — changes with the DOM",
+      "const liveList = document.getElementsByClassName(\"box\");",
+      "console.log(\"live before:\", liveList.length);",
+      "",
+      "// Static collection — snapshot at call time",
+      "const staticList = document.querySelectorAll(\".box\");",
+      "console.log(\"static before:\", staticList.length);",
+      "",
+      "// Add a new .box element",
+      "const newBox = document.createElement(\"div\");",
+      "newBox.className = \"box\";",
+      "document.body.appendChild(newBox);",
+      "",
+      "console.log(\"live after:\", liveList.length);   // increased by 1",
+      "console.log(\"static after:\", staticList.length); // unchanged"
+    ]},
+    { "type": "note", "text": "Prefer querySelector / querySelectorAll for new code — they are more flexible and the static NodeList avoids surprises caused by live collections changing during iteration." },
+    { "type": "exercise", "question": "Which method returns a static NodeList?", "options": ["getElementsByClassName()", "getElementsByTagName()", "querySelectorAll()", "getElementById()"], "answer": 2 }
+  ]
+}

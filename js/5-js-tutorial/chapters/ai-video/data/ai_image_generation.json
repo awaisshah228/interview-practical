@@ -1,0 +1,228 @@
+{
+  "id": "ai_image_generation",
+  "title": "AI Image Tools",
+  "group": "AI Image & Video Tools",
+  "content": [
+    { "type": "h1", "text": "AI Image Generation Tools" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=AI+Image+Gen+Tools&font=raleway", "alt": "AI image generation tools collage showing outputs from various platforms", "caption": "The landscape of AI image generation: from photorealistic to artistic, every tool has its strengths" },
+    { "type": "p", "text": "AI image generation has transformed visual content creation. Whether you need cinematic stills, concept art, product mockups, or social media graphics, there is an AI tool designed for your use case. This chapter covers <strong>9 leading AI image generation tools</strong>, their unique strengths, ideal prompt structures, and practical tips for getting the best results." },
+    { "type": "note", "text": "AI-generated images are only as good as the prompts you write. Each tool interprets prompts differently, so understanding each platform's strengths and syntax is essential for consistent, high-quality output." },
+    { "type": "table", "rows": [
+      ["Tool", "Best For", "Key Strength", "Access Method"],
+      ["Midjourney", "Cinematic, stylized, emotionally rich visuals", "Artistic quality and aesthetic control", "Discord / Web App"],
+      ["Runway Image", "Film production, consistent character generation", "Video-to-image and multi-frame consistency", "Web App"],
+      ["DALL-E", "Photorealistic, design-ready, inpainting", "OpenAI integration, editing capabilities", "ChatGPT / API"],
+      ["Gemini", "Context-aware, educational, data-integrated", "Google ecosystem, multimodal understanding", "Web App / API"],
+      ["Stable Diffusion", "Open-source, fully customizable", "Local deployment, model fine-tuning", "Local / Web UIs"],
+      ["Dream Studio", "Accessible Stable Diffusion interface", "Credit-based simplicity, SDXL models", "Web App"],
+      ["Adobe Firefly", "Commercial-safe, design workflow integration", "Creative Cloud integration, content credentials", "Web App / Photoshop"],
+      ["Meta AI", "Social media content, casual generation", "Free access, Facebook/Instagram integration", "Web App / Social"],
+      ["Grok", "Uncensored generation, real-time context", "X (Twitter) integration, fewer restrictions", "Web App / X Platform"]
+    ]},
+
+    { "type": "h2", "text": "1. Midjourney" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Midjourney+Interface&font=raleway", "alt": "Midjourney interface showing Discord bot and web app side by side", "caption": "Midjourney operates through Discord and its dedicated web application" },
+    { "type": "p", "text": "Midjourney is widely regarded as the gold standard for AI-generated art. It excels at producing <strong>stylized, cinematic, and emotionally rich visuals</strong> with exceptional aesthetic quality. Midjourney's latest models (V6 and V7) have dramatically improved photorealism, text rendering, and prompt coherence." },
+
+    { "type": "h2", "text": "Midjourney: Discord vs Web Access" },
+    { "type": "p", "text": "Midjourney can be accessed in two ways, each with distinct advantages:" },
+    { "type": "table", "rows": [
+      ["Feature", "Discord", "Web App"],
+      ["Access", "Via /imagine command in Discord server", "midjourney.com direct interface"],
+      ["Community", "See others' generations in real-time", "Private workspace"],
+      ["Organization", "Threads can get cluttered", "Clean gallery and folders"],
+      ["Parameters", "Full parameter support", "GUI sliders and dropdowns"],
+      ["Batch Generation", "Generates 4 images per prompt", "Generates 4 images per prompt"],
+      ["Best For", "Community interaction, inspiration browsing", "Focused work, portfolio building"]
+    ]},
+    { "type": "note", "text": "The web app at midjourney.com provides a more streamlined experience with visual settings controls. Discord remains popular for community engagement and seeing what others are creating in real-time." },
+
+    { "type": "h2", "text": "Midjourney: Settings & Configuration" },
+    { "type": "p", "text": "Midjourney offers several configurable settings that dramatically affect output quality and style. Understanding these settings gives you fine-grained control over your generations." },
+    { "type": "table", "rows": [
+      ["Setting", "Options", "What It Controls"],
+      ["Image Size", "Square (1:1), Landscape (16:9, 3:2), Portrait (9:16, 2:3), Custom", "Aspect ratio and dimensions of generated images"],
+      ["Aesthetics", "1-1000 (default ~100)", "How much artistic stylization is applied; higher = more artistic"],
+      ["Model Version", "V5, V5.2, V6, V7, Niji (anime)", "The AI model used; newer versions have better coherence"],
+      ["Speed Mode", "Fast, Relax, Turbo", "Generation speed — Turbo is fastest but costs more GPU time"],
+      ["Weirdness", "0-3000 (default 0)", "How unconventional or experimental the output should be"],
+      ["Variety", "Low, Medium, High", "How different the 4 generated images are from each other"],
+      ["RAW Mode", "On/Off", "Less automatic beautification, more literal prompt interpretation"]
+    ]},
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Midjourney+Settings&font=raleway", "alt": "Midjourney settings panel showing sliders for aesthetics, weirdness, and variety", "caption": "The Midjourney settings panel allows precise control over generation parameters" },
+
+    { "type": "h2", "text": "Midjourney: Upload Functionality" },
+    { "type": "p", "text": "Midjourney supports image uploads as references. You can upload a photo and use it as a style reference, character reference, or composition guide. This is invaluable for maintaining consistency across a series of images." },
+    { "type": "table", "rows": [
+      ["Upload Type", "Parameter", "What It Does"],
+      ["Image Prompt", "Upload URL at start of prompt", "Uses the uploaded image as a visual influence on the generation"],
+      ["Style Reference", "--sref [URL]", "Copies the artistic style (colors, mood, technique) of the reference"],
+      ["Character Reference", "--cref [URL]", "Maintains character appearance consistency across generations"],
+      ["Image Weight", "--iw 0-2", "Controls how strongly the uploaded image influences the result"]
+    ]},
+    { "type": "example", "title": "Midjourney Image Reference Prompt", "code": "https://example.com/my-character.png A warrior standing on a cliff at sunset, epic fantasy landscape, dramatic lighting --cref https://example.com/my-character.png --sref https://example.com/style-reference.png --ar 16:9 --v 7" },
+
+    { "type": "h2", "text": "Midjourney: Creation Actions (Vary & Upscale)" },
+    { "type": "p", "text": "After generating your initial 4 images, Midjourney provides powerful post-generation actions to refine your selections." },
+    { "type": "table", "rows": [
+      ["Action", "Button", "What It Does"],
+      ["Vary (Subtle)", "V1-V4 (Subtle)", "Creates small variations of the selected image, maintaining core composition"],
+      ["Vary (Strong)", "V1-V4 (Strong)", "Creates significant variations, keeping the general concept but changing details"],
+      ["Vary (Region)", "Select area + prompt", "Regenerates only a selected region of the image (inpainting)"],
+      ["Upscale (Subtle)", "U1-U4 (Subtle)", "Increases resolution with minimal changes to the image"],
+      ["Upscale (Creative)", "U1-U4 (Creative)", "Increases resolution while adding new fine details"],
+      ["Zoom Out", "Zoom Out 1.5x / 2x", "Expands the canvas around the image, generating new surrounding content"],
+      ["Pan", "Arrow buttons", "Extends the image in a specific direction"]
+    ]},
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Vary+%26+Upscale&font=raleway", "alt": "Midjourney vary and upscale buttons interface", "caption": "Post-generation actions: Vary, Upscale, Zoom, and Pan controls" },
+
+    { "type": "h2", "text": "Midjourney: Prompt Codes (Parameters)" },
+    { "type": "p", "text": "Midjourney parameters are appended to the end of your prompt using the <code>--</code> prefix. These give you precise control over technical aspects of the generation." },
+    { "type": "table", "rows": [
+      ["Code", "Syntax", "Description", "Example"],
+      ["--ar", "--ar W:H", "Sets the aspect ratio", "--ar 16:9, --ar 1:1, --ar 9:16"],
+      ["--q", "--q 0.25/0.5/1", "Quality level — higher = more detail, slower", "--q 1 (default, best quality)"],
+      ["--v", "--v 5/5.2/6/7", "Model version to use", "--v 7 (latest)"],
+      ["--s", "--s 0-1000", "Stylize amount — how artistic vs literal", "--s 750 (high stylization)"],
+      ["--no", "--no [items]", "Negative prompt — things to exclude", "--no text, watermark, blur"],
+      ["--tile", "--tile", "Creates seamless tileable patterns", "--tile (for backgrounds/textures)"],
+      ["--c", "--c 0-100", "Chaos — how varied the 4 results are", "--c 50 (moderate variety)"],
+      ["--w", "--w 0-3000", "Weirdness — how unconventional results are", "--w 500 (slightly weird)"],
+      ["--seed", "--seed [number]", "Reproduce a specific generation", "--seed 12345"],
+      ["--stop", "--stop 10-100", "Stop generation partway for abstract effects", "--stop 50 (half-rendered look)"],
+      ["--niji", "--niji", "Switch to anime/manga specialized model", "--niji (for anime style)"]
+    ]},
+    { "type": "example", "title": "Midjourney Full Prompt with Parameters", "code": "A lone samurai standing in a field of red spider lilies, fog rolling in from ancient mountains, golden hour lighting, cinematic composition, hyper-detailed armor with intricate engravings, volumetric light rays, Studio Ghibli meets dark fantasy --ar 16:9 --v 7 --s 750 --q 1 --no text, watermark" },
+    { "type": "example", "title": "Midjourney Tileable Pattern Prompt", "code": "Japanese wave pattern, navy blue and gold, traditional ukiyo-e style, seamless repeating design, woodblock print texture --tile --v 7 --s 500 --ar 1:1" },
+    { "type": "note", "text": "Combine <code>--sref</code> (style reference) with <code>--cref</code> (character reference) to maintain both visual style consistency and character appearance across a series of images — essential for storyboarding and video pre-production." },
+
+    { "type": "h2", "text": "2. Runway Image (Gen-2 / Gen-3)" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Runway+Image+Gen&font=raleway", "alt": "Runway ML image generation interface", "caption": "Runway's AI tools bridge the gap between still images and video production" },
+    { "type": "p", "text": "Runway is primarily known for AI video generation, but its image capabilities are powerful for <strong>film production workflows</strong>. It excels at generating consistent characters, scenes, and storyboard frames that can then be animated into video." },
+    { "type": "p", "text": "<strong>Key Features:</strong> Text-to-image, image-to-image, style transfer, frame interpolation, multi-frame consistency for storyboarding." },
+    { "type": "example", "title": "Runway Image Prompt", "code": "A detective in a rain-soaked noir city, standing under a flickering neon sign, trench coat and fedora, film grain texture, 1940s atmosphere, dramatic chiaroscuro lighting, cinematic still frame" },
+    { "type": "note", "text": "Runway's greatest strength is that images generated on the platform can be directly animated into video using Gen-2 or Gen-3 Alpha, making it ideal for end-to-end AI video production." },
+
+    { "type": "h2", "text": "3. DALL-E" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=DALL-E+Interface&font=raleway", "alt": "DALL-E image generation and editing interface in ChatGPT", "caption": "DALL-E integrates directly into ChatGPT for conversational image generation" },
+    { "type": "p", "text": "DALL-E (by OpenAI) focuses on <strong>photorealistic, design-ready images</strong> with strong inpainting and editing capabilities. Integrated directly into ChatGPT, it allows conversational image generation — describe what you want, see the result, then refine with natural language." },
+    { "type": "p", "text": "<strong>Ideal Prompt Structure:</strong> Be descriptive and specific. DALL-E responds well to detailed scene descriptions, lighting specifications, and style references." },
+    { "type": "example", "title": "DALL-E Photorealistic Prompt", "code": "A cozy independent bookshop on a rainy autumn evening, warm golden light spilling through the windows onto wet cobblestone streets, a hand-painted wooden sign, vintage bicycles parked outside, photorealistic, shot on 35mm film, shallow depth of field, tilt-shift effect" },
+    { "type": "example", "title": "DALL-E Editing/Inpainting Prompt", "code": "Take the generated bookshop image and:\n1. Add a cat sitting in the window display\n2. Change the sign text to read \"The Wandering Page\"\n3. Add string lights hanging between the buildings\n4. Make the sky a deeper twilight purple" },
+    { "type": "table", "rows": [
+      ["Feature", "DALL-E 3", "Details"],
+      ["Inpainting", "Yes", "Edit specific regions of an image with text prompts"],
+      ["Outpainting", "Yes", "Extend images beyond their original borders"],
+      ["Text in Images", "Improved", "Much better text rendering than previous versions"],
+      ["Style Control", "Via prompt", "No parameter codes — all control is through descriptive text"],
+      ["Integration", "ChatGPT, API", "Seamless conversational workflow"],
+      ["Safety Filters", "Strict", "Strong content filters, no public figure generation"]
+    ]},
+
+    { "type": "h2", "text": "4. Gemini (Imagen)" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Gemini+Image+Gen&font=raleway", "alt": "Gemini image generation interface showing text and image output", "caption": "Gemini combines Google's search knowledge with Imagen's generation capabilities" },
+    { "type": "p", "text": "Gemini (powered by Google's Imagen model) generates images with strong <strong>contextual awareness and factual grounding</strong>. It excels at educational visuals, diagrams, and images that need to accurately represent real-world concepts." },
+    { "type": "p", "text": "<strong>Ideal Prompt Structure:</strong> Gemini works well with descriptive, context-rich prompts. It understands references to real locations, historical periods, and scientific concepts better than most tools." },
+    { "type": "example", "title": "Gemini Image Prompt", "code": "Generate an educational infographic-style image showing the water cycle. Include labeled arrows showing evaporation, condensation, precipitation, and collection. Use a clean, modern illustration style with a blue and white color palette. The image should be suitable for a high school science presentation." },
+    { "type": "note", "text": "Gemini integrates with Google Search, so it can generate images that reflect current events, real locations, and up-to-date cultural references. It is particularly strong for educational and informational content." },
+
+    { "type": "h2", "text": "5. Stable Diffusion" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Stable+Diffusion+Local&font=raleway", "alt": "Stable Diffusion running locally with ComfyUI interface", "caption": "Stable Diffusion's open-source nature enables local deployment with custom interfaces like ComfyUI" },
+    { "type": "p", "text": "Stable Diffusion is the most <strong>flexible and customizable</strong> AI image generation tool available. As an open-source model, it can be run locally on your own hardware, fine-tuned on custom datasets, and extended with community-built models (LoRAs, embeddings, ControlNets)." },
+    { "type": "p", "text": "<strong>Key Features:</strong> Fully open-source, local deployment (no cloud dependency), thousands of community fine-tuned models, ControlNet for pose/composition control, LoRA models for specific styles or characters." },
+    { "type": "table", "rows": [
+      ["Interface", "Description", "Best For"],
+      ["Automatic1111 (A1111)", "Feature-rich web UI with extensions", "Power users who want maximum control"],
+      ["ComfyUI", "Node-based visual workflow builder", "Complex pipelines and automation"],
+      ["Fooocus", "Simplified interface, Midjourney-like ease", "Beginners who want local generation"],
+      ["InvokeAI", "Professional creative tool with canvas", "Artists and designers"]
+    ]},
+    { "type": "example", "title": "Stable Diffusion Prompt (SDXL)", "code": "masterpiece, best quality, ultra-detailed, 8k uhd, a cyberpunk street market at night, holographic signs in Japanese, vendors selling bioluminescent food, rain-slicked streets reflecting neon colors, dense crowd of diverse characters with cybernetic augmentations, atmospheric fog, volumetric lighting\n\nNegative prompt: low quality, blurry, distorted, deformed, watermark, text, signature, out of frame" },
+    { "type": "note", "text": "Stable Diffusion requires a GPU with at least 6GB VRAM for local generation. SDXL models need 8GB+ VRAM. If you do not have suitable hardware, use cloud-based interfaces like Dream Studio or RunPod." },
+
+    { "type": "h2", "text": "6. Dream Studio" },
+    { "type": "p", "text": "Dream Studio is the official web interface from Stability AI for <strong>Stable Diffusion</strong>. It provides a user-friendly, credit-based system that makes Stable Diffusion accessible without any technical setup or local hardware." },
+    { "type": "p", "text": "<strong>Ideal Prompt Structure:</strong> Similar to Stable Diffusion — use descriptive language with quality modifiers. Dream Studio supports negative prompts and various generation settings through its GUI." },
+    { "type": "table", "rows": [
+      ["Setting", "Options", "What It Controls"],
+      ["Model", "SD 1.5, SDXL, SD3", "Which Stable Diffusion model to use"],
+      ["Style Preset", "Photographic, Cinematic, Anime, etc.", "Pre-configured style modifiers"],
+      ["CFG Scale", "1-30 (default 7)", "How strictly the AI follows your prompt"],
+      ["Steps", "10-150 (default 30)", "More steps = more refined (but slower)"],
+      ["Seed", "Random or specific number", "For reproducing exact results"]
+    ]},
+    { "type": "example", "title": "Dream Studio Prompt", "code": "A serene Japanese zen garden in morning mist, raked sand patterns, moss-covered stones, a single cherry blossom tree in full bloom, soft diffused sunlight, photographic style, shot on Hasselblad medium format, f/2.8, golden hour\n\nStyle Preset: Photographic\nCFG Scale: 7\nSteps: 40" },
+
+    { "type": "h2", "text": "7. Adobe Firefly" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Adobe+Firefly&font=raleway", "alt": "Adobe Firefly integrated into Photoshop workspace", "caption": "Adobe Firefly brings AI generation directly into the Creative Cloud workflow" },
+    { "type": "p", "text": "Adobe Firefly is designed for <strong>commercial safety and professional design workflows</strong>. Trained exclusively on licensed Adobe Stock images, openly licensed content, and public domain material, Firefly-generated images are safe for commercial use without copyright concerns." },
+    { "type": "p", "text": "<strong>Key Features:</strong> Content Credentials (provenance tracking), Generative Fill in Photoshop, Text Effects, commercial-use licensing, seamless Creative Cloud integration." },
+    { "type": "table", "rows": [
+      ["Feature", "Details"],
+      ["Training Data", "Adobe Stock, licensed content, public domain only"],
+      ["Commercial Use", "Fully cleared for commercial projects"],
+      ["Content Credentials", "Embedded metadata showing AI generation provenance"],
+      ["Photoshop Integration", "Generative Fill, Generative Expand directly in PSD files"],
+      ["Illustrator Integration", "Text-to-vector, recolor artwork, generative patterns"],
+      ["Best For", "Designers, agencies, brands needing IP-safe content"]
+    ]},
+    { "type": "example", "title": "Adobe Firefly Prompt", "code": "Professional product photography of a luxury watch on a dark marble surface, dramatic studio lighting with a single key light from the upper left, subtle reflections, shallow depth of field, magazine advertisement quality, clean and minimal composition" },
+    { "type": "note", "text": "Adobe Firefly is the safest choice for commercial projects where copyright and IP concerns are paramount. Content Credentials provide transparent provenance tracking, which is increasingly important for brand trust." },
+
+    { "type": "h2", "text": "8. Meta AI" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Meta+AI+Image+Gen&font=raleway", "alt": "Meta AI image generation within social media platform", "caption": "Meta AI makes image generation accessible directly within social media platforms" },
+    { "type": "p", "text": "Meta AI provides <strong>free, accessible image generation</strong> integrated into Facebook, Instagram, WhatsApp, and Messenger. It is designed for casual content creation and social media graphics." },
+    { "type": "p", "text": "<strong>Ideal Prompt Structure:</strong> Simple, conversational descriptions work best. Meta AI is optimized for social media contexts, so prompts do not need to be as technically detailed as those for Midjourney or Stable Diffusion." },
+    { "type": "example", "title": "Meta AI Image Prompt", "code": "A golden retriever puppy wearing a tiny graduation cap and gown, sitting on a stack of books, confetti falling, celebration background, bright and cheerful, perfect for a social media congratulations post" },
+    { "type": "table", "rows": [
+      ["Feature", "Details"],
+      ["Price", "Free to use"],
+      ["Access", "meta.ai, Facebook, Instagram, WhatsApp, Messenger"],
+      ["Best For", "Social media content, casual images, quick visual ideas"],
+      ["Limitations", "Less control than specialized tools, safety filters, lower resolution"],
+      ["Unique Feature", "Integrated into social platforms — generate and share without leaving the app"]
+    ]},
+
+    { "type": "h2", "text": "9. Grok (xAI)" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Grok+AI+Image+Gen&font=raleway", "alt": "Grok AI image generation interface on X platform", "caption": "Grok's image generation integrates with X (Twitter) for real-time context-aware generation" },
+    { "type": "p", "text": "Grok, developed by xAI (Elon Musk's AI company), provides image generation with <strong>fewer content restrictions</strong> than most competitors. It is integrated into the X (Twitter) platform and can generate images with real-time context from trending topics and conversations." },
+    { "type": "p", "text": "<strong>Key Features:</strong> Fewer content filters, real-time X platform data integration, ability to generate images of public figures (with some limitations), humorous and irreverent style options." },
+    { "type": "example", "title": "Grok Image Prompt", "code": "A dramatic editorial magazine cover featuring a robot CEO giving a TED talk to an audience of surprised humans, photojournalistic style, TIME magazine aesthetic, bold headline typography, dramatic stage lighting" },
+    { "type": "note", "text": "While Grok has fewer restrictions than some competitors, it still has safety guidelines. Its real-time integration with X makes it particularly useful for generating topical, meme-worthy, or culturally relevant imagery." },
+
+    { "type": "h2", "text": "Choosing the Right Tool" },
+    { "type": "p", "text": "Selecting the right AI image tool depends on your specific needs. Use the decision guide below to match your project requirements to the best tool." },
+    { "type": "table", "rows": [
+      ["If You Need...", "Use This Tool", "Why"],
+      ["Highest artistic quality", "Midjourney", "Unmatched aesthetic control and stylization"],
+      ["Photorealistic images", "DALL-E / Midjourney V7", "Best photorealism with natural lighting"],
+      ["Commercial-safe images", "Adobe Firefly", "IP-clear training data, Content Credentials"],
+      ["Full customization/control", "Stable Diffusion", "Open source, LoRAs, ControlNet, local deployment"],
+      ["Video production pipeline", "Runway", "Images that convert directly to video"],
+      ["Educational/factual visuals", "Gemini", "Context-aware, Google search integration"],
+      ["Free social media content", "Meta AI", "Free, integrated into social platforms"],
+      ["Fewer content restrictions", "Grok", "More permissive content policies"],
+      ["Easy Stable Diffusion access", "Dream Studio", "No setup required, credit-based system"]
+    ]},
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Tool+Decision+Flowchart&font=raleway", "alt": "Decision flowchart for choosing an AI image generation tool", "caption": "A decision flowchart to help you select the right AI image tool for your project" },
+
+    { "type": "h2", "text": "Universal Prompting Tips" },
+    { "type": "p", "text": "Regardless of which tool you use, these prompting principles will improve your results across all platforms:" },
+    { "type": "table", "rows": [
+      ["Tip", "Example"],
+      ["Be specific about subject", "Instead of 'a dog' say 'a border collie with heterochromia'"],
+      ["Specify lighting", "'golden hour backlighting' not just 'good lighting'"],
+      ["Define camera/lens", "'shot on 85mm f/1.4, shallow depth of field'"],
+      ["Set the mood/atmosphere", "'melancholic, foggy, muted tones'"],
+      ["Reference art styles", "'in the style of Studio Ghibli watercolor backgrounds'"],
+      ["Include composition details", "'rule of thirds, subject on left, negative space right'"],
+      ["Specify what to exclude", "Use negative prompts or --no to remove unwanted elements"],
+      ["Iterate and refine", "Treat first generations as starting points, not final outputs"]
+    ]},
+
+    { "type": "exercise", "question": "Which AI image tool is best suited for commercial projects where copyright safety is the top priority?", "options": ["Midjourney", "Stable Diffusion", "Adobe Firefly", "Grok"], "answer": 2 },
+    { "type": "exercise", "question": "What does the Midjourney parameter --sref do?", "options": ["Sets the generation seed for reproducibility", "Applies a style reference from an uploaded image", "Controls the strength of the stylization", "Enables super-resolution upscaling"], "answer": 1 },
+    { "type": "exercise", "question": "Which tool allows you to run AI image generation locally on your own hardware?", "options": ["DALL-E", "Midjourney", "Stable Diffusion", "Adobe Firefly"], "answer": 2 },
+    { "type": "exercise", "question": "What is the primary advantage of Runway's image generation compared to other tools?", "options": ["It is the cheapest option available", "Generated images can be directly animated into video", "It has no content restrictions at all", "It only generates anime-style images"], "answer": 1 }
+  ]
+}

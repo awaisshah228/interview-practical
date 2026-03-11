@@ -3,3 +3,9 @@
 
 # Build output
 **/dist/
+**/.next/
+**/out/
+
+# Environment
+**/.env
+**/.env.*

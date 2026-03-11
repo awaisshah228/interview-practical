@@ -1,0 +1,131 @@
+{
+  "id": "loops_intro",
+  "title": "JS Loops",
+  "group": "JS Loops",
+  "content": [
+    { "type": "h1", "text": "JavaScript Loops" },
+    { "type": "p", "text": "Loops execute a block of code repeatedly. JavaScript provides several loop types, each suited for different situations. Choosing the right loop makes your code cleaner and more efficient." },
+
+    { "type": "h2", "text": "Overview of Loop Types" },
+    { "type": "p", "text": "JavaScript has five main loop types. Each is designed for a specific use case." },
+    { "type": "table", "rows": [
+      ["Loop", "Best For", "Iterates Over"],
+      ["for", "Known number of iterations", "Index counter"],
+      ["while", "Unknown iterations, condition-based", "Condition check"],
+      ["do...while", "Run at least once", "Condition check (post)"],
+      ["for...in", "Object properties", "Keys/property names"],
+      ["for...of", "Arrays, strings, iterables", "Values"]
+    ]},
+
+    { "type": "h2", "text": "The for Loop" },
+    { "type": "p", "text": "The for loop is the most common loop. It has three parts: initialization, condition, and update — all in one line. Use it when you know how many times to iterate." },
+    { "type": "example", "title": "for Loop", "code": [
+      "// Basic for loop",
+      "for (let i = 0; i < 5; i++) {",
+      "  console.log(\"Iteration: \" + i);",
+      "}",
+      "// Output: 0, 1, 2, 3, 4",
+      "",
+      "// Looping through an array",
+      "let fruits = [\"apple\", \"banana\", \"cherry\"];",
+      "for (let i = 0; i < fruits.length; i++) {",
+      "  console.log(fruits[i]);",
+      "}",
+      "// Output: apple, banana, cherry",
+      "",
+      "// Counting backwards",
+      "for (let i = 5; i > 0; i--) {",
+      "  console.log(i);",
+      "}",
+      "// Output: 5, 4, 3, 2, 1"
+    ]},
+
+    { "type": "h2", "text": "The while Loop" },
+    { "type": "p", "text": "The while loop runs as long as a condition is true. Use it when you don't know in advance how many iterations are needed." },
+    { "type": "example", "title": "while Loop", "code": [
+      "// Basic while loop",
+      "let count = 0;",
+      "while (count < 3) {",
+      "  console.log(\"Count: \" + count);",
+      "  count++;",
+      "}",
+      "// Output: 0, 1, 2",
+      "",
+      "// Finding a value",
+      "let num = 1;",
+      "while (num < 100) {",
+      "  num *= 2;",
+      "}",
+      "console.log(\"First power of 2 >= 100: \" + num);",
+      "// Output: 128"
+    ]},
+
+    { "type": "h2", "text": "The do...while Loop" },
+    { "type": "p", "text": "The do...while loop executes the code block first, then checks the condition. This guarantees at least one execution, even if the condition is initially false." },
+    { "type": "example", "title": "do...while Loop", "code": [
+      "// Always runs at least once",
+      "let x = 10;",
+      "do {",
+      "  console.log(\"x = \" + x);",
+      "  x++;",
+      "} while (x < 3);",
+      "// Output: \"x = 10\" (runs once even though 10 < 3 is false)",
+      "",
+      "// Practical: input validation simulation",
+      "let attempts = 0;",
+      "let password;",
+      "do {",
+      "  password = attempts === 2 ? \"correct\" : \"wrong\";",
+      "  attempts++;",
+      "  console.log(\"Attempt \" + attempts + \": \" + password);",
+      "} while (password !== \"correct\");",
+      "// Output: Attempt 1: wrong, Attempt 2: wrong, Attempt 3: correct"
+    ]},
+
+    { "type": "h2", "text": "for...in Loop" },
+    { "type": "p", "text": "The for...in loop iterates over the enumerable properties (keys) of an object. It is designed for objects, not arrays." },
+    { "type": "example", "title": "for...in Loop", "code": [
+      "let person = {",
+      "  name: \"Alice\",",
+      "  age: 30,",
+      "  city: \"NYC\"",
+      "};",
+      "",
+      "for (let key in person) {",
+      "  console.log(key + \": \" + person[key]);",
+      "}",
+      "// Output:",
+      "// name: Alice",
+      "// age: 30",
+      "// city: NYC"
+    ]},
+
+    { "type": "h2", "text": "for...of Loop" },
+    { "type": "p", "text": "The for...of loop iterates over the values of any iterable object: arrays, strings, Maps, Sets, and more. It is the cleanest way to loop through array values." },
+    { "type": "example", "title": "for...of Loop", "code": [
+      "// Arrays",
+      "let colors = [\"red\", \"green\", \"blue\"];",
+      "for (let color of colors) {",
+      "  console.log(color);",
+      "}",
+      "// Output: red, green, blue",
+      "",
+      "// Strings",
+      "for (let char of \"Hello\") {",
+      "  console.log(char);",
+      "}",
+      "// Output: H, e, l, l, o",
+      "",
+      "// With destructuring",
+      "let entries = [[\"a\", 1], [\"b\", 2], [\"c\", 3]];",
+      "for (let [key, value] of entries) {",
+      "  console.log(key + \" = \" + value);",
+      "}",
+      "// Output: a = 1, b = 2, c = 3"
+    ]},
+
+    { "type": "note", "text": "Do not use for...in to loop over arrays. It iterates over property names (which are string indices), not values, and may include inherited properties. Use for...of or a regular for loop for arrays." },
+
+    { "type": "exercise", "question": "Which loop guarantees at least one execution?", "options": ["for", "while", "do...while", "for...of"], "answer": 2 }
+  ]
+}

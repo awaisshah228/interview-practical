@@ -1,0 +1,135 @@
+{
+  "id": "ai_video_scripts",
+  "title": "AI Video Scripts",
+  "group": "AI Video Production",
+  "content": [
+    { "type": "h1", "text": "AI Video Scripts" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=AI+Video+Scriptwriting&font=raleway", "alt": "AI video scriptwriting concept illustration", "caption": "Using AI tools to write, structure, and refine professional video scripts" },
+    { "type": "p", "text": "Writing a compelling video script is the foundation of every great video. AI tools can accelerate the scriptwriting process, helping you brainstorm ideas, structure narratives, write dialogue, and refine your drafts. This chapter covers the <strong>3-Act narrative structure</strong>, downloadable templates, and five powerful AI tools for scriptwriting." },
+    { "type": "note", "text": "A great script is more than just words on a page — it is the blueprint for your entire video. Invest time in structuring your script properly before moving to production." },
+
+    { "type": "h2", "text": "Script Structure: The 3-Act Narrative" },
+    { "type": "p", "text": "The most widely used storytelling framework in film, TV, and video content is the <strong>3-Act Structure</strong>. It provides a clear beginning, middle, and end that keeps your audience engaged throughout." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=3-Act+Structure&font=raleway", "alt": "3-Act Structure diagram showing Setup, Confrontation, and Resolution", "caption": "The 3-Act Structure: Setup, Confrontation, Resolution" },
+    { "type": "table", "rows": [
+      ["Act", "Name", "Purpose", "Percentage of Script"],
+      ["Act 1", "Setup", "Introduce characters, setting, and the central conflict or question", "~25%"],
+      ["Act 2", "Confrontation", "Develop the conflict, raise stakes, introduce obstacles and complications", "~50%"],
+      ["Act 3", "Resolution", "Resolve the conflict, deliver the payoff, and provide closure or a call to action", "~25%"]
+    ]},
+    { "type": "p", "text": "<strong>Act 1 — Setup:</strong> This is where you hook your audience. Introduce the main subject, establish the tone, and present the core question or problem your video will address. For YouTube or social media videos, your hook must come within the first 5-10 seconds." },
+    { "type": "p", "text": "<strong>Act 2 — Confrontation:</strong> The longest section. Here you develop your argument, explore the topic in depth, present challenges or counterpoints, and build toward the climax. Keep pacing varied to maintain interest." },
+    { "type": "p", "text": "<strong>Act 3 — Resolution:</strong> Wrap up your narrative. Summarize key takeaways, deliver your conclusion, and include a clear call to action (subscribe, comment, visit a link, etc.)." },
+    { "type": "example", "title": "3-Act Structure for a 5-Minute YouTube Video", "code": "ACT 1 — SETUP (0:00 - 1:15)\n- Hook: \"What if you could write an entire video script in 5 minutes?\"\n- Introduce the problem: Scriptwriting is time-consuming\n- Preview: \"Today I'll show you 5 AI tools that can do it for you\"\n\nACT 2 — CONFRONTATION (1:15 - 3:45)\n- Tool 1: ChatGPT — demo with example prompt\n- Tool 2: Squibler — show screenplay formatting\n- Tool 3: ChatSonic — real-time data advantage\n- Tool 4: TextCortex — quick rewrites\n- Tool 5: Gemini — research-backed scripts\n- Compare strengths and weaknesses\n\nACT 3 — RESOLUTION (3:45 - 5:00)\n- Summary: Which tool is best for which use case\n- Personal recommendation\n- Call to action: \"Try one of these tools today\"" },
+
+    { "type": "h2", "text": "Downloadable Script Templates" },
+    { "type": "p", "text": "Professional script templates provide a standardized format that makes your scripts easier to read, share, and produce. Below are three widely-used templates referenced in the industry." },
+    { "type": "table", "rows": [
+      ["Template", "Description", "Best For"],
+      ["BBC TV Screenplay", "Standard broadcast television format with scene headings, action, and dialogue columns", "TV episodes, series pilots, episodic content"],
+      ["BBC Film Screenplay", "Feature film format with master scene headings, transitions, and cinematic direction", "Short films, documentaries, narrative videos"],
+      ["3 Act Structure Template", "A planning document that maps out Setup, Confrontation, and Resolution with beat sheets", "Any video — YouTube, social media, corporate"]
+    ]},
+    { "type": "note", "text": "These templates are guides, not rules. Adapt them to your specific video format and platform. A TikTok script looks very different from a documentary script, but both benefit from structured planning." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Script+Template+Layout&font=raleway", "alt": "Script template layout example", "caption": "Example of a formatted screenplay template with scene headings and dialogue" },
+
+    { "type": "h2", "text": "5 AI Tools for Scriptwriting" },
+    { "type": "p", "text": "Each AI tool has unique strengths. Choosing the right one depends on your project type, preferred workflow, and the kind of output you need. Below is a comparison overview, followed by detailed breakdowns." },
+    { "type": "table", "rows": [
+      ["Tool", "Best For", "Key Strength", "Pricing"],
+      ["ChatGPT", "Versatile scriptwriting, dialogue, iteration", "Conversational refinement", "Free / Plus $20/mo"],
+      ["Squibler", "Screenplay formatting, narrative structure", "Industry-standard format output", "Free trial / Paid plans"],
+      ["ChatSonic", "Trend-aware, real-time content", "Current data access via web search", "Free tier / Paid plans"],
+      ["TextCortex", "Concise rewrites, short-form scripts", "Efficient summarization and rewriting", "Free tier / Paid plans"],
+      ["Gemini", "Research-backed, multimodal scripts", "Google ecosystem integration, data insights", "Free / Advanced $20/mo"]
+    ]},
+
+    { "type": "h2", "text": "1. ChatGPT for Scriptwriting" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=ChatGPT+Scriptwriting&font=raleway", "alt": "ChatGPT scriptwriting interface", "caption": "ChatGPT's conversational interface for iterative script development" },
+    { "type": "p", "text": "<strong>What ChatGPT Excels At:</strong> ChatGPT is the most versatile AI scriptwriting tool. It handles dialogue writing, creative brainstorming, tone adjustment, and iterative refinement exceptionally well. Its conversational nature means you can continuously improve a script within a single session." },
+    { "type": "p", "text": "<strong>Ideal Prompt Structure:</strong> Assign a role, specify the format, define the tone, provide context, and set constraints (length, audience, platform)." },
+    { "type": "example", "title": "ChatGPT Script Prompt — YouTube Explainer", "code": "You are a professional video scriptwriter specializing in educational YouTube content.\n\nWrite a 5-minute script about \"How AI is Changing Filmmaking\" for a tech-savvy audience aged 18-35.\n\nFormat:\n- Use the 3-Act Structure (Setup, Confrontation, Resolution)\n- Include scene headings, narration, and B-roll suggestions\n- Add timestamps for each section\n\nTone: Informative but conversational, with moments of humor.\nInclude a strong hook in the first 10 seconds." },
+    { "type": "example", "title": "ChatGPT Script Prompt — Short Film", "code": "Act as an award-winning short film screenwriter.\n\nWrite a 3-minute short film script about a painter who discovers their paintings come to life at night.\n\nRequirements:\n- Minimal dialogue (mostly visual storytelling)\n- Include camera direction notes\n- Build tension gradually\n- End with an ambiguous, thought-provoking conclusion\n- Format as a proper screenplay with FADE IN/FADE OUT" },
+    { "type": "note", "text": "ChatGPT remembers context within a conversation. Start with a broad script, then use follow-up prompts to refine specific sections like dialogue, pacing, or visual descriptions." },
+
+    { "type": "h2", "text": "2. Squibler for Scriptwriting" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Squibler+Editor&font=raleway", "alt": "Squibler screenplay editor interface", "caption": "Squibler's dedicated screenplay writing environment" },
+    { "type": "p", "text": "<strong>What Squibler Excels At:</strong> Squibler is purpose-built for narrative and screenplay writing. It outputs properly formatted screenplays with scene headings, action lines, dialogue, and parentheticals. It understands industry-standard formatting conventions." },
+    { "type": "p", "text": "<strong>Ideal Prompt Structure:</strong> Provide genre, tone, character descriptions, plot outline, and specify the screenplay format you want." },
+    { "type": "example", "title": "Squibler Script Prompt", "code": "Write a screenplay for a 10-minute sci-fi short film.\n\nTitle: \"The Last Signal\"\nGenre: Science Fiction / Drama\nLogline: A lone radio operator on a dying space station receives a mysterious transmission that could save — or doom — humanity.\n\nCharacters:\n- ELENA (35, determined, haunted by past decisions)\n- VOICE (unidentified, calm, possibly alien)\n\nFormat: Standard screenplay format (scene headings, action, dialogue)\nInclude: Opening establishing shot, rising tension, twist ending" },
+
+    { "type": "h2", "text": "3. ChatSonic for Scriptwriting" },
+    { "type": "p", "text": "<strong>What ChatSonic Excels At:</strong> ChatSonic has real-time web access, making it ideal for scripts that need current data, trending topics, or factual accuracy. It can pull in recent events, statistics, and cultural references that other tools might miss." },
+    { "type": "p", "text": "<strong>Ideal Prompt Structure:</strong> Specify the topic, request current data integration, define the target audience, and ask for source references." },
+    { "type": "example", "title": "ChatSonic Script Prompt — Trend-Aware Content", "code": "Write a video script about the latest developments in AI video generation tools in 2025.\n\nRequirements:\n- Include the most recent tool releases and updates\n- Compare at least 4 current tools with real features\n- Use verified statistics and data points\n- Format as a 7-minute YouTube video script\n- Include B-roll suggestions for each tool demonstration\n- Target audience: Content creators and filmmakers" },
+
+    { "type": "h2", "text": "4. TextCortex for Scriptwriting" },
+    { "type": "p", "text": "<strong>What TextCortex Excels At:</strong> TextCortex specializes in concise, high-impact writing. It is excellent for rewriting existing scripts to be more engaging, condensing long scripts into shorter formats, and generating punchy social media video scripts." },
+    { "type": "p", "text": "<strong>Ideal Prompt Structure:</strong> Provide the existing content or outline, specify the desired length, and define the transformation you need (condense, rewrite, adapt)." },
+    { "type": "example", "title": "TextCortex Rewrite Prompt", "code": "Rewrite the following 10-minute YouTube script as a 60-second TikTok/Reels script.\n\nKeep the core message intact but:\n- Lead with the most shocking or interesting fact\n- Use short, punchy sentences\n- Remove all filler and transitions\n- End with a question to drive engagement\n\n[Paste original script here]" },
+
+    { "type": "h2", "text": "5. Gemini for Scriptwriting" },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Gemini+Scriptwriting&font=raleway", "alt": "Gemini AI interface for scriptwriting", "caption": "Gemini's multimodal capabilities bring research and writing together" },
+    { "type": "p", "text": "<strong>What Gemini Excels At:</strong> Gemini combines research capabilities with creative writing. It can analyze data, reference current information via Google Search, and generate scripts that are both creative and factually grounded. Its multimodal nature allows it to understand images and video references." },
+    { "type": "p", "text": "<strong>Ideal Prompt Structure:</strong> Request research integration, specify data requirements, define the narrative framework, and ask for source-backed claims." },
+    { "type": "example", "title": "Gemini Research-Backed Script Prompt", "code": "Research the environmental impact of fast fashion and write a 6-minute documentary-style video script.\n\nRequirements:\n- Include at least 5 verified statistics with sources\n- Interview-style segments (write suggested interview questions)\n- Visual scene descriptions for each segment\n- Use the 3-Act Structure\n- Tone: Serious but hopeful, not preachy\n- Include on-screen text suggestions for key data points" },
+
+    { "type": "h2", "text": "Key Differences Between AI Scriptwriting Tools" },
+    { "type": "table", "rows": [
+      ["Feature", "ChatGPT", "Squibler", "ChatSonic", "TextCortex", "Gemini"],
+      ["Real-Time Data", "No (without plugins)", "No", "Yes", "No", "Yes"],
+      ["Screenplay Format", "Manual formatting", "Built-in", "Manual formatting", "Manual formatting", "Manual formatting"],
+      ["Iterative Refinement", "Excellent", "Good", "Good", "Good", "Excellent"],
+      ["Short-Form Scripts", "Good", "Limited", "Good", "Excellent", "Good"],
+      ["Research Integration", "Limited", "None", "Strong", "Limited", "Strong"],
+      ["Multimodal Input", "Yes (GPT-4)", "No", "Yes", "No", "Yes"],
+      ["Free Tier", "Yes", "Trial", "Yes", "Yes", "Yes"]
+    ]},
+
+    { "type": "h2", "text": "Refinement Templates" },
+    { "type": "p", "text": "Once you have a first draft, use these refinement templates to polish your script. These work with any AI tool and help you systematically improve different aspects of your writing." },
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Script+Refinement+Workflow&font=raleway", "alt": "Script refinement workflow diagram", "caption": "The iterative refinement process: Draft, Refine, Polish, Finalize" },
+
+    { "type": "h2", "text": "Plotline Development Template" },
+    { "type": "p", "text": "Use this template to strengthen the narrative arc and ensure your story beats land effectively." },
+    { "type": "example", "title": "Plotline Development Prompt", "code": "Analyze the following script and improve its plotline:\n\n[Paste script here]\n\nPlease:\n1. Identify the current narrative arc and any weak points\n2. Suggest stronger plot beats for each act\n3. Ensure the inciting incident is compelling enough\n4. Add rising tension throughout Act 2\n5. Make the resolution feel earned, not rushed\n6. Suggest a subplot that reinforces the main theme\n\nRewrite the improved version with tracked changes noted." },
+
+    { "type": "h2", "text": "Character Building Template" },
+    { "type": "p", "text": "Strong characters make scripts memorable. Use this template to develop deeper, more compelling characters." },
+    { "type": "example", "title": "Character Building Prompt", "code": "For the following script, develop richer character profiles:\n\n[Paste script here]\n\nFor each main character, provide:\n1. Background: Brief backstory that influences their behavior\n2. Motivation: What do they want? What do they need?\n3. Voice: How do they speak? Catchphrases, speech patterns?\n4. Arc: How do they change from beginning to end?\n5. Conflict: What internal/external conflicts drive them?\n\nThen rewrite key dialogue scenes to reflect these deeper character traits." },
+
+    { "type": "h2", "text": "Script Analysis Template" },
+    { "type": "p", "text": "Get a comprehensive analysis of your script's strengths and weaknesses before finalizing." },
+    { "type": "example", "title": "Script Analysis Prompt", "code": "Perform a professional script analysis on the following:\n\n[Paste script here]\n\nAnalyze these elements (rate each 1-10):\n1. Hook strength (first 10 seconds)\n2. Pacing and flow\n3. Dialogue authenticity\n4. Visual storytelling potential\n5. Audience engagement factors\n6. Call-to-action effectiveness\n7. Overall narrative coherence\n\nProvide specific, actionable feedback for any element rated below 7.\nSuggest 3 concrete improvements with before/after examples." },
+
+    { "type": "h2", "text": "Dialogue Writing Template" },
+    { "type": "p", "text": "Natural-sounding dialogue is one of the hardest parts of scriptwriting. Use this template to refine conversations." },
+    { "type": "example", "title": "Dialogue Writing Prompt", "code": "Rewrite the dialogue in the following script to sound more natural and engaging:\n\n[Paste script here]\n\nGuidelines:\n- Remove exposition dumps (show, don't tell)\n- Give each character a distinct voice\n- Add subtext — what characters mean vs. what they say\n- Include natural interruptions, pauses, and reactions\n- Keep lines concise (most people don't speak in paragraphs)\n- Add non-verbal cues and body language directions" },
+
+    { "type": "h2", "text": "Script Feedback Template" },
+    { "type": "p", "text": "Get constructive feedback from an AI acting as a script editor or producer." },
+    { "type": "example", "title": "Script Feedback Prompt", "code": "You are an experienced TV producer reviewing a script submission.\n\nScript: [Paste script here]\n\nProvide feedback as if this were a real pitch meeting:\n1. First impression (gut reaction in 2 sentences)\n2. What works well (be specific with examples)\n3. What needs improvement (be constructive, not harsh)\n4. Market viability — would this resonate with the target audience?\n5. Production feasibility — any scenes that would be too costly/complex?\n6. Suggested next steps for revision" },
+
+    { "type": "h2", "text": "Sensitive Content Review Template" },
+    { "type": "p", "text": "Before publishing, review your script for potential issues with representation, bias, or sensitivity." },
+    { "type": "example", "title": "Sensitive Content Review Prompt", "code": "Review the following script for sensitive content and potential issues:\n\n[Paste script here]\n\nCheck for:\n1. Stereotyping or biased representation of any group\n2. Culturally insensitive language or imagery\n3. Unintentional offensive implications\n4. Accessibility concerns (would this exclude any audience?)\n5. Age-appropriateness for the target audience\n6. Legal concerns (defamation, copyright, trademark)\n\nFor each issue found, suggest an alternative that preserves\nthe creative intent while being more inclusive." },
+    { "type": "note", "text": "Always run a sensitive content review before publishing, especially for content that discusses real people, cultural topics, health, or politics. AI can flag potential issues, but final judgment should always be human." },
+
+    { "type": "h2", "text": "Combining Tools for Best Results" },
+    { "type": "p", "text": "The most effective approach is often to use multiple AI tools in sequence. Each tool has different strengths, and combining them creates a better final product." },
+    { "type": "table", "rows": [
+      ["Step", "Tool", "Task"],
+      ["1. Research", "Gemini / ChatSonic", "Gather data, statistics, and current trends"],
+      ["2. Outline", "ChatGPT", "Create the 3-Act structure and beat sheet"],
+      ["3. First Draft", "ChatGPT / Squibler", "Write the full script with proper formatting"],
+      ["4. Rewrite", "TextCortex", "Condense, sharpen language, remove filler"],
+      ["5. Review", "ChatGPT / Claude", "Run feedback and sensitivity review templates"],
+      ["6. Final Polish", "ChatGPT", "Final dialogue and pacing refinement"]
+    ]},
+    { "type": "image", "src": "https://placehold.co/800x450/1a1a2e/04AA6D?text=Multi-Tool+Workflow&font=raleway", "alt": "Multi-tool scriptwriting workflow", "caption": "A recommended workflow combining multiple AI tools for optimal results" },
+
+    { "type": "exercise", "question": "In the 3-Act Structure, which act typically takes up approximately 50% of the script?", "options": ["Act 1 — Setup", "Act 2 — Confrontation", "Act 3 — Resolution", "All acts are equal in length"], "answer": 1 },
+    { "type": "exercise", "question": "Which AI tool is best suited for scripts that need real-time data and trending topics?", "options": ["Squibler", "TextCortex", "ChatSonic", "ChatGPT"], "answer": 2 },
+    { "type": "exercise", "question": "What is the recommended first step when using multiple AI tools for scriptwriting?", "options": ["Write the dialogue first", "Research with Gemini or ChatSonic", "Format in Squibler", "Rewrite with TextCortex"], "answer": 1 }
+  ]
+}

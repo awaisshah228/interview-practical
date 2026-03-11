@@ -1,0 +1,187 @@
+{
+  "id": "destructuring",
+  "title": "JS Destructuring",
+  "group": "JS Destructuring",
+  "content": [
+    { "type": "h1", "text": "JavaScript Destructuring" },
+    { "type": "p", "text": "Destructuring assignment is a special syntax that allows you to unpack values from arrays or properties from objects into distinct variables. It makes code cleaner and more readable." },
+    { "type": "h2", "text": "Array Destructuring" },
+    { "type": "p", "text": "Array destructuring uses square brackets on the left side of an assignment. Variables are assigned values based on their position in the array." },
+    {
+      "type": "example",
+      "title": "Array Destructuring Basics",
+      "code": [
+        "// Basic array destructuring",
+        "const colors = ['red', 'green', 'blue'];",
+        "const [first, second, third] = colors;",
+        "console.log(first);  // 'red'",
+        "console.log(second); // 'green'",
+        "console.log(third);  // 'blue'",
+        "",
+        "// Skip elements with commas",
+        "const [a, , c] = [1, 2, 3];",
+        "console.log(a); // 1",
+        "console.log(c); // 3",
+        "",
+        "// Destructure from function return",
+        "function getCoords() {",
+        "  return [10, 20];",
+        "}",
+        "const [x, y] = getCoords();",
+        "console.log(x, y); // 10 20"
+      ]
+    },
+    { "type": "h2", "text": "Object Destructuring" },
+    { "type": "p", "text": "Object destructuring uses curly braces. Variables are matched by property name, not position. You can also rename variables using a colon." },
+    {
+      "type": "example",
+      "title": "Object Destructuring Basics",
+      "code": [
+        "// Basic object destructuring",
+        "const person = { name: 'Alice', age: 30, city: 'NYC' };",
+        "const { name, age, city } = person;",
+        "console.log(name); // 'Alice'",
+        "console.log(age);  // 30",
+        "console.log(city); // 'NYC'",
+        "",
+        "// Rename variables",
+        "const { name: fullName, age: years } = person;",
+        "console.log(fullName); // 'Alice'",
+        "console.log(years);    // 30",
+        "",
+        "// Pick only what you need",
+        "const { name: n } = person;",
+        "console.log(n); // 'Alice'"
+      ]
+    },
+    { "type": "h2", "text": "Default Values" },
+    { "type": "p", "text": "You can set default values that are used when the destructured value is undefined." },
+    {
+      "type": "example",
+      "title": "Default Values in Destructuring",
+      "code": [
+        "// Array defaults",
+        "const [a = 1, b = 2, c = 3] = [10, 20];",
+        "console.log(a); // 10 (from array)",
+        "console.log(b); // 20 (from array)",
+        "console.log(c); // 3  (default)",
+        "",
+        "// Object defaults",
+        "const { name = 'Unknown', age = 0, role = 'user' } = { name: 'Bob', age: 25 };",
+        "console.log(name); // 'Bob'",
+        "console.log(age);  // 25",
+        "console.log(role); // 'user' (default)",
+        "",
+        "// Rename with default",
+        "const { host: hostname = 'localhost', port = 3000 } = { port: 8080 };",
+        "console.log(hostname); // 'localhost' (default)",
+        "console.log(port);     // 8080"
+      ]
+    },
+    { "type": "note", "text": "Default values only apply when the value is undefined. A value of null will NOT trigger the default." },
+    { "type": "h2", "text": "Rest Pattern and Swapping" },
+    { "type": "p", "text": "The rest pattern (...) collects remaining elements into a new array or object. Destructuring also enables elegant variable swapping." },
+    {
+      "type": "example",
+      "title": "Rest Pattern and Swapping Variables",
+      "code": [
+        "// Rest with arrays",
+        "const [first, ...rest] = [1, 2, 3, 4, 5];",
+        "console.log(first); // 1",
+        "console.log(rest);  // [2, 3, 4, 5]",
+        "",
+        "// Rest with objects",
+        "const { a, ...others } = { a: 1, b: 2, c: 3 };",
+        "console.log(a);      // 1",
+        "console.log(others); // { b: 2, c: 3 }",
+        "",
+        "// Swap variables",
+        "let x = 10;",
+        "let y = 20;",
+        "[x, y] = [y, x];",
+        "console.log(x); // 20",
+        "console.log(y); // 10"
+      ]
+    },
+    { "type": "h2", "text": "Nested Destructuring" },
+    { "type": "p", "text": "Destructuring can be nested to extract values from complex data structures." },
+    {
+      "type": "example",
+      "title": "Nested Destructuring",
+      "code": [
+        "// Nested object destructuring",
+        "const user = {",
+        "  id: 1,",
+        "  info: {",
+        "    name: 'Alice',",
+        "    address: { city: 'NYC', zip: '10001' }",
+        "  }",
+        "};",
+        "const { info: { name, address: { city } } } = user;",
+        "console.log(name); // 'Alice'",
+        "console.log(city); // 'NYC'",
+        "",
+        "// Nested array destructuring",
+        "const matrix = [[1, 2], [3, 4], [5, 6]];",
+        "const [[a, b], , [e, f]] = matrix;",
+        "console.log(a, b); // 1 2",
+        "console.log(e, f); // 5 6",
+        "",
+        "// Mixed nesting",
+        "const data = { scores: [90, 85, 95] };",
+        "const { scores: [first, ...remaining] } = data;",
+        "console.log(first);     // 90",
+        "console.log(remaining); // [85, 95]"
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Function Parameter Destructuring"
+    },
+    { "type": "p", "text": "Destructuring can be used directly in function parameters, which is especially useful for functions that accept configuration objects." },
+    {
+      "type": "example",
+      "title": "Destructuring in Function Parameters",
+      "code": [
+        "// Object parameter destructuring",
+        "function createUser({ name, age, role = 'user' }) {",
+        "  console.log(`${name}, ${age}, ${role}`);",
+        "}",
+        "createUser({ name: 'Alice', age: 30 });",
+        "// 'Alice, 30, user'",
+        "",
+        "// Array parameter destructuring",
+        "function getFirst([first, ...rest]) {",
+        "  console.log(`First: ${first}, Rest: ${rest}`);",
+        "}",
+        "getFirst([10, 20, 30]);",
+        "// 'First: 10, Rest: 20,30'",
+        "",
+        "// With default parameter object",
+        "function configure({ host = 'localhost', port = 3000 } = {}) {",
+        "  console.log(`${host}:${port}`);",
+        "}",
+        "configure();              // 'localhost:3000'",
+        "configure({ port: 8080 }); // 'localhost:8080'"
+      ]
+    },
+    {
+      "type": "table",
+      "rows": [
+        ["Feature", "Array", "Object"],
+        ["Syntax", "const [a, b] = arr", "const { a, b } = obj"],
+        ["Match by", "Position", "Property name"],
+        ["Skip items", "const [a, , c] = arr", "Just omit properties"],
+        ["Rename", "Not applicable", "const { a: newName } = obj"],
+        ["Default", "const [a = 1] = arr", "const { a = 1 } = obj"],
+        ["Rest", "const [a, ...rest] = arr", "const { a, ...rest } = obj"]
+      ]
+    },
+    {
+      "type": "exercise",
+      "question": "What is the output of: const { a, ...rest } = { a: 1, b: 2, c: 3 }; console.log(rest);",
+      "options": ["{ a: 1, b: 2, c: 3 }", "{ b: 2, c: 3 }", "[2, 3]", "undefined"],
+      "answer": 1
+    }
+  ]
+}

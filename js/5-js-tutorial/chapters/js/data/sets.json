@@ -1,0 +1,113 @@
+{
+  "id": "sets",
+  "title": "JS Sets",
+  "group": "JS Sets",
+  "content": [
+    { "type": "h1", "text": "JavaScript Sets" },
+    { "type": "p", "text": "A Set is a collection of unique values. Each value can only occur once in a Set. Sets can hold any value of any type, including primitives and object references. They are ideal for removing duplicates and checking membership." },
+
+    { "type": "h2", "text": "Creating a Set" },
+    { "type": "p", "text": "You create a Set with the new Set() constructor. You can pass an iterable (like an array) to initialize it with values. Duplicate values are automatically removed." },
+    { "type": "example", "title": "Creating Sets", "code": [
+      "// Empty Set",
+      "const set1 = new Set();",
+      "console.log(\"Empty:\", set1);",
+      "",
+      "// Set from array (duplicates removed)",
+      "const set2 = new Set([1, 2, 3, 2, 1, 4]);",
+      "console.log(\"From array:\", set2);",
+      "console.log(\"Size:\", set2.size);",
+      "",
+      "// Set from string (each character)",
+      "const set3 = new Set(\"hello\");",
+      "console.log(\"From string:\", set3);"
+    ] },
+
+    { "type": "h2", "text": "add(), has(), and delete()" },
+    { "type": "p", "text": "add() inserts a new element. has() checks if a value exists (returns boolean). delete() removes a value and returns true if it existed. These operations are very fast -- O(1) on average." },
+    { "type": "example", "title": "Basic Set Operations", "code": [
+      "const colors = new Set();",
+      "",
+      "// add() - returns the Set (chainable)",
+      "colors.add(\"Red\").add(\"Green\").add(\"Blue\");",
+      "console.log(\"Set:\", colors);",
+      "",
+      "// Adding duplicate - silently ignored",
+      "colors.add(\"Red\");",
+      "console.log(\"After duplicate add:\", colors);",
+      "console.log(\"Size:\", colors.size);",
+      "",
+      "// has() - check membership",
+      "console.log(\"Has Red:\", colors.has(\"Red\"));",
+      "console.log(\"Has Yellow:\", colors.has(\"Yellow\"));",
+      "",
+      "// delete() - remove element",
+      "const deleted = colors.delete(\"Green\");",
+      "console.log(\"Deleted Green:\", deleted);",
+      "console.log(\"After delete:\", colors);",
+      "",
+      "// clear() - remove all elements",
+      "colors.clear();",
+      "console.log(\"After clear:\", colors.size);"
+    ] },
+    { "type": "note", "text": "Set.has() is significantly faster than Array.includes() for large collections. Sets use a hash-based lookup with O(1) time complexity, while arrays use O(n) linear search." },
+
+    { "type": "h2", "text": "Iterating Sets" },
+    { "type": "p", "text": "Sets maintain insertion order and can be iterated with for...of, forEach(), or by converting to an array with the spread operator." },
+    { "type": "example", "title": "Iterating Sets", "code": [
+      "const fruits = new Set([\"Apple\", \"Banana\", \"Cherry\", \"Date\"]);",
+      "",
+      "// for...of",
+      "for (const fruit of fruits) {",
+      "  console.log(\"for...of:\", fruit);",
+      "}",
+      "",
+      "// forEach",
+      "fruits.forEach((value) => {",
+      "  console.log(\"forEach:\", value);",
+      "});",
+      "",
+      "// keys(), values(), entries()",
+      "console.log(\"keys:\", [...fruits.keys()]);",
+      "console.log(\"values:\", [...fruits.values()]);",
+      "console.log(\"entries:\", [...fruits.entries()]);"
+    ] },
+
+    { "type": "h2", "text": "Set from Array and Removing Duplicates" },
+    { "type": "p", "text": "One of the most common uses of Set is removing duplicate values from an array. Convert the array to a Set and back to an array." },
+    { "type": "example", "title": "Removing Duplicates", "code": [
+      "const numbers = [1, 2, 3, 2, 4, 1, 5, 3, 6];",
+      "",
+      "// Remove duplicates with Set",
+      "const unique = [...new Set(numbers)];",
+      "console.log(\"Unique:\", unique);",
+      "",
+      "// Also works with Array.from()",
+      "const unique2 = Array.from(new Set(numbers));",
+      "console.log(\"Unique2:\", unique2);",
+      "",
+      "// Remove duplicate strings (case-sensitive)",
+      "const words = [\"hello\", \"Hello\", \"world\", \"hello\", \"WORLD\"];",
+      "const uniqueWords = [...new Set(words)];",
+      "console.log(\"Unique words:\", uniqueWords);",
+      "",
+      "// Case-insensitive dedup",
+      "const lowerSet = new Set(words.map(w => w.toLowerCase()));",
+      "console.log(\"Case-insensitive:\", [...lowerSet]);"
+    ] },
+
+    { "type": "h2", "text": "Set vs Array" },
+    { "type": "p", "text": "Sets and Arrays serve different purposes. Use a Set when you need unique values and fast lookups. Use an Array when you need ordered data with index access." },
+    { "type": "table", "rows": [
+      ["Feature", "Set", "Array"],
+      ["Duplicates", "Not allowed", "Allowed"],
+      ["Order", "Insertion order", "Index-based order"],
+      ["Access by index", "Not supported", "arr[i]"],
+      ["has/includes", "O(1)", "O(n)"],
+      ["Size", ".size property", ".length property"],
+      ["Use case", "Unique values, membership", "Ordered collections"]
+    ] },
+
+    { "type": "exercise", "question": "What is the size of new Set([1, 2, 2, 3, 3, 3])?", "options": ["6", "1", "3", "0"], "answer": 2 }
+  ]
+}

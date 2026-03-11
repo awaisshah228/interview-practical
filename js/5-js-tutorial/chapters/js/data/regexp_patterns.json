@@ -1,0 +1,183 @@
+{
+  "id": "regexp_patterns",
+  "title": "JS RegExp Patterns",
+  "group": "JS RegExp",
+  "content": [
+    { "type": "h1", "text": "JavaScript RegExp Patterns" },
+    { "type": "p", "text": "Regular expression patterns are built from characters, character classes, quantifiers, anchors, and groups. Understanding these building blocks lets you construct powerful search patterns." },
+    { "type": "h2", "text": "Character Classes" },
+    { "type": "p", "text": "Character classes match any one character from a set. Use square brackets to define a class. A range can be specified with a hyphen." },
+    {
+      "type": "example",
+      "title": "Character Classes",
+      "code": [
+        "// Match specific characters",
+        "console.log(/[aeiou]/.test('hello')); // true (matches 'e')",
+        "console.log(/[aeiou]/.test('gym'));    // false",
+        "",
+        "// Character ranges",
+        "console.log(/[a-z]/.test('Hello'));  // true (matches 'e')",
+        "console.log(/[A-Z]/.test('hello'));  // false",
+        "console.log(/[0-9]/.test('abc123')); // true (matches '1')",
+        "",
+        "// Negated character class",
+        "console.log(/[^0-9]/.test('123'));   // false (no non-digit)",
+        "console.log(/[^0-9]/.test('12a3')); // true (found 'a')",
+        "",
+        "// Predefined classes",
+        "console.log(/\\d/.test('abc3'));  // true (\\d = digit)",
+        "console.log(/\\w/.test('$$$'));   // false (\\w = word char)",
+        "console.log(/\\s/.test('hello world')); // true (\\s = whitespace)"
+      ]
+    },
+    {
+      "type": "table",
+      "rows": [
+        ["Class", "Matches", "Equivalent"],
+        ["[abc]", "Any of a, b, or c", "—"],
+        ["[^abc]", "Any character NOT a, b, or c", "—"],
+        ["[a-z]", "Any lowercase letter", "—"],
+        ["[0-9]", "Any digit", "\\d"],
+        ["\\d", "Any digit", "[0-9]"],
+        ["\\D", "Any non-digit", "[^0-9]"],
+        ["\\w", "Any word character", "[a-zA-Z0-9_]"],
+        ["\\W", "Any non-word character", "[^a-zA-Z0-9_]"],
+        ["\\s", "Any whitespace", "[ \\t\\n\\r\\f\\v]"],
+        ["\\S", "Any non-whitespace", "[^ \\t\\n\\r\\f\\v]"],
+        [".", "Any character (except newline)", "—"]
+      ]
+    },
+    { "type": "h2", "text": "Quantifiers" },
+    { "type": "p", "text": "Quantifiers specify how many times a character, group, or character class must appear for a match." },
+    {
+      "type": "example",
+      "title": "Quantifiers",
+      "code": [
+        "// + : One or more",
+        "console.log('aaa'.match(/a+/)[0]); // 'aaa'",
+        "console.log(/\\d+/.test('no digits')); // false",
+        "",
+        "// * : Zero or more",
+        "console.log('b'.match(/ab*/)[0]);   // 'b' — wait, no match",
+        "console.log('ab'.match(/ab*/)[0]);  // 'ab'",
+        "console.log('abbb'.match(/ab*/)[0]); // 'abbb'",
+        "",
+        "// ? : Zero or one (optional)",
+        "console.log('color'.match(/colou?r/)[0]);  // 'color'",
+        "console.log('colour'.match(/colou?r/)[0]); // 'colour'",
+        "",
+        "// {n} : Exactly n times",
+        "console.log(/\\d{3}/.test('12'));   // false",
+        "console.log(/\\d{3}/.test('123'));  // true",
+        "",
+        "// {n,m} : Between n and m times",
+        "console.log('12345'.match(/\\d{2,4}/)[0]); // '1234'",
+        "",
+        "// {n,} : At least n times",
+        "console.log(/a{2,}/.test('a'));    // false",
+        "console.log(/a{2,}/.test('aaa')); // true"
+      ]
+    },
+    { "type": "h2", "text": "Anchors" },
+    { "type": "p", "text": "Anchors do not match characters; they match positions. The caret (^) matches the start, and the dollar sign ($) matches the end of a string (or line in multiline mode)." },
+    {
+      "type": "example",
+      "title": "Anchors and Word Boundaries",
+      "code": [
+        "// ^ : Start of string",
+        "console.log(/^Hello/.test('Hello World'));  // true",
+        "console.log(/^Hello/.test('Say Hello'));    // false",
+        "",
+        "// $ : End of string",
+        "console.log(/World$/.test('Hello World'));  // true",
+        "console.log(/World$/.test('World Hello'));  // false",
+        "",
+        "// ^ and $ together: exact match",
+        "console.log(/^\\d{5}$/.test('12345'));  // true",
+        "console.log(/^\\d{5}$/.test('123456')); // false",
+        "",
+        "// \\b : Word boundary",
+        "console.log(/\\bcat\\b/.test('the cat sat'));   // true",
+        "console.log(/\\bcat\\b/.test('concatenate'));   // false"
+      ]
+    },
+    { "type": "h2", "text": "Groups and Alternation" },
+    { "type": "p", "text": "Parentheses create groups that can capture matched text. The pipe character (|) provides alternation, matching either the pattern on the left or the right." },
+    {
+      "type": "example",
+      "title": "Groups and Alternation",
+      "code": [
+        "// Capturing groups",
+        "const datePattern = /(\\d{4})-(\\d{2})-(\\d{2})/;",
+        "const match = '2024-01-15'.match(datePattern);",
+        "console.log(match[0]); // '2024-01-15'",
+        "console.log(match[1]); // '2024'",
+        "console.log(match[2]); // '01'",
+        "console.log(match[3]); // '15'",
+        "",
+        "// Alternation",
+        "const petPattern = /cat|dog|fish/;",
+        "console.log(petPattern.test('I have a dog')); // true",
+        "console.log(petPattern.test('I have a bird')); // false",
+        "",
+        "// Group with alternation",
+        "const colorPattern = /colou?r (red|blue|green)/;",
+        "console.log(colorPattern.test('color red'));   // true",
+        "console.log(colorPattern.test('colour blue')); // true",
+        "",
+        "// Non-capturing group (?:)",
+        "const result = 'foobar'.match(/(?:foo)(bar)/);",
+        "console.log(result[1]); // 'bar' (only bar is captured)"
+      ]
+    },
+    { "type": "h2", "text": "Escaping Special Characters" },
+    { "type": "p", "text": "Characters like . * + ? ^ $ { } [ ] ( ) | \\ have special meaning in regex. To match them literally, escape them with a backslash." },
+    {
+      "type": "example",
+      "title": "Escaping Special Characters",
+      "code": [
+        "// Matching a literal dot",
+        "console.log(/3.14/.test('3X14'));   // true (. matches any char)",
+        "console.log(/3\\.14/.test('3X14')); // false (\\. matches literal dot)",
+        "console.log(/3\\.14/.test('3.14')); // true",
+        "",
+        "// Matching parentheses",
+        "console.log(/\\(hello\\)/.test('(hello)')); // true",
+        "",
+        "// Matching a dollar sign",
+        "console.log(/\\$\\d+/.test('Price: $50')); // true",
+        "",
+        "// In constructor, double escape",
+        "const pattern = new RegExp('\\\\d+');",
+        "console.log(pattern.test('123')); // true"
+      ]
+    },
+    { "type": "note", "text": "When using the RegExp constructor with a string, you must double-escape backslashes. For example, '\\\\d' in the constructor is equivalent to /\\d/ in literal notation." },
+    {
+      "type": "example",
+      "title": "Common Practical Patterns",
+      "code": [
+        "// Email (basic)",
+        "const email = /^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$/;",
+        "console.log(email.test('user@example.com'));  // true",
+        "console.log(email.test('user@.com'));          // false",
+        "",
+        "// Phone number (US format)",
+        "const phone = /^\\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}$/;",
+        "console.log(phone.test('(555) 123-4567')); // true",
+        "console.log(phone.test('555-123-4567'));    // true",
+        "console.log(phone.test('5551234567'));      // true",
+        "",
+        "// URL (basic)",
+        "const url = /^https?:\\/\\/[\\w.-]+\\.[a-zA-Z]{2,}/;",
+        "console.log(url.test('https://example.com')); // true"
+      ]
+    },
+    {
+      "type": "exercise",
+      "question": "Which quantifier means 'zero or more' occurrences?",
+      "options": ["+", "*", "?", "{n}"],
+      "answer": 1
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "id": "dates",
+  "title": "JS Dates",
+  "group": "JS Dates",
+  "content": [
+    { "type": "h1", "text": "JavaScript Dates" },
+    { "type": "p", "text": "JavaScript Date objects represent a single moment in time. Dates are stored as the number of milliseconds since January 1, 1970, 00:00:00 UTC (the Unix epoch)." },
+
+    { "type": "h2", "text": "Creating Date Objects" },
+    { "type": "p", "text": "There are 9 ways to create a new Date object. The most common are using new Date() with no arguments (current date/time), with a date string, with year/month/day arguments, or with milliseconds." },
+    { "type": "example", "title": "Creating Dates", "code": [
+      "// Current date and time",
+      "const now = new Date();",
+      "console.log(now);",
+      "",
+      "// From a date string",
+      "const d1 = new Date(\"2024-06-15\");",
+      "console.log(d1);",
+      "",
+      "// From year, month, day, hours, minutes, seconds, ms",
+      "const d2 = new Date(2024, 5, 15, 10, 30, 0);",
+      "console.log(d2);",
+      "",
+      "// From milliseconds since epoch",
+      "const d3 = new Date(0);",
+      "console.log(d3);"
+    ] },
+    { "type": "note", "text": "JavaScript months are 0-indexed: January is 0, February is 1, ..., December is 11. This is a very common source of bugs!" },
+
+    { "type": "h2", "text": "Date Formats" },
+    { "type": "p", "text": "When you create a date from a string, JavaScript accepts several formats. The ISO 8601 format (YYYY-MM-DD) is the most reliable across all browsers." },
+    { "type": "example", "title": "Date String Formats", "code": [
+      "// ISO format (recommended)",
+      "const iso = new Date(\"2024-06-15\");",
+      "console.log(iso);",
+      "",
+      "// Long date format",
+      "const long = new Date(\"June 15 2024\");",
+      "console.log(long);",
+      "",
+      "// Short date format",
+      "const short = new Date(\"06/15/2024\");",
+      "console.log(short);"
+    ] },
+
+    { "type": "h2", "text": "Getting Date Components" },
+    { "type": "p", "text": "Date objects provide several getter methods to extract individual components like year, month, day, hours, minutes, and seconds." },
+    { "type": "example", "title": "Get Methods", "code": [
+      "const d = new Date(\"2024-06-15T10:30:45\");",
+      "",
+      "console.log(\"Full Year:\", d.getFullYear());",
+      "console.log(\"Month (0-11):\", d.getMonth());",
+      "console.log(\"Date (1-31):\", d.getDate());",
+      "console.log(\"Hours:\", d.getHours());",
+      "console.log(\"Minutes:\", d.getMinutes());",
+      "console.log(\"Seconds:\", d.getSeconds());"
+    ] },
+
+    { "type": "h2", "text": "Date.now() and Timestamps" },
+    { "type": "p", "text": "Date.now() returns the number of milliseconds since January 1, 1970. This is useful for measuring time intervals or generating unique identifiers." },
+    { "type": "example", "title": "Using Date.now()", "code": [
+      "// Get current timestamp",
+      "const timestamp = Date.now();",
+      "console.log(\"Timestamp:\", timestamp);",
+      "",
+      "// Measure execution time",
+      "const start = Date.now();",
+      "for (let i = 0; i < 1000000; i++) { /* work */ }",
+      "const end = Date.now();",
+      "console.log(\"Elapsed ms:\", end - start);",
+      "",
+      "// Convert timestamp to date",
+      "const fromTimestamp = new Date(timestamp);",
+      "console.log(\"From timestamp:\", fromTimestamp);"
+    ] },
+
+    { "type": "h2", "text": "Displaying Dates" },
+    { "type": "p", "text": "JavaScript provides several methods to convert dates to readable strings." },
+    { "type": "table", "rows": [
+      ["Method", "Description"],
+      ["toString()", "Full date with timezone"],
+      ["toDateString()", "Readable date portion"],
+      ["toTimeString()", "Readable time portion"],
+      ["toISOString()", "ISO 8601 format"],
+      ["toLocaleDateString()", "Locale-specific date"],
+      ["toLocaleTimeString()", "Locale-specific time"]
+    ] },
+    { "type": "example", "title": "Displaying Dates", "code": [
+      "const d = new Date(\"2024-06-15T10:30:00\");",
+      "",
+      "console.log(d.toString());",
+      "console.log(d.toDateString());",
+      "console.log(d.toISOString());",
+      "console.log(d.toLocaleDateString());",
+      "console.log(d.toLocaleTimeString());"
+    ] },
+
+    { "type": "exercise", "question": "What does new Date(2024, 0, 1) represent?", "options": ["February 1, 2024", "January 1, 2024", "December 1, 2024", "January 0, 2024"], "answer": 1 }
+  ]
+}

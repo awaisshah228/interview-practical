@@ -1,0 +1,98 @@
+{
+  "id": "comparisons",
+  "title": "JS Comparisons",
+  "group": "JS Operators",
+  "content": [
+    { "type": "h1", "text": "JavaScript Comparison Operators" },
+    { "type": "p", "text": "Comparison operators compare two values and return a boolean (true or false). They are essential for conditional statements and decision-making in your code." },
+
+    { "type": "h2", "text": "Comparison Operators Overview" },
+    { "type": "p", "text": "JavaScript provides 8 comparison operators. The most important distinction is between == (loose equality) and === (strict equality)." },
+    { "type": "table", "rows": [
+      ["Operator", "Description", "Example", "Result"],
+      ["==", "Equal to (loose)", "5 == \"5\"", "true"],
+      ["===", "Equal to (strict)", "5 === \"5\"", "false"],
+      ["!=", "Not equal (loose)", "5 != \"5\"", "false"],
+      ["!==", "Not equal (strict)", "5 !== \"5\"", "true"],
+      [">", "Greater than", "10 > 5", "true"],
+      ["<", "Less than", "3 < 8", "true"],
+      [">=", "Greater or equal", "5 >= 5", "true"],
+      ["<=", "Less or equal", "3 <= 2", "false"]
+    ]},
+
+    { "type": "h2", "text": "Loose vs Strict Equality" },
+    { "type": "p", "text": "The == operator converts types before comparing (type coercion). The === operator checks both value AND type without conversion. Always prefer === to avoid unexpected results." },
+    { "type": "example", "title": "== vs ===", "code": [
+      "// Loose equality (==) performs type coercion",
+      "console.log(5 == \"5\");    // true (string converted to number)",
+      "console.log(0 == false);   // true (false converted to 0)",
+      "console.log(\"\" == false);  // true (both coerce to 0)",
+      "console.log(null == undefined); // true (special rule)",
+      "",
+      "// Strict equality (===) checks type AND value",
+      "console.log(5 === \"5\");    // false (different types)",
+      "console.log(0 === false);   // false (different types)",
+      "console.log(\"\" === false);  // false (different types)",
+      "console.log(null === undefined); // false (different types)"
+    ]},
+
+    { "type": "h2", "text": "Comparing Strings" },
+    { "type": "p", "text": "Strings are compared character by character using their Unicode values. Uppercase letters have lower Unicode values than lowercase letters." },
+    { "type": "example", "title": "String Comparisons", "code": [
+      "console.log(\"apple\" < \"banana\");  // true (alphabetical)",
+      "console.log(\"cat\" > \"car\");      // true ('t' > 'r')",
+      "console.log(\"abc\" === \"abc\");    // true",
+      "",
+      "// Case matters!",
+      "console.log(\"A\" < \"a\");    // true (uppercase < lowercase)",
+      "console.log(\"Z\" < \"a\");    // true",
+      "",
+      "// Length matters when prefix matches",
+      "console.log(\"app\" < \"apple\"); // true (shorter string is less)",
+      "",
+      "// For case-insensitive comparison:",
+      "let str1 = \"Hello\";",
+      "let str2 = \"hello\";",
+      "console.log(str1.toLowerCase() === str2.toLowerCase()); // true"
+    ]},
+
+    { "type": "h2", "text": "Comparing Different Types" },
+    { "type": "p", "text": "When comparing different types with ==, JavaScript converts them to numbers. With ===, different types are always unequal. Be aware of quirks with null and undefined." },
+    { "type": "example", "title": "Type Comparison Quirks", "code": [
+      "// String vs Number",
+      "console.log(\"10\" > 9);   // true (\"10\" becomes 10)",
+      "console.log(\"2\" > \"12\"); // true (string comparison: '2' > '1')",
+      "",
+      "// null comparisons",
+      "console.log(null == 0);         // false",
+      "console.log(null == undefined); // true",
+      "console.log(null === undefined); // false",
+      "",
+      "// NaN is never equal to anything",
+      "console.log(NaN == NaN);  // false",
+      "console.log(NaN === NaN); // false",
+      "console.log(Number.isNaN(NaN)); // true (correct way to check)"
+    ]},
+
+    { "type": "h2", "text": "The Ternary Operator" },
+    { "type": "p", "text": "The ternary operator is a shorthand for if/else. It uses the syntax: condition ? valueIfTrue : valueIfFalse. It is the only JavaScript operator that takes three operands." },
+    { "type": "example", "title": "Ternary Operator", "code": [
+      "let age = 20;",
+      "let status = age >= 18 ? \"Adult\" : \"Minor\";",
+      "console.log(status); // \"Adult\"",
+      "",
+      "let score = 75;",
+      "let grade = score >= 90 ? \"A\" : score >= 80 ? \"B\" : score >= 70 ? \"C\" : \"F\";",
+      "console.log(grade); // \"C\"",
+      "",
+      "// Using ternary in template literals",
+      "let items = 3;",
+      "console.log(`You have ${items} item${items !== 1 ? \"s\" : \"\"}`);",
+      "// \"You have 3 items\""
+    ]},
+
+    { "type": "note", "text": "Always use === and !== instead of == and !=. Strict equality avoids confusing type coercion bugs. The only common exception is checking for null/undefined with == null, which catches both null and undefined." },
+
+    { "type": "exercise", "question": "What does 0 === false return?", "options": ["true", "false", "undefined", "TypeError"], "answer": 1 }
+  ]
+}

@@ -38,7 +38,6 @@ export default function MonacoEditor({ monacoLang = "javascript" }: Props) {
     const [label, setLabel] = useState({ text: "", cls: "" });
 
     const editorRef = useRef<any>(null);
-    const monacoRef = useRef<any>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Run code from current editor value
@@ -59,54 +58,49 @@ export default function MonacoEditor({ monacoLang = "javascript" }: Props) {
             setOutput("Click Run to see the output here.");
             setLabel({ text: "", cls: "" });
 
-            // Lazy-load Monaco on first open
-            if (!editorRef.current) {
-                setLoading(true);
-                const monaco = await loader.init();
-                monacoRef.current = monaco;
-                editorRef.current = monaco.editor.create(containerRef.current!, {
-                    value: code,
-                    language: monacoLang,
-                    theme: "vs-dark",
-                    minimap: { enabled: false },
-                    scrollBeyondLastLine: false,
-                    fontSize: 13,
-                    fontFamily: "'Fira Code', 'Cascadia Code', monospace",
-                    automaticLayout: true,
-                    lineNumbers: "on",
-                    padding: { top: 10, bottom: 10 },
-                    scrollbar: { vertical: "auto", horizontal: "auto" },
-                });
-                editorRef.current.addCommand(
-                    monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
-                    runCode,
-                );
-                setLoading(false);
-            } else {
-                editorRef.current.getModel().setValue(code);
+            // Always dispose previous editor and create fresh
+            if (editorRef.current) {
+                editorRef.current.dispose();
+                editorRef.current = null;
+            }
+            if (containerRef.current) {
+                containerRef.current.innerHTML = "";
             }
 
-            // Force Monaco to re-render correctly after transition
+            setLoading(true);
+            const monaco = await loader.init();
+            editorRef.current = monaco.editor.create(containerRef.current!, {
+                value: code,
+                language: monacoLang,
+                theme: "vs-dark",
+                minimap: { enabled: false },
+                scrollBeyondLastLine: false,
+                fontSize: 13,
+                fontFamily: "'Fira Code', 'Cascadia Code', monospace",
+                automaticLayout: true,
+                lineNumbers: "on",
+                padding: { top: 10, bottom: 10 },
+                scrollbar: { vertical: "auto", horizontal: "auto" },
+            });
+            editorRef.current.addCommand(
+                monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
+                runCode,
+            );
+            setLoading(false);
+
             setTimeout(() => {
                 editorRef.current?.layout();
                 editorRef.current?.focus();
             }, 300);
         };
 
-        // Close panel & refresh editor on Astro page transition
-        const onSwap = () => {
-            setIsOpen(false);
-            setOutput("Click Run to see the output here.");
-            setLabel({ text: "", cls: "" });
-            // Force Monaco to recalculate layout after DOM swap
-            setTimeout(() => editorRef.current?.layout(), 100);
-        };
-
         window.addEventListener("try-it", handler);
-        window.addEventListener("astro:after-swap", onSwap);
         return () => {
             window.removeEventListener("try-it", handler);
-            window.removeEventListener("astro:after-swap", onSwap);
+            if (editorRef.current) {
+                editorRef.current.dispose();
+                editorRef.current = null;
+            }
         };
     }, []);
 

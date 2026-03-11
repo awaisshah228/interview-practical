@@ -1,0 +1,127 @@
+{
+  "id": "bitwise",
+  "title": "JS Bitwise",
+  "group": "JS Numbers",
+  "content": [
+    { "type": "h1", "text": "JavaScript Bitwise Operations" },
+    { "type": "p", "text": "Bitwise operators work on 32-bit signed integers. They perform operations on the binary (bit-level) representation of numbers. While rarely used in everyday JavaScript, they are important for flags, permissions, low-level optimization, and understanding how computers process data." },
+
+    { "type": "h2", "text": "Bitwise AND (&), OR (|), XOR (^)" },
+    { "type": "p", "text": "AND (&) returns 1 for each bit position where both operands have 1. OR (|) returns 1 where at least one operand has 1. XOR (^) returns 1 where exactly one operand has 1." },
+    { "type": "example", "title": "AND, OR, XOR", "code": [
+      "let a = 5;  // binary: 0101",
+      "let b = 3;  // binary: 0011",
+      "",
+      "// AND: both bits must be 1",
+      "console.log(a & b);",
+      "console.log((5).toString(2) + \" & \" + (3).toString(2) + \" = \" + (a & b).toString(2));",
+      "",
+      "// OR: at least one bit must be 1",
+      "console.log(a | b);",
+      "console.log((5).toString(2) + \" | \" + (3).toString(2) + \" = \" + (a | b).toString(2));",
+      "",
+      "// XOR: exactly one bit must be 1",
+      "console.log(a ^ b);",
+      "console.log((5).toString(2) + \" ^ \" + (3).toString(2) + \" = \" + (a ^ b).toString(2));"
+    ]},
+
+    { "type": "h2", "text": "Bitwise NOT (~)" },
+    { "type": "p", "text": "The NOT operator (~) inverts all bits. For a 32-bit integer, ~n equals -(n + 1). This is because JavaScript uses two's complement representation for signed integers." },
+    { "type": "example", "title": "Bitwise NOT", "code": [
+      "console.log(~5);",
+      "console.log(~0);",
+      "console.log(~-1);",
+      "console.log(~-3);",
+      "",
+      "// Pattern: ~n = -(n + 1)",
+      "console.log(~5 === -(5 + 1));",
+      "",
+      "// Historical trick: ~indexOf() for boolean check",
+      "let str = \"Hello World\";",
+      "if (~str.indexOf(\"World\")) {",
+      "  console.log(\"Found 'World'\");",
+      "}",
+      "// Modern: use includes() instead",
+      "console.log(str.includes(\"World\"));"
+    ]},
+
+    { "type": "h2", "text": "Left Shift (<<) and Right Shift (>>)" },
+    { "type": "p", "text": "Left shift (<<) moves bits to the left, filling with zeros on the right. Each shift left doubles the value. Right shift (>>) moves bits to the right, preserving the sign bit. Each shift right halves the value." },
+    { "type": "example", "title": "Shift Operators", "code": [
+      "// Left shift: multiply by 2^n",
+      "console.log(5 << 1);",
+      "console.log(5 << 2);",
+      "console.log(5 << 3);",
+      "console.log(1 << 10);",
+      "",
+      "// Right shift: divide by 2^n (integer result)",
+      "console.log(20 >> 1);",
+      "console.log(20 >> 2);",
+      "console.log(20 >> 3);",
+      "",
+      "// Right shift preserves sign",
+      "console.log(-20 >> 1);",
+      "console.log(-20 >> 2);"
+    ]},
+
+    { "type": "h2", "text": "Unsigned Right Shift (>>>)" },
+    { "type": "p", "text": "The unsigned right shift (>>>) shifts bits to the right and fills the leftmost bits with zeros (ignoring the sign). This converts negative numbers to large positive numbers because the sign bit becomes 0." },
+    { "type": "example", "title": "Unsigned Right Shift", "code": [
+      "// Regular right shift preserves sign",
+      "console.log(-1 >> 0);",
+      "",
+      "// Unsigned right shift fills with zeros",
+      "console.log(-1 >>> 0);",
+      "",
+      "// Useful to convert to unsigned 32-bit integer",
+      "console.log(-1 >>> 0);",
+      "console.log((-5 >>> 0).toString(2));",
+      "",
+      "// Positive numbers are the same for >> and >>>",
+      "console.log(20 >> 2);",
+      "console.log(20 >>> 2);"
+    ]},
+
+    { "type": "h2", "text": "Practical Use Cases" },
+    { "type": "p", "text": "Bitwise operators are commonly used for permission flags, color manipulation, and performance-critical operations where bit-level control is needed." },
+    { "type": "example", "title": "Permission Flags", "code": [
+      "// Permission system using bitwise flags",
+      "const READ    = 1;   // 001",
+      "const WRITE   = 2;   // 010",
+      "const EXECUTE = 4;   // 100",
+      "",
+      "// Combine permissions with OR",
+      "let userPerms = READ | WRITE;",
+      "console.log(\"User perms:\", userPerms);",
+      "",
+      "// Check permission with AND",
+      "console.log(\"Can read?\", (userPerms & READ) !== 0);",
+      "console.log(\"Can execute?\", (userPerms & EXECUTE) !== 0);",
+      "",
+      "// Add permission with OR",
+      "userPerms = userPerms | EXECUTE;",
+      "console.log(\"After adding execute:\", userPerms);",
+      "console.log(\"Can execute?\", (userPerms & EXECUTE) !== 0);",
+      "",
+      "// Remove permission with AND + NOT",
+      "userPerms = userPerms & ~WRITE;",
+      "console.log(\"After removing write:\", userPerms);",
+      "console.log(\"Can write?\", (userPerms & WRITE) !== 0);"
+    ]},
+
+    { "type": "table", "rows": [
+      ["Operator", "Name", "Example", "Result", "Description"],
+      ["&", "AND", "5 & 3", "1", "1 if both bits are 1"],
+      ["|", "OR", "5 | 3", "7", "1 if either bit is 1"],
+      ["^", "XOR", "5 ^ 3", "6", "1 if bits differ"],
+      ["~", "NOT", "~5", "-6", "Inverts all bits"],
+      ["<<", "Left Shift", "5 << 1", "10", "Shift left, fill with 0"],
+      [">>", "Right Shift", "20 >> 2", "5", "Shift right, keep sign"],
+      [">>>", "Unsigned Right Shift", "-1 >>> 0", "4294967295", "Shift right, fill with 0"]
+    ]},
+
+    { "type": "note", "text": "Bitwise operations convert numbers to 32-bit signed integers before processing. This means they truncate decimals and overflow at 2^31. For most JavaScript work, prefer arithmetic operators. Use bitwise operators when working with flags, binary protocols, or performance-critical code." },
+
+    { "type": "exercise", "question": "What is the result of 5 & 3 in JavaScript?", "options": ["8", "7", "1", "6"], "answer": 2 }
+  ]
+}

@@ -24,6 +24,11 @@ const isCodeLang = monacoLang !== "plaintext";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | {langName} Tutorial</title>
+    {isCodeLang && (
+        <link rel="stylesheet"
+              data-name="vs/editor/editor.main"
+              href="https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs/editor/editor.main.css" />
+    )}
     <ClientRouter />
 </head>
 <body data-code-lang={isCodeLang ? "true" : "false"}>
@@ -35,7 +40,7 @@ const isCodeLang = monacoLang !== "plaintext";
             <slot />
         </main>
     </div>
-    {isCodeLang && <MonacoEditor client:idle monacoLang={monacoLang} transition:persist="monaco-editor" />}
+    {isCodeLang && <MonacoEditor client:idle monacoLang={monacoLang} />}
     <script>
         document.addEventListener("astro:page-load", () => {
             const toggle = document.getElementById("mobile-toggle");
@@ -50,6 +55,12 @@ const isCodeLang = monacoLang !== "plaintext";
                 backdrop?.classList.remove("visible");
             });
         });
+
+        document.addEventListener("astro:before-swap", () => {
+            // Close the try-it panel via DOM before page swap
+            document.getElementById("try-it-panel")?.classList.remove("open");
+        });
+
         document.addEventListener("astro:after-swap", () => {
             // Close mobile sidebar on navigation
             document.getElementById("sidebar")?.classList.remove("open");
