@@ -308,7 +308,7 @@ tr:nth-child(even) td { background: var(--surface); }
 .try-it-btn:hover { background: var(--green-dark); }
 
 /* Hide "Try it Yourself" for non-code languages (AI courses etc.) */
-body[data-code-lang="false"] .try-it-btn { display: none; }
+[data-code-lang="false"] .try-it-btn { display: none; }
 
 /* ── Course outline back link ────────────────────────────────────────────── */
 .course-outline-back {
